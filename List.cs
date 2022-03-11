@@ -17,5 +17,9 @@ namespace RTiPPO
             InitializeComponent();
         }
 
+        private void List_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
