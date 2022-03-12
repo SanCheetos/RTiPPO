@@ -84,6 +84,7 @@ namespace RTiPPO
             this.CheckOMSU = new System.Windows.Forms.CheckedListBox();
             this.DoFilter = new System.Windows.Forms.Button();
             this.ThrowOffFilter = new System.Windows.Forms.Button();
+            this.Add = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinDogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxSum)).BeginInit();
@@ -563,11 +564,22 @@ namespace RTiPPO
             this.ThrowOffFilter.Text = "Сбросить всё";
             this.ThrowOffFilter.UseVisualStyleBackColor = true;
             // 
+            // Add
+            // 
+            this.Add.Location = new System.Drawing.Point(1075, 647);
+            this.Add.Name = "Add";
+            this.Add.Size = new System.Drawing.Size(75, 23);
+            this.Add.TabIndex = 45;
+            this.Add.Text = "Добавить";
+            this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
+            // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1244, 675);
+            this.Controls.Add(this.Add);
             this.Controls.Add(this.ThrowOffFilter);
             this.Controls.Add(this.DoFilter);
             this.Controls.Add(this.CheckOMSU);
@@ -612,6 +624,7 @@ namespace RTiPPO
             this.Controls.Add(this.ExportExcel);
             this.Controls.Add(this.dataGridView1);
             this.Name = "List";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Реестр";
             this.Load += new System.EventHandler(this.List_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -683,6 +696,7 @@ namespace RTiPPO
         private System.Windows.Forms.CheckedListBox CheckOMSU;
         private System.Windows.Forms.Button DoFilter;
         private System.Windows.Forms.Button ThrowOffFilter;
+        private System.Windows.Forms.Button Add;
     }
 }
 

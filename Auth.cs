@@ -17,16 +17,16 @@ namespace RTiPPO
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void LogIn_Click(object sender, EventArgs e)
         {
             Form Registry = new List();
             Registry.Show();
             this.Hide();
+        }
+
+        private void CloseApp_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

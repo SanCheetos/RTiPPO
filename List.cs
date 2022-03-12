@@ -49,5 +49,11 @@ namespace RTiPPO
         {
 
         }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            Form Add = new AddForm();
+            Add.Show();
+        }
     }
 }
