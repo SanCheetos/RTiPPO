@@ -84,7 +84,6 @@
             this.label2.Size = new System.Drawing.Size(101, 42);
             this.label2.TabIndex = 6;
             this.label2.Text = "Вход";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Auth
             // 
@@ -100,7 +99,6 @@
             this.Name = "Auth";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизация";
-            this.Load += new System.EventHandler(this.Auth_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

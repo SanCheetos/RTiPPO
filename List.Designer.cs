@@ -85,6 +85,7 @@ namespace RTiPPO
             this.DoFilter = new System.Windows.Forms.Button();
             this.ThrowOffFilter = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.Button();
+            this.Delete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinDogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxSum)).BeginInit();
@@ -574,11 +575,21 @@ namespace RTiPPO
             this.Add.UseVisualStyleBackColor = true;
             this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
+            // Delete
+            // 
+            this.Delete.Location = new System.Drawing.Point(994, 647);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(75, 23);
+            this.Delete.TabIndex = 46;
+            this.Delete.Text = "Удалить";
+            this.Delete.UseVisualStyleBackColor = true;
+            // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1244, 675);
+            this.Controls.Add(this.Delete);
             this.Controls.Add(this.Add);
             this.Controls.Add(this.ThrowOffFilter);
             this.Controls.Add(this.DoFilter);
@@ -697,6 +708,7 @@ namespace RTiPPO
         private System.Windows.Forms.Button DoFilter;
         private System.Windows.Forms.Button ThrowOffFilter;
         private System.Windows.Forms.Button Add;
+        private System.Windows.Forms.Button Delete;
     }
 }
 
