@@ -85,13 +85,6 @@ namespace RTiPPO
             this.DoFilter = new System.Windows.Forms.Button();
             this.ThrowOffFilter = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.Delete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinDogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxSum)).BeginInit();
