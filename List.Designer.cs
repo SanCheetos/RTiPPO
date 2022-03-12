@@ -78,14 +78,30 @@ namespace RTiPPO
             this.CaptMaxDogs = new System.Windows.Forms.NumericUpDown();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.CheckDateCapt = new System.Windows.Forms.CheckBox();
-            this.CheckLocality = new System.Windows.Forms.CheckedListBox();
-            this.CheckMunicipality = new System.Windows.Forms.CheckedListBox();
-            this.CheckExecutor = new System.Windows.Forms.CheckedListBox();
-            this.CheckOMSU = new System.Windows.Forms.CheckedListBox();
             this.DoFilter = new System.Windows.Forms.Button();
             this.ThrowOffFilter = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinDogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxSum)).BeginInit();
@@ -113,12 +129,12 @@ namespace RTiPPO
             this.Locality,
             this.CaptDate,
             this.Purpose});
-            this.dataGridView1.Location = new System.Drawing.Point(0, 273);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 390);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1242, 368);
+            this.dataGridView1.Size = new System.Drawing.Size(1242, 564);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -208,7 +224,7 @@ namespace RTiPPO
             // 
             // ExportExcel
             // 
-            this.ExportExcel.Location = new System.Drawing.Point(12, 647);
+            this.ExportExcel.Location = new System.Drawing.Point(12, 960);
             this.ExportExcel.Name = "ExportExcel";
             this.ExportExcel.Size = new System.Drawing.Size(143, 23);
             this.ExportExcel.TabIndex = 1;
@@ -217,7 +233,7 @@ namespace RTiPPO
             // 
             // OpenCard
             // 
-            this.OpenCard.Location = new System.Drawing.Point(1156, 647);
+            this.OpenCard.Location = new System.Drawing.Point(1156, 960);
             this.OpenCard.Name = "OpenCard";
             this.OpenCard.Size = new System.Drawing.Size(75, 23);
             this.OpenCard.TabIndex = 2;
@@ -515,38 +531,6 @@ namespace RTiPPO
             this.CheckDateCapt.Text = "Дата отлова";
             this.CheckDateCapt.UseVisualStyleBackColor = true;
             // 
-            // CheckLocality
-            // 
-            this.CheckLocality.FormattingEnabled = true;
-            this.CheckLocality.Location = new System.Drawing.Point(12, 169);
-            this.CheckLocality.Name = "CheckLocality";
-            this.CheckLocality.Size = new System.Drawing.Size(250, 94);
-            this.CheckLocality.TabIndex = 39;
-            // 
-            // CheckMunicipality
-            // 
-            this.CheckMunicipality.FormattingEnabled = true;
-            this.CheckMunicipality.Location = new System.Drawing.Point(319, 169);
-            this.CheckMunicipality.Name = "CheckMunicipality";
-            this.CheckMunicipality.Size = new System.Drawing.Size(250, 94);
-            this.CheckMunicipality.TabIndex = 40;
-            // 
-            // CheckExecutor
-            // 
-            this.CheckExecutor.FormattingEnabled = true;
-            this.CheckExecutor.Location = new System.Drawing.Point(626, 169);
-            this.CheckExecutor.Name = "CheckExecutor";
-            this.CheckExecutor.Size = new System.Drawing.Size(250, 94);
-            this.CheckExecutor.TabIndex = 41;
-            // 
-            // CheckOMSU
-            // 
-            this.CheckOMSU.FormattingEnabled = true;
-            this.CheckOMSU.Location = new System.Drawing.Point(934, 169);
-            this.CheckOMSU.Name = "CheckOMSU";
-            this.CheckOMSU.Size = new System.Drawing.Size(250, 94);
-            this.CheckOMSU.TabIndex = 42;
-            // 
             // DoFilter
             // 
             this.DoFilter.Location = new System.Drawing.Point(93, 5);
@@ -567,7 +551,7 @@ namespace RTiPPO
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(1075, 647);
+            this.Add.Location = new System.Drawing.Point(1075, 960);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(75, 23);
             this.Add.TabIndex = 45;
@@ -577,26 +561,237 @@ namespace RTiPPO
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(994, 647);
+            this.button1.Location = new System.Drawing.Point(994, 960);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 46;
             this.button1.Text = "Удалить";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(12, 180);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(223, 23);
+            this.textBox3.TabIndex = 47;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(958, 180);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(223, 23);
+            this.textBox4.TabIndex = 48;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(642, 180);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(223, 23);
+            this.textBox5.TabIndex = 49;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(307, 180);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(223, 23);
+            this.textBox6.TabIndex = 50;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 217);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(46, 15);
+            this.label11.TabIndex = 51;
+            this.label11.Text = "Город1";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(307, 243);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(33, 15);
+            this.label22.TabIndex = 52;
+            this.label22.Text = "МО2";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(307, 217);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(33, 15);
+            this.label23.TabIndex = 53;
+            this.label23.Text = "МО1";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(12, 243);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(61, 15);
+            this.label24.TabIndex = 54;
+            this.label24.Text = "Поселок2";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(642, 269);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(52, 15);
+            this.label25.TabIndex = 55;
+            this.label25.Text = "Аноним";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(642, 243);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(81, 15);
+            this.label26.TabIndex = 56;
+            this.label26.Text = "Исполнитель";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(642, 217);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(79, 15);
+            this.label27.TabIndex = 57;
+            this.label27.Text = "Иван Иванов";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(958, 217);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(48, 15);
+            this.label28.TabIndex = 58;
+            this.label28.Text = "ОМСУ1";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Red;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button3.Location = new System.Drawing.Point(207, 213);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(28, 23);
+            this.button3.TabIndex = 59;
+            this.button3.Text = "X";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Red;
+            this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button2.Location = new System.Drawing.Point(207, 239);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(28, 23);
+            this.button2.TabIndex = 60;
+            this.button2.Text = "X";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Red;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button4.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button4.Location = new System.Drawing.Point(511, 213);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(28, 23);
+            this.button4.TabIndex = 61;
+            this.button4.Text = "X";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Red;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button5.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button5.Location = new System.Drawing.Point(511, 239);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(28, 23);
+            this.button5.TabIndex = 62;
+            this.button5.Text = "X";
+            this.button5.UseVisualStyleBackColor = false;
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Red;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button6.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button6.Location = new System.Drawing.Point(837, 213);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(28, 23);
+            this.button6.TabIndex = 63;
+            this.button6.Text = "X";
+            this.button6.UseVisualStyleBackColor = false;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Red;
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button7.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button7.Location = new System.Drawing.Point(837, 239);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(28, 23);
+            this.button7.TabIndex = 64;
+            this.button7.Text = "X";
+            this.button7.UseVisualStyleBackColor = false;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Red;
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button8.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button8.Location = new System.Drawing.Point(837, 265);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(28, 23);
+            this.button8.TabIndex = 65;
+            this.button8.Text = "X";
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Red;
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button9.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button9.Location = new System.Drawing.Point(1156, 213);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(28, 23);
+            this.button9.TabIndex = 66;
+            this.button9.Text = "X";
+            this.button9.UseVisualStyleBackColor = false;
+            // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1244, 675);
+            this.ClientSize = new System.Drawing.Size(1244, 995);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Add);
             this.Controls.Add(this.ThrowOffFilter);
             this.Controls.Add(this.DoFilter);
-            this.Controls.Add(this.CheckOMSU);
-            this.Controls.Add(this.CheckExecutor);
-            this.Controls.Add(this.CheckMunicipality);
-            this.Controls.Add(this.CheckLocality);
             this.Controls.Add(this.CheckDateCapt);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.CaptMaxDogs);
@@ -709,6 +904,26 @@ namespace RTiPPO
         private System.Windows.Forms.Button ThrowOffFilter;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
     }
 }
 
