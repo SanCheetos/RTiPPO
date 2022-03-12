@@ -53,12 +53,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(92, 104);
+            this.button1.Location = new System.Drawing.Point(92, 114);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Войти";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -70,6 +71,7 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "x";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Auth
             // 
@@ -82,6 +84,7 @@
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Auth";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизация";
             this.ResumeLayout(false);
             this.PerformLayout();
