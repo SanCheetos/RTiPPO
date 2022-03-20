@@ -27,7 +27,9 @@ namespace RTiPPO
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            card c = new card();
+            c.Owner = this;
+            c.ShowDialog();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
