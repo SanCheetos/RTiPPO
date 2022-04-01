@@ -27,12 +27,14 @@ namespace RTiPPO
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            card c = new card();
+            c.Owner = this;
+            c.ShowDialog();
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
