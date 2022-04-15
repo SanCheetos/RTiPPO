@@ -222,6 +222,7 @@ namespace RTiPPO
             this.ExportExcel.TabIndex = 1;
             this.ExportExcel.Text = "Экспортировать в Excel";
             this.ExportExcel.UseVisualStyleBackColor = true;
+            this.ExportExcel.Click += new System.EventHandler(this.ExportExcel_Click);
             // 
             // OpenCard
             // 
@@ -231,6 +232,7 @@ namespace RTiPPO
             this.OpenCard.TabIndex = 2;
             this.OpenCard.Text = "Открыть";
             this.OpenCard.UseVisualStyleBackColor = true;
+            this.OpenCard.Click += new System.EventHandler(this.OpenCard_Click);
             // 
             // label1
             // 
@@ -530,6 +532,7 @@ namespace RTiPPO
             this.DoFilter.TabIndex = 43;
             this.DoFilter.Text = "Применить";
             this.DoFilter.UseVisualStyleBackColor = true;
+            this.DoFilter.Click += new System.EventHandler(this.DoFilter_Click);
             // 
             // ThrowOffFilter
             // 
