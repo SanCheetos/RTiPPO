@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RTiPPO.Controllers
 {
-    internal static class ListController
+    internal class ListController
     {
         //------------ Третьяк Александр -------------------
 

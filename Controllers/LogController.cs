@@ -7,7 +7,7 @@ using RTiPPO.SubjectArea;
 
 namespace RTiPPO.Controllers
 {
-    internal static class LogController
+    internal class LogController
     {
         public static void Track(User user, AccountCard accountCard, SubjectArea.Action action)
         {
