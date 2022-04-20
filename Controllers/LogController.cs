@@ -7,11 +7,16 @@ using RTiPPO.SubjectArea;
 
 namespace RTiPPO.Controllers
 {
-    internal static class LogController
+    internal class LogController
     {
         public static void Track(User user, AccountCard accountCard, SubjectArea.Action action)
         {
-            // Магия логирования действия пользователя
+            // Запрос в БД на логирование 
+        }
+
+        public static void Track(User user, int accountCardID, SubjectArea.Action action)
+        {
+            // Запрос в БД на логирование 
         }
     }
 }

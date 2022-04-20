@@ -7,7 +7,7 @@ using RTiPPO.SubjectArea;
 
 namespace RTiPPO.Controllers
 {
-    internal static class AuthController
+    internal class AuthController
     {
         public static Register Login(User user)
         {
