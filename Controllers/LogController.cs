@@ -11,7 +11,12 @@ namespace RTiPPO.Controllers
     {
         public static void Track(User user, AccountCard accountCard, SubjectArea.Action action)
         {
-            // Магия логирования действия пользователя
+            // Запрос в БД на логирование 
+        }
+
+        public static void Track(User user, int accountCardID, SubjectArea.Action action)
+        {
+            // Запрос в БД на логирование 
         }
     }
 }

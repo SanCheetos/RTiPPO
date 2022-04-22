@@ -65,12 +65,18 @@ namespace RTiPPO.Controllers
 
         public static void AddAct(AccountCard accountCard)
         {
-            // Магия добавления записи в реестр
+            // Запрос в БД на добавление записи
+            User user = new User();     
+            SubjectArea.Action action = new SubjectArea.Action() { name = "Добавление" };
+            LogController.Track(user, accountCard, action);
         }
 
-        public static void DeleteAct(AccountCard accountCard)
+        public static void DeleteAct(int accountCardID)
         {
-            // Магия удаления записи из реестра
+            // Запрос в БД на добавление записи
+            User user = new User();
+            SubjectArea.Action action = new SubjectArea.Action() { name = "Удаление" };
+            LogController.Track(user, accountCardID, action);
         }
 
         //------------ Реализация ------------------

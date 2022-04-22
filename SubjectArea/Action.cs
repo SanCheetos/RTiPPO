@@ -8,5 +8,6 @@ namespace RTiPPO.SubjectArea
 {
     internal class Action
     {
+        public string name;
     }
 }
