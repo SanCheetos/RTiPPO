@@ -8,5 +8,11 @@ namespace RTiPPO.SubjectArea
 {
     internal class Register
     {
+        public List<AccountCard> AccountCards { get; set; }
+
+        public Register(List<AccountCard> accCards)
+        {
+            AccountCards = accCards;
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace RTiPPO
             this.Purpose = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExportExcel = new System.Windows.Forms.Button();
             this.OpenCard = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.FilterLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -80,20 +80,26 @@ namespace RTiPPO
             this.CheckDateCapt = new System.Windows.Forms.CheckBox();
             this.DoFilter = new System.Windows.Forms.Button();
             this.ThrowOffFilter = new System.Windows.Forms.Button();
-            this.Add = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.listBox4 = new System.Windows.Forms.ListBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.AddCard = new System.Windows.Forms.Button();
+            this.DeleteCard = new System.Windows.Forms.Button();
+            this.ContractorTextBox = new System.Windows.Forms.TextBox();
+            this.LocalityTextBox = new System.Windows.Forms.TextBox();
+            this.MunicipalityTextBox = new System.Windows.Forms.TextBox();
+            this.OMSUTextBox = new System.Windows.Forms.TextBox();
+            this.MunicipalityList = new System.Windows.Forms.ListBox();
+            this.OMSUList = new System.Windows.Forms.ListBox();
+            this.ContractorList = new System.Windows.Forms.ListBox();
+            this.LocalityList = new System.Windows.Forms.ListBox();
+            this.DeleteMunicipality = new System.Windows.Forms.Button();
+            this.DeleteContractor = new System.Windows.Forms.Button();
+            this.DeleteLocality = new System.Windows.Forms.Button();
+            this.DeleteOMSU = new System.Windows.Forms.Button();
+            this.filterBox = new System.Windows.Forms.GroupBox();
+            this.MunicipalityListHelp = new System.Windows.Forms.ListBox();
+            this.ShowHideFilter = new System.Windows.Forms.Button();
+            this.OMSUListHelp = new System.Windows.Forms.ListBox();
+            this.ContractorListHelp = new System.Windows.Forms.ListBox();
+            this.LocalityListHelp = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinDogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxSum)).BeginInit();
@@ -101,6 +107,7 @@ namespace RTiPPO
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxCats)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinCats)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxDogs)).BeginInit();
+            this.filterBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -121,12 +128,12 @@ namespace RTiPPO
             this.Locality,
             this.CaptDate,
             this.Purpose});
-            this.dataGridView1.Location = new System.Drawing.Point(0, 390);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 406);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1242, 564);
+            this.dataGridView1.Size = new System.Drawing.Size(1197, 472);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -143,6 +150,8 @@ namespace RTiPPO
             this.DateMK.HeaderText = "Дата заключения МК";
             this.DateMK.Name = "DateMK";
             this.DateMK.ReadOnly = true;
+            this.DateMK.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DateMK.Width = 77;
             // 
             // Municipality
             // 
@@ -206,6 +215,8 @@ namespace RTiPPO
             this.CaptDate.HeaderText = "Дата отлова";
             this.CaptDate.Name = "CaptDate";
             this.CaptDate.ReadOnly = true;
+            this.CaptDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CaptDate.Width = 77;
             // 
             // Purpose
             // 
@@ -216,7 +227,7 @@ namespace RTiPPO
             // 
             // ExportExcel
             // 
-            this.ExportExcel.Location = new System.Drawing.Point(12, 960);
+            this.ExportExcel.Location = new System.Drawing.Point(6, 884);
             this.ExportExcel.Name = "ExportExcel";
             this.ExportExcel.Size = new System.Drawing.Size(143, 23);
             this.ExportExcel.TabIndex = 1;
@@ -226,7 +237,7 @@ namespace RTiPPO
             // 
             // OpenCard
             // 
-            this.OpenCard.Location = new System.Drawing.Point(1156, 960);
+            this.OpenCard.Location = new System.Drawing.Point(1116, 884);
             this.OpenCard.Name = "OpenCard";
             this.OpenCard.Size = new System.Drawing.Size(75, 23);
             this.OpenCard.TabIndex = 2;
@@ -234,20 +245,20 @@ namespace RTiPPO
             this.OpenCard.UseVisualStyleBackColor = true;
             this.OpenCard.Click += new System.EventHandler(this.OpenCard_Click);
             // 
-            // label1
+            // FilterLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Фильтры";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.FilterLabel.AutoSize = true;
+            this.FilterLabel.Location = new System.Drawing.Point(6, 10);
+            this.FilterLabel.Name = "FilterLabel";
+            this.FilterLabel.Size = new System.Drawing.Size(57, 15);
+            this.FilterLabel.TabIndex = 3;
+            this.FilterLabel.Text = "Фильтры";
+            this.FilterLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 34);
+            this.label2.Location = new System.Drawing.Point(28, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 15);
             this.label2.TabIndex = 4;
@@ -257,7 +268,7 @@ namespace RTiPPO
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(349, 151);
+            this.label4.Location = new System.Drawing.Point(28, 159);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(172, 15);
             this.label4.TabIndex = 6;
@@ -266,7 +277,7 @@ namespace RTiPPO
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1034, 151);
+            this.label5.Location = new System.Drawing.Point(412, 159);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 15);
             this.label5.TabIndex = 7;
@@ -275,7 +286,7 @@ namespace RTiPPO
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(689, 151);
+            this.label6.Location = new System.Drawing.Point(720, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(105, 15);
             this.label6.TabIndex = 8;
@@ -284,7 +295,7 @@ namespace RTiPPO
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(307, 34);
+            this.label7.Location = new System.Drawing.Point(154, 29);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(112, 15);
             this.label7.TabIndex = 9;
@@ -293,7 +304,7 @@ namespace RTiPPO
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(437, 34);
+            this.label8.Location = new System.Drawing.Point(593, 29);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(184, 15);
             this.label8.TabIndex = 10;
@@ -302,7 +313,7 @@ namespace RTiPPO
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(627, 34);
+            this.label9.Location = new System.Drawing.Point(788, 29);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(188, 15);
             this.label9.TabIndex = 11;
@@ -311,7 +322,7 @@ namespace RTiPPO
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(70, 151);
+            this.label10.Location = new System.Drawing.Point(1026, 159);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(111, 15);
             this.label10.TabIndex = 12;
@@ -320,7 +331,7 @@ namespace RTiPPO
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(821, 34);
+            this.label12.Location = new System.Drawing.Point(982, 29);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(208, 15);
             this.label12.TabIndex = 14;
@@ -328,7 +339,7 @@ namespace RTiPPO
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 65);
+            this.textBox1.Location = new System.Drawing.Point(154, 51);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 23);
             this.textBox1.TabIndex = 15;
@@ -336,7 +347,7 @@ namespace RTiPPO
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(155, 70);
+            this.label13.Location = new System.Drawing.Point(303, 59);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(21, 15);
             this.label13.TabIndex = 16;
@@ -345,7 +356,7 @@ namespace RTiPPO
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(155, 105);
+            this.label14.Location = new System.Drawing.Point(303, 106);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(22, 15);
             this.label14.TabIndex = 17;
@@ -354,7 +365,7 @@ namespace RTiPPO
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(484, 101);
+            this.label15.Location = new System.Drawing.Point(841, 106);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(22, 15);
             this.label15.TabIndex = 19;
@@ -363,7 +374,7 @@ namespace RTiPPO
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(484, 66);
+            this.label16.Location = new System.Drawing.Point(646, 59);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(21, 15);
             this.label16.TabIndex = 18;
@@ -372,7 +383,7 @@ namespace RTiPPO
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(674, 101);
+            this.label17.Location = new System.Drawing.Point(646, 106);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(22, 15);
             this.label17.TabIndex = 21;
@@ -381,7 +392,7 @@ namespace RTiPPO
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(674, 66);
+            this.label18.Location = new System.Drawing.Point(841, 59);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(21, 15);
             this.label18.TabIndex = 20;
@@ -390,7 +401,7 @@ namespace RTiPPO
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(868, 101);
+            this.label19.Location = new System.Drawing.Point(1035, 106);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(22, 15);
             this.label19.TabIndex = 23;
@@ -399,7 +410,7 @@ namespace RTiPPO
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(868, 66);
+            this.label20.Location = new System.Drawing.Point(1035, 59);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(21, 15);
             this.label20.TabIndex = 22;
@@ -408,7 +419,7 @@ namespace RTiPPO
             // DateMinMK
             // 
             this.DateMinMK.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateMinMK.Location = new System.Drawing.Point(182, 64);
+            this.DateMinMK.Location = new System.Drawing.Point(330, 53);
             this.DateMinMK.Name = "DateMinMK";
             this.DateMinMK.Size = new System.Drawing.Size(98, 23);
             this.DateMinMK.TabIndex = 24;
@@ -416,7 +427,7 @@ namespace RTiPPO
             // CheckDateMK
             // 
             this.CheckDateMK.AutoSize = true;
-            this.CheckDateMK.Location = new System.Drawing.Point(147, 33);
+            this.CheckDateMK.Location = new System.Drawing.Point(303, 28);
             this.CheckDateMK.Name = "CheckDateMK";
             this.CheckDateMK.Size = new System.Drawing.Size(142, 19);
             this.CheckDateMK.TabIndex = 25;
@@ -426,7 +437,7 @@ namespace RTiPPO
             // DateMaxMK
             // 
             this.DateMaxMK.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateMaxMK.Location = new System.Drawing.Point(182, 99);
+            this.DateMaxMK.Location = new System.Drawing.Point(330, 100);
             this.DateMaxMK.Name = "DateMaxMK";
             this.DateMaxMK.Size = new System.Drawing.Size(98, 23);
             this.DateMaxMK.TabIndex = 26;
@@ -434,7 +445,7 @@ namespace RTiPPO
             // DateMaxCapt
             // 
             this.DateMaxCapt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateMaxCapt.Location = new System.Drawing.Point(1068, 97);
+            this.DateMaxCapt.Location = new System.Drawing.Point(481, 100);
             this.DateMaxCapt.Name = "DateMaxCapt";
             this.DateMaxCapt.Size = new System.Drawing.Size(98, 23);
             this.DateMaxCapt.TabIndex = 30;
@@ -442,7 +453,7 @@ namespace RTiPPO
             // DateMinCapt
             // 
             this.DateMinCapt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateMinCapt.Location = new System.Drawing.Point(1068, 62);
+            this.DateMinCapt.Location = new System.Drawing.Point(481, 53);
             this.DateMinCapt.Name = "DateMinCapt";
             this.DateMinCapt.Size = new System.Drawing.Size(98, 23);
             this.DateMinCapt.TabIndex = 29;
@@ -450,7 +461,7 @@ namespace RTiPPO
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1041, 103);
+            this.label3.Location = new System.Drawing.Point(453, 106);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(22, 15);
             this.label3.TabIndex = 28;
@@ -459,7 +470,7 @@ namespace RTiPPO
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(1041, 68);
+            this.label21.Location = new System.Drawing.Point(454, 59);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(21, 15);
             this.label21.TabIndex = 27;
@@ -467,49 +478,49 @@ namespace RTiPPO
             // 
             // CaptMinDogs
             // 
-            this.CaptMinDogs.Location = new System.Drawing.Point(511, 64);
+            this.CaptMinDogs.Location = new System.Drawing.Point(673, 53);
             this.CaptMinDogs.Name = "CaptMinDogs";
             this.CaptMinDogs.Size = new System.Drawing.Size(54, 23);
             this.CaptMinDogs.TabIndex = 31;
             // 
             // CaptMaxSum
             // 
-            this.CaptMaxSum.Location = new System.Drawing.Point(895, 99);
+            this.CaptMaxSum.Location = new System.Drawing.Point(1063, 100);
             this.CaptMaxSum.Name = "CaptMaxSum";
             this.CaptMaxSum.Size = new System.Drawing.Size(54, 23);
             this.CaptMaxSum.TabIndex = 32;
             // 
             // CaptMinSum
             // 
-            this.CaptMinSum.Location = new System.Drawing.Point(895, 64);
+            this.CaptMinSum.Location = new System.Drawing.Point(1062, 53);
             this.CaptMinSum.Name = "CaptMinSum";
             this.CaptMinSum.Size = new System.Drawing.Size(54, 23);
             this.CaptMinSum.TabIndex = 33;
             // 
             // CaptMaxCats
             // 
-            this.CaptMaxCats.Location = new System.Drawing.Point(701, 99);
+            this.CaptMaxCats.Location = new System.Drawing.Point(869, 100);
             this.CaptMaxCats.Name = "CaptMaxCats";
             this.CaptMaxCats.Size = new System.Drawing.Size(54, 23);
             this.CaptMaxCats.TabIndex = 34;
             // 
             // CaptMinCats
             // 
-            this.CaptMinCats.Location = new System.Drawing.Point(701, 64);
+            this.CaptMinCats.Location = new System.Drawing.Point(868, 53);
             this.CaptMinCats.Name = "CaptMinCats";
             this.CaptMinCats.Size = new System.Drawing.Size(54, 23);
             this.CaptMinCats.TabIndex = 35;
             // 
             // CaptMaxDogs
             // 
-            this.CaptMaxDogs.Location = new System.Drawing.Point(512, 99);
+            this.CaptMaxDogs.Location = new System.Drawing.Point(674, 100);
             this.CaptMaxDogs.Name = "CaptMaxDogs";
             this.CaptMaxDogs.Size = new System.Drawing.Size(54, 23);
             this.CaptMaxDogs.TabIndex = 36;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(307, 62);
+            this.textBox2.Location = new System.Drawing.Point(6, 53);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(112, 23);
             this.textBox2.TabIndex = 37;
@@ -517,7 +528,7 @@ namespace RTiPPO
             // CheckDateCapt
             // 
             this.CheckDateCapt.AutoSize = true;
-            this.CheckDateCapt.Location = new System.Drawing.Point(1058, 33);
+            this.CheckDateCapt.Location = new System.Drawing.Point(481, 28);
             this.CheckDateCapt.Name = "CheckDateCapt";
             this.CheckDateCapt.Size = new System.Drawing.Size(92, 19);
             this.CheckDateCapt.TabIndex = 38;
@@ -526,7 +537,7 @@ namespace RTiPPO
             // 
             // DoFilter
             // 
-            this.DoFilter.Location = new System.Drawing.Point(93, 5);
+            this.DoFilter.Location = new System.Drawing.Point(207, 6);
             this.DoFilter.Name = "DoFilter";
             this.DoFilter.Size = new System.Drawing.Size(88, 23);
             this.DoFilter.TabIndex = 43;
@@ -536,187 +547,265 @@ namespace RTiPPO
             // 
             // ThrowOffFilter
             // 
-            this.ThrowOffFilter.Location = new System.Drawing.Point(201, 5);
+            this.ThrowOffFilter.Location = new System.Drawing.Point(324, 6);
             this.ThrowOffFilter.Name = "ThrowOffFilter";
             this.ThrowOffFilter.Size = new System.Drawing.Size(103, 23);
             this.ThrowOffFilter.TabIndex = 44;
             this.ThrowOffFilter.Text = "Сбросить всё";
             this.ThrowOffFilter.UseVisualStyleBackColor = true;
             // 
-            // Add
+            // AddCard
             // 
-            this.Add.Location = new System.Drawing.Point(1075, 960);
-            this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(75, 23);
-            this.Add.TabIndex = 45;
-            this.Add.Text = "Добавить";
-            this.Add.UseVisualStyleBackColor = true;
-            this.Add.Click += new System.EventHandler(this.Add_Click);
+            this.AddCard.Location = new System.Drawing.Point(1035, 884);
+            this.AddCard.Name = "AddCard";
+            this.AddCard.Size = new System.Drawing.Size(75, 23);
+            this.AddCard.TabIndex = 45;
+            this.AddCard.Text = "Добавить";
+            this.AddCard.UseVisualStyleBackColor = true;
+            this.AddCard.Click += new System.EventHandler(this.AddCard_Click);
             // 
-            // button1
+            // DeleteCard
             // 
-            this.button1.Location = new System.Drawing.Point(994, 960);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 46;
-            this.button1.Text = "Удалить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.DeleteCard.Location = new System.Drawing.Point(954, 884);
+            this.DeleteCard.Name = "DeleteCard";
+            this.DeleteCard.Size = new System.Drawing.Size(75, 23);
+            this.DeleteCard.TabIndex = 46;
+            this.DeleteCard.Text = "Удалить";
+            this.DeleteCard.UseVisualStyleBackColor = true;
+            this.DeleteCard.Click += new System.EventHandler(this.DeleteCard_Click);
             // 
-            // textBox3
+            // ContractorTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 180);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(223, 23);
-            this.textBox3.TabIndex = 47;
+            this.ContractorTextBox.Location = new System.Drawing.Point(658, 187);
+            this.ContractorTextBox.Name = "ContractorTextBox";
+            this.ContractorTextBox.Size = new System.Drawing.Size(223, 23);
+            this.ContractorTextBox.TabIndex = 47;
+            this.ContractorTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ContractorSearch);
             // 
-            // textBox4
+            // LocalityTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(958, 180);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(223, 23);
-            this.textBox4.TabIndex = 48;
+            this.LocalityTextBox.Location = new System.Drawing.Point(968, 187);
+            this.LocalityTextBox.Name = "LocalityTextBox";
+            this.LocalityTextBox.Size = new System.Drawing.Size(223, 23);
+            this.LocalityTextBox.TabIndex = 48;
+            this.LocalityTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LocalitySearch);
             // 
-            // textBox5
+            // MunicipalityTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(642, 180);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(223, 23);
-            this.textBox5.TabIndex = 49;
+            this.MunicipalityTextBox.Location = new System.Drawing.Point(6, 187);
+            this.MunicipalityTextBox.Name = "MunicipalityTextBox";
+            this.MunicipalityTextBox.Size = new System.Drawing.Size(223, 23);
+            this.MunicipalityTextBox.TabIndex = 49;
+            this.MunicipalityTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MunicipalitySearch);
             // 
-            // textBox6
+            // OMSUTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(307, 180);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(223, 23);
-            this.textBox6.TabIndex = 50;
+            this.OMSUTextBox.Location = new System.Drawing.Point(323, 187);
+            this.OMSUTextBox.Name = "OMSUTextBox";
+            this.OMSUTextBox.Size = new System.Drawing.Size(223, 23);
+            this.OMSUTextBox.TabIndex = 50;
+            this.OMSUTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OMSUSearch);
             // 
-            // listBox1
+            // MunicipalityList
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(12, 222);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(223, 94);
-            this.listBox1.TabIndex = 51;
+            this.MunicipalityList.FormattingEnabled = true;
+            this.MunicipalityList.ItemHeight = 15;
+            this.MunicipalityList.Location = new System.Drawing.Point(6, 233);
+            this.MunicipalityList.Name = "MunicipalityList";
+            this.MunicipalityList.Size = new System.Drawing.Size(223, 94);
+            this.MunicipalityList.TabIndex = 51;
             // 
-            // listBox2
+            // OMSUList
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 15;
-            this.listBox2.Location = new System.Drawing.Point(307, 222);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(223, 94);
-            this.listBox2.TabIndex = 52;
+            this.OMSUList.FormattingEnabled = true;
+            this.OMSUList.ItemHeight = 15;
+            this.OMSUList.Location = new System.Drawing.Point(323, 233);
+            this.OMSUList.Name = "OMSUList";
+            this.OMSUList.Size = new System.Drawing.Size(223, 94);
+            this.OMSUList.TabIndex = 52;
             // 
-            // listBox3
+            // ContractorList
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 15;
-            this.listBox3.Location = new System.Drawing.Point(642, 222);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(223, 94);
-            this.listBox3.TabIndex = 53;
+            this.ContractorList.FormattingEnabled = true;
+            this.ContractorList.ItemHeight = 15;
+            this.ContractorList.Location = new System.Drawing.Point(658, 233);
+            this.ContractorList.Name = "ContractorList";
+            this.ContractorList.Size = new System.Drawing.Size(223, 94);
+            this.ContractorList.TabIndex = 53;
             // 
-            // listBox4
+            // LocalityList
             // 
-            this.listBox4.FormattingEnabled = true;
-            this.listBox4.ItemHeight = 15;
-            this.listBox4.Location = new System.Drawing.Point(958, 222);
-            this.listBox4.Name = "listBox4";
-            this.listBox4.Size = new System.Drawing.Size(223, 94);
-            this.listBox4.TabIndex = 54;
+            this.LocalityList.FormattingEnabled = true;
+            this.LocalityList.ItemHeight = 15;
+            this.LocalityList.Location = new System.Drawing.Point(968, 233);
+            this.LocalityList.Name = "LocalityList";
+            this.LocalityList.Size = new System.Drawing.Size(223, 94);
+            this.LocalityList.TabIndex = 54;
             // 
-            // button3
+            // DeleteMunicipality
             // 
-            this.button3.Location = new System.Drawing.Point(13, 323);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 56;
-            this.button3.Text = "Удалить";
-            this.button3.UseVisualStyleBackColor = true;
+            this.DeleteMunicipality.Location = new System.Drawing.Point(154, 333);
+            this.DeleteMunicipality.Name = "DeleteMunicipality";
+            this.DeleteMunicipality.Size = new System.Drawing.Size(75, 23);
+            this.DeleteMunicipality.TabIndex = 56;
+            this.DeleteMunicipality.Text = "Удалить";
+            this.DeleteMunicipality.UseVisualStyleBackColor = true;
+            this.DeleteMunicipality.Click += new System.EventHandler(this.DeleteMunicipality_Click);
             // 
-            // button4
+            // DeleteContractor
             // 
-            this.button4.Location = new System.Drawing.Point(307, 323);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 57;
-            this.button4.Text = "Удалить";
-            this.button4.UseVisualStyleBackColor = true;
+            this.DeleteContractor.Location = new System.Drawing.Point(806, 333);
+            this.DeleteContractor.Name = "DeleteContractor";
+            this.DeleteContractor.Size = new System.Drawing.Size(75, 23);
+            this.DeleteContractor.TabIndex = 57;
+            this.DeleteContractor.Text = "Удалить";
+            this.DeleteContractor.UseVisualStyleBackColor = true;
+            this.DeleteContractor.Click += new System.EventHandler(this.DeleteContractor_Click);
             // 
-            // button5
+            // DeleteLocality
             // 
-            this.button5.Location = new System.Drawing.Point(642, 323);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 58;
-            this.button5.Text = "Удалить";
-            this.button5.UseVisualStyleBackColor = true;
+            this.DeleteLocality.Location = new System.Drawing.Point(1116, 333);
+            this.DeleteLocality.Name = "DeleteLocality";
+            this.DeleteLocality.Size = new System.Drawing.Size(75, 23);
+            this.DeleteLocality.TabIndex = 58;
+            this.DeleteLocality.Text = "Удалить";
+            this.DeleteLocality.UseVisualStyleBackColor = true;
+            this.DeleteLocality.Click += new System.EventHandler(this.DeleteLocality_Click);
             // 
-            // button6
+            // DeleteOMSU
             // 
-            this.button6.Location = new System.Drawing.Point(958, 322);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 59;
-            this.button6.Text = "Удалить";
-            this.button6.UseVisualStyleBackColor = true;
+            this.DeleteOMSU.Location = new System.Drawing.Point(471, 333);
+            this.DeleteOMSU.Name = "DeleteOMSU";
+            this.DeleteOMSU.Size = new System.Drawing.Size(75, 23);
+            this.DeleteOMSU.TabIndex = 59;
+            this.DeleteOMSU.Text = "Удалить";
+            this.DeleteOMSU.UseVisualStyleBackColor = true;
+            this.DeleteOMSU.Click += new System.EventHandler(this.DeleteOMSU_Click);
+            // 
+            // filterBox
+            // 
+            this.filterBox.Controls.Add(this.LocalityListHelp);
+            this.filterBox.Controls.Add(this.ContractorListHelp);
+            this.filterBox.Controls.Add(this.OMSUListHelp);
+            this.filterBox.Controls.Add(this.MunicipalityListHelp);
+            this.filterBox.Controls.Add(this.OMSUList);
+            this.filterBox.Controls.Add(this.DeleteOMSU);
+            this.filterBox.Controls.Add(this.MunicipalityList);
+            this.filterBox.Controls.Add(this.DeleteLocality);
+            this.filterBox.Controls.Add(this.ContractorList);
+            this.filterBox.Controls.Add(this.DeleteContractor);
+            this.filterBox.Controls.Add(this.label19);
+            this.filterBox.Controls.Add(this.label3);
+            this.filterBox.Controls.Add(this.label20);
+            this.filterBox.Controls.Add(this.DateMaxCapt);
+            this.filterBox.Controls.Add(this.label15);
+            this.filterBox.Controls.Add(this.label18);
+            this.filterBox.Controls.Add(this.label17);
+            this.filterBox.Controls.Add(this.label21);
+            this.filterBox.Controls.Add(this.CheckDateCapt);
+            this.filterBox.Controls.Add(this.DateMinCapt);
+            this.filterBox.Controls.Add(this.label16);
+            this.filterBox.Controls.Add(this.textBox2);
+            this.filterBox.Controls.Add(this.CaptMaxDogs);
+            this.filterBox.Controls.Add(this.LocalityList);
+            this.filterBox.Controls.Add(this.CaptMinCats);
+            this.filterBox.Controls.Add(this.DeleteMunicipality);
+            this.filterBox.Controls.Add(this.CaptMaxCats);
+            this.filterBox.Controls.Add(this.ContractorTextBox);
+            this.filterBox.Controls.Add(this.CaptMaxSum);
+            this.filterBox.Controls.Add(this.CaptMinSum);
+            this.filterBox.Controls.Add(this.MunicipalityTextBox);
+            this.filterBox.Controls.Add(this.OMSUTextBox);
+            this.filterBox.Controls.Add(this.label10);
+            this.filterBox.Controls.Add(this.CaptMinDogs);
+            this.filterBox.Controls.Add(this.LocalityTextBox);
+            this.filterBox.Controls.Add(this.label2);
+            this.filterBox.Controls.Add(this.label4);
+            this.filterBox.Controls.Add(this.CheckDateMK);
+            this.filterBox.Controls.Add(this.DateMinMK);
+            this.filterBox.Controls.Add(this.DateMaxMK);
+            this.filterBox.Controls.Add(this.label13);
+            this.filterBox.Controls.Add(this.label14);
+            this.filterBox.Controls.Add(this.label5);
+            this.filterBox.Controls.Add(this.label6);
+            this.filterBox.Controls.Add(this.label12);
+            this.filterBox.Controls.Add(this.textBox1);
+            this.filterBox.Controls.Add(this.label7);
+            this.filterBox.Controls.Add(this.label9);
+            this.filterBox.Controls.Add(this.label8);
+            this.filterBox.Location = new System.Drawing.Point(0, 35);
+            this.filterBox.Name = "filterBox";
+            this.filterBox.Size = new System.Drawing.Size(1197, 365);
+            this.filterBox.TabIndex = 60;
+            this.filterBox.TabStop = false;
+            this.filterBox.Text = "Фильтры";
+            // 
+            // MunicipalityListHelp
+            // 
+            this.MunicipalityListHelp.FormattingEnabled = true;
+            this.MunicipalityListHelp.ItemHeight = 15;
+            this.MunicipalityListHelp.Location = new System.Drawing.Point(6, 207);
+            this.MunicipalityListHelp.Name = "MunicipalityListHelp";
+            this.MunicipalityListHelp.Size = new System.Drawing.Size(223, 139);
+            this.MunicipalityListHelp.TabIndex = 60;
+            this.MunicipalityListHelp.Visible = false;
+            this.MunicipalityListHelp.SelectedIndexChanged += new System.EventHandler(this.MunicipalityListHelp_SelectedIndexChanged);
+            // 
+            // ShowHideFilter
+            // 
+            this.ShowHideFilter.Location = new System.Drawing.Point(102, 6);
+            this.ShowHideFilter.Name = "ShowHideFilter";
+            this.ShowHideFilter.Size = new System.Drawing.Size(75, 23);
+            this.ShowHideFilter.TabIndex = 61;
+            this.ShowHideFilter.Text = "Скрыть";
+            this.ShowHideFilter.UseVisualStyleBackColor = true;
+            this.ShowHideFilter.Click += new System.EventHandler(this.ShowHideFilter_Click);
+            // 
+            // OMSUListHelp
+            // 
+            this.OMSUListHelp.FormattingEnabled = true;
+            this.OMSUListHelp.ItemHeight = 15;
+            this.OMSUListHelp.Location = new System.Drawing.Point(323, 207);
+            this.OMSUListHelp.Name = "OMSUListHelp";
+            this.OMSUListHelp.Size = new System.Drawing.Size(223, 139);
+            this.OMSUListHelp.TabIndex = 61;
+            this.OMSUListHelp.Visible = false;
+            this.OMSUListHelp.SelectedIndexChanged += new System.EventHandler(this.OMSUListHelp_SelectedIndexChanged);
+            // 
+            // ContractorListHelp
+            // 
+            this.ContractorListHelp.FormattingEnabled = true;
+            this.ContractorListHelp.ItemHeight = 15;
+            this.ContractorListHelp.Location = new System.Drawing.Point(658, 207);
+            this.ContractorListHelp.Name = "ContractorListHelp";
+            this.ContractorListHelp.Size = new System.Drawing.Size(223, 139);
+            this.ContractorListHelp.TabIndex = 62;
+            this.ContractorListHelp.Visible = false;
+            this.ContractorListHelp.SelectedIndexChanged += new System.EventHandler(this.ContractorListHelp_SelectedIndexChanged);
+            // 
+            // LocalityListHelp
+            // 
+            this.LocalityListHelp.FormattingEnabled = true;
+            this.LocalityListHelp.ItemHeight = 15;
+            this.LocalityListHelp.Location = new System.Drawing.Point(968, 207);
+            this.LocalityListHelp.Name = "LocalityListHelp";
+            this.LocalityListHelp.Size = new System.Drawing.Size(223, 139);
+            this.LocalityListHelp.TabIndex = 63;
+            this.LocalityListHelp.Visible = false;
+            this.LocalityListHelp.SelectedIndexChanged += new System.EventHandler(this.LocalityListHelp_SelectedIndexChanged);
             // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1244, 995);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.listBox4);
-            this.Controls.Add(this.listBox3);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.Add);
+            this.ClientSize = new System.Drawing.Size(1198, 910);
+            this.Controls.Add(this.ShowHideFilter);
+            this.Controls.Add(this.filterBox);
+            this.Controls.Add(this.DeleteCard);
+            this.Controls.Add(this.AddCard);
             this.Controls.Add(this.ThrowOffFilter);
             this.Controls.Add(this.DoFilter);
-            this.Controls.Add(this.CheckDateCapt);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.CaptMaxDogs);
-            this.Controls.Add(this.CaptMinCats);
-            this.Controls.Add(this.CaptMaxCats);
-            this.Controls.Add(this.CaptMinSum);
-            this.Controls.Add(this.CaptMaxSum);
-            this.Controls.Add(this.CaptMinDogs);
-            this.Controls.Add(this.DateMaxCapt);
-            this.Controls.Add(this.DateMinCapt);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label21);
-            this.Controls.Add(this.DateMaxMK);
-            this.Controls.Add(this.CheckDateMK);
-            this.Controls.Add(this.DateMinMK);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.label20);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.FilterLabel);
             this.Controls.Add(this.OpenCard);
             this.Controls.Add(this.ExportExcel);
             this.Controls.Add(this.dataGridView1);
@@ -731,6 +820,8 @@ namespace RTiPPO
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxCats)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinCats)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxDogs)).EndInit();
+            this.filterBox.ResumeLayout(false);
+            this.filterBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -739,21 +830,9 @@ namespace RTiPPO
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NumMK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DateMK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Municipality;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OMSU;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Executor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ActNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CaptDogs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CaptCats;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CaptSum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Locality;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CaptDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Purpose;
         private System.Windows.Forms.Button ExportExcel;
         private System.Windows.Forms.Button OpenCard;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label FilterLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -793,20 +872,38 @@ namespace RTiPPO
         private System.Windows.Forms.CheckedListBox CheckOMSU;
         private System.Windows.Forms.Button DoFilter;
         private System.Windows.Forms.Button ThrowOffFilter;
-        private System.Windows.Forms.Button Add;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.ListBox listBox3;
-        private System.Windows.Forms.ListBox listBox4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button AddCard;
+        private System.Windows.Forms.Button DeleteCard;
+        private System.Windows.Forms.TextBox ContractorTextBox;
+        private System.Windows.Forms.TextBox LocalityTextBox;
+        private System.Windows.Forms.TextBox MunicipalityTextBox;
+        private System.Windows.Forms.TextBox OMSUTextBox;
+        private System.Windows.Forms.ListBox MunicipalityList;
+        private System.Windows.Forms.ListBox OMSUList;
+        private System.Windows.Forms.ListBox ContractorList;
+        private System.Windows.Forms.ListBox LocalityList;
+        private System.Windows.Forms.Button DeleteMunicipality;
+        private System.Windows.Forms.Button DeleteContractor;
+        private System.Windows.Forms.Button DeleteLocality;
+        private System.Windows.Forms.Button DeleteOMSU;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumMK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateMK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Municipality;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OMSU;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Executor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ActNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaptDogs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaptCats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaptSum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Locality;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaptDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Purpose;
+        private System.Windows.Forms.GroupBox filterBox;
+        private System.Windows.Forms.Button ShowHideFilter;
+        private System.Windows.Forms.ListBox MunicipalityListHelp;
+        private System.Windows.Forms.ListBox LocalityListHelp;
+        private System.Windows.Forms.ListBox ContractorListHelp;
+        private System.Windows.Forms.ListBox OMSUListHelp;
     }
 }
 

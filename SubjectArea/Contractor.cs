@@ -8,5 +8,18 @@ namespace RTiPPO.SubjectArea
 {
     internal class Contractor
     {
+        public int ID { get; set; }
+        public string Name { get; set; }
+
+        public Contractor(string name, int id = -1)
+        {
+            Name = name;
+            ID = id;
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
