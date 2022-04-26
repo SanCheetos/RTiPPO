@@ -12,19 +12,7 @@ namespace RTiPPO.Services
 {
     internal class ListService
     {
-        public static DataTable GetActs(string tableQuery =
-            "SELECT \"NumberMK\", \"DateMK\", \"NumberAct\", \"CaptCats\", \"CaptDogs\", " +
-            "\"CaptAnimals\", \"CaptDate\", \"CaptPurpose\", \"OMSU\".\"Municipality_ID\", " +
-            "\"OMSU\".\"Name\" AS \"OMSU.Name\", \"Municipality\".\"Name\" AS \"Municipality.Name\", \"CaptOrg\".\"Name\" AS \"CaptOrg.Name\", \"Locality\".\"Name\" AS \"Locality.Name\" " +
-
-            "FROM \"CaptAct\" "+
-            "JOIN \"OMSU\" ON \"CaptAct\".\"OMSU_ID\"=\"OMSU\".\"ID_OMSU\" "+
-
-            "JOIN \"Municipality\" ON \"OMSU\".\"Municipality_ID\"=\"Municipality\".\"ID_Municipality\" " +
-
-            "JOIN \"CaptOrg\" ON \"CaptAct\".\"CaptOrg_ID\"=\"CaptOrg\".\"ID_CaptOrg\" " +
-
-            "JOIN \"Locality\" ON \"CaptAct\".\"Locality_ID\"=\"Locality\".\"ID_Locality\"")
+        public static DataTable GetActs(string tableQuery)
         {
             return SQL(tableQuery);
         }

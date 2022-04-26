@@ -22,17 +22,26 @@ namespace RTiPPO
         List<Municipality> municipalitySearch = null;
         List<OMSU> omsuSearch = null;
         List<Contractor> contractorSearch = null;
-        List<Locality> localitySearch = null; 
+        List<Locality> localitySearch = null;
+        Register startRegister = null;
+        
 
         private void List_Load(object sender, EventArgs e)
         {
-            Register register = ListController.GetActs(new User());
+            startRegister = ListController.GetActs(new User());
             //Вывод полученных записей
 
+            DataGrid_LoadValue(startRegister);
+            ShowHideFilter_Click(null, null);
+        }
+
+        private void DataGrid_LoadValue(Register register)
+        {
+            dataGridView1.Rows.Clear();
             foreach (AccountCard card in register.AccountCards)
                 dataGridView1.Rows.Add(
                     card.NumberMK,
-                    card.DateOfConclusionMK, 
+                    card.DateOfConclusionMK,
                     card.Municipality,
                     card.OMSU,
                     card.ContractorMK,
@@ -43,7 +52,6 @@ namespace RTiPPO
                     card.Locality,
                     card.DateCatch,
                     card.PurposeOfCatch.Trim());
-            ShowHideFilter_Click(null, null);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -79,29 +87,112 @@ namespace RTiPPO
 
         private void OpenCard_Click(object sender, EventArgs e)
         {
-            AccountCard accountCard = ListController.GetEntity(0);
+            var numMK = dataGridView1.SelectedRows[0].Cells["NumMK"].Value.ToString();
+            AccountCard changeCard = ListController.GetEntity(new User(), numMK);
             card c = new card();
+            c.ChangeCard = changeCard;
             c.Owner = this;
             c.ShowDialog();
         }
 
         private void DoFilter_Click(object sender, EventArgs e)
         {
+            Dictionary<string, string> filterData = new Dictionary<string, string>();
             //Сбор данных фильтра
-            Register register = ListController.Filter(new User(), new Dictionary<string, string>());
-            //Вывод полученных записей
+            if (NumberMKTextBox.Text != "")
+            {
+                filterData.Add("NumberMK", NumberMKTextBox.Text);
+            }
+            else if (NumberActTextBox.Text != "")
+            {
+                filterData.Add("NumberAct", NumberActTextBox.Text);
+            }
+            else
+            {
+                if (CheckDateMK.Checked)
+                    filterData.Add("DateMK", "'" + DateMinMK.Text + "' AND '" + DateMaxMK.Text + "'");
+                if (CheckDateCapt.Checked)
+                    filterData.Add("DateCapt", "'" + DateMinCapt.Text + "' AND '" + DateMaxCapt.Text + "'");
+                if (!(CaptMinDogs.Value == 0 && CaptMaxDogs.Value == 0))
+                    filterData.Add("CaptDogs", CaptMinDogs.Value.ToString() + " AND " + CaptMaxDogs.Value.ToString());
+                if (!(CaptMinCats.Value == 0 && CaptMaxCats.Value == 0))
+                    filterData.Add("CaptCats", CaptMinCats.Value.ToString() + " AND " + CaptMaxCats.Value.ToString());
+                if (!(CaptMinSum.Value == 0 && CaptMaxSum.Value == 0))
+                    filterData.Add("CaptSum", CaptMinSum.Value.ToString() + " AND " + CaptMaxSum.Value.ToString());
+                if (MunicipalityList.Items.Count > 0)
+                {
+                    filterData.Add("Municipality", "");
+                    foreach (Municipality municipaluty in MunicipalityList.Items)
+                        filterData["Municipality"] += municipaluty.ID + ",";
+                    filterData["Municipality"] = filterData["Municipality"].Substring(0, filterData["Municipality"].Length - 1);
+                }
+                if (OMSUList.Items.Count > 0)
+                {
+                    filterData.Add("OMSU", "");
+                    foreach (OMSU omsu in OMSUList.Items)
+                        filterData["OMSU"] += omsu.ID + ",";
+                    filterData["OMSU"] = filterData["OMSU"].Substring(0, filterData["OMSU"].Length - 1);
+                }
+                if (ContractorList.Items.Count > 0)
+                {
+                    filterData.Add("Contractor", "");
+                    foreach (Contractor contractor in ContractorList.Items)
+                        filterData["Contractor"] += contractor.ID + ",";
+                    filterData["Contractor"] = filterData["Contractor"].Substring(0, filterData["Contractor"].Length - 1);
+                }
+                if (LocalityList.Items.Count > 0)
+                {
+                    filterData.Add("Locality", "");
+                    foreach (Locality locality in LocalityList.Items)
+                        filterData["Locality"] += locality.ID + ",";
+                    filterData["Locality"] = filterData["Locality"].Substring(0, filterData["Locality"].Length - 1);
+                }
+
+            }
+            
+            if (filterData.Count > 0)
+            { 
+                Register register = ListController.Filter(new User(), filterData);
+                //Вывод полученных записей
+                DataGrid_LoadValue(register);
+            }
+
+            //Если фильтр пустой, возвращаем старые значения
+            else
+                DataGrid_LoadValue(startRegister);
         }
 
         private void ExportExcel_Click(object sender, EventArgs e)
         {
-            GetExcelPath();
-            string[,] data = new string[0,0];
-            //Привязать к окну вызов метода ListController.SaveExcel(file, data)
+            File file = GetExcelPath();
+            DataTable dt = new DataTable();
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+                dt.Columns.Add(column.HeaderText);
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                DataRow dataRow = dt.NewRow();
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    dataRow[column.HeaderText] = row.Cells[column.Name].Value;
+                dt.Rows.Add(dataRow);
+            }
+            string output = ListController.SaveExcel(file, dt);
+            string[] isFail = output.Split(": ");
+            if (isFail.Length > 1)
+                MessageBox.Show(isFail[1], "Ошибка");
+            else
+                MessageBox.Show(output, "Успех!");
         }
 
-        private void GetExcelPath()
+        private File GetExcelPath()
         {
-            //открыыть выбор пути и имени сохранения
+            SaveExcelPath.Filter = "Книга Excel (*.xlsx)|*.xlsx";
+            SaveExcelPath.ShowDialog();
+            string fullName = SaveExcelPath.FileName;
+            int index = fullName.LastIndexOf('\\');
+            string path = fullName.Substring(0, index + 1);
+            string name = fullName.Substring(index + 1);
+            name = name.Replace(".xlsx", "");
+            return new File(name, path);
         }
 
         private void DeleteCard_Click(object sender, EventArgs e)
@@ -227,10 +318,13 @@ namespace RTiPPO
                 listBox.Items.Clear();
                 foreach (TSearch searchElem in search)
                 {
-                    string subString = searchElem.ToString().Substring(0, searchString.Length);
-                    if (searchString == subString)
+                    if (searchElem.ToString().Length >= searchString.Length)
                     {
-                        listBox.Items.Add(searchElem);
+                        string subString = searchElem.ToString().Substring(0, searchString.Length);
+                        if (searchString == subString)
+                        {
+                            listBox.Items.Add(searchElem);
+                        }
                     }
                 }
                 if (listBox.Items.Count > 0)
@@ -247,7 +341,7 @@ namespace RTiPPO
             foreach (object item in listBox.Items)
                 if (item == got)
                     alreadyGot = true;
-            if (!alreadyGot)
+            if (!alreadyGot && listBoxHelp.SelectedItem != null)
                 listBox.Items.Add(listBoxHelp.SelectedItem);
             listBoxHelp.Visible = false;
         }
@@ -257,6 +351,35 @@ namespace RTiPPO
             listBox.Items.Remove(listBox.SelectedItem);
         }
 
-        
+        private void ThrowOffFilter_Click(object sender, EventArgs e)
+        {
+            NumberMKTextBox.Clear();
+            NumberActTextBox.Clear();
+            CheckDateMK.Checked = false;
+            CheckDateCapt.Checked = false;
+            CaptMinCats.Value = 0;
+            CaptMaxCats.Value = 0;
+            CaptMinDogs.Value = 0;
+            CaptMaxDogs.Value = 0;
+            CaptMinSum.Value = 0;
+            CaptMaxSum.Value = 0;
+            ContractorTextBox.Clear();
+            ContractorListHelp.Items.Clear();
+            ContractorListHelp.Visible = false;
+            ContractorList.Items.Clear();
+            OMSUTextBox.Clear();
+            OMSUListHelp.Items.Clear();
+            OMSUListHelp.Visible = false;
+            OMSUList.Items.Clear();
+            MunicipalityTextBox.Clear();
+            MunicipalityListHelp.Items.Clear();
+            MunicipalityListHelp.Visible = false;
+            MunicipalityList.Items.Clear();
+            LocalityTextBox.Clear();
+            LocalityListHelp.Items.Clear();
+            LocalityListHelp.Visible = false;
+            LocalityList.Items.Clear();
+            DataGrid_LoadValue(ListController.GetActs(new User()));
+        }
     }
 }

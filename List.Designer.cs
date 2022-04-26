@@ -54,7 +54,7 @@ namespace RTiPPO
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.NumberActTextBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -76,7 +76,7 @@ namespace RTiPPO
             this.CaptMaxCats = new System.Windows.Forms.NumericUpDown();
             this.CaptMinCats = new System.Windows.Forms.NumericUpDown();
             this.CaptMaxDogs = new System.Windows.Forms.NumericUpDown();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.NumberMKTextBox = new System.Windows.Forms.TextBox();
             this.CheckDateCapt = new System.Windows.Forms.CheckBox();
             this.DoFilter = new System.Windows.Forms.Button();
             this.ThrowOffFilter = new System.Windows.Forms.Button();
@@ -95,11 +95,12 @@ namespace RTiPPO
             this.DeleteLocality = new System.Windows.Forms.Button();
             this.DeleteOMSU = new System.Windows.Forms.Button();
             this.filterBox = new System.Windows.Forms.GroupBox();
+            this.LocalityListHelp = new System.Windows.Forms.ListBox();
+            this.ContractorListHelp = new System.Windows.Forms.ListBox();
+            this.OMSUListHelp = new System.Windows.Forms.ListBox();
             this.MunicipalityListHelp = new System.Windows.Forms.ListBox();
             this.ShowHideFilter = new System.Windows.Forms.Button();
-            this.OMSUListHelp = new System.Windows.Forms.ListBox();
-            this.ContractorListHelp = new System.Windows.Forms.ListBox();
-            this.LocalityListHelp = new System.Windows.Forms.ListBox();
+            this.SaveExcelPath = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinDogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxSum)).BeginInit();
@@ -129,6 +130,7 @@ namespace RTiPPO
             this.CaptDate,
             this.Purpose});
             this.dataGridView1.Location = new System.Drawing.Point(0, 406);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
@@ -337,12 +339,12 @@ namespace RTiPPO
             this.label12.TabIndex = 14;
             this.label12.Text = "Количество отловленных животных";
             // 
-            // textBox1
+            // NumberActTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(154, 51);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 15;
+            this.NumberActTextBox.Location = new System.Drawing.Point(154, 51);
+            this.NumberActTextBox.Name = "NumberActTextBox";
+            this.NumberActTextBox.Size = new System.Drawing.Size(100, 23);
+            this.NumberActTextBox.TabIndex = 15;
             // 
             // label13
             // 
@@ -518,12 +520,12 @@ namespace RTiPPO
             this.CaptMaxDogs.Size = new System.Drawing.Size(54, 23);
             this.CaptMaxDogs.TabIndex = 36;
             // 
-            // textBox2
+            // NumberMKTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 53);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(112, 23);
-            this.textBox2.TabIndex = 37;
+            this.NumberMKTextBox.Location = new System.Drawing.Point(6, 53);
+            this.NumberMKTextBox.Name = "NumberMKTextBox";
+            this.NumberMKTextBox.Size = new System.Drawing.Size(112, 23);
+            this.NumberMKTextBox.TabIndex = 37;
             // 
             // CheckDateCapt
             // 
@@ -553,6 +555,7 @@ namespace RTiPPO
             this.ThrowOffFilter.TabIndex = 44;
             this.ThrowOffFilter.Text = "Сбросить всё";
             this.ThrowOffFilter.UseVisualStyleBackColor = true;
+            this.ThrowOffFilter.Click += new System.EventHandler(this.ThrowOffFilter_Click);
             // 
             // AddCard
             // 
@@ -705,7 +708,7 @@ namespace RTiPPO
             this.filterBox.Controls.Add(this.CheckDateCapt);
             this.filterBox.Controls.Add(this.DateMinCapt);
             this.filterBox.Controls.Add(this.label16);
-            this.filterBox.Controls.Add(this.textBox2);
+            this.filterBox.Controls.Add(this.NumberMKTextBox);
             this.filterBox.Controls.Add(this.CaptMaxDogs);
             this.filterBox.Controls.Add(this.LocalityList);
             this.filterBox.Controls.Add(this.CaptMinCats);
@@ -729,7 +732,7 @@ namespace RTiPPO
             this.filterBox.Controls.Add(this.label5);
             this.filterBox.Controls.Add(this.label6);
             this.filterBox.Controls.Add(this.label12);
-            this.filterBox.Controls.Add(this.textBox1);
+            this.filterBox.Controls.Add(this.NumberActTextBox);
             this.filterBox.Controls.Add(this.label7);
             this.filterBox.Controls.Add(this.label9);
             this.filterBox.Controls.Add(this.label8);
@@ -739,6 +742,39 @@ namespace RTiPPO
             this.filterBox.TabIndex = 60;
             this.filterBox.TabStop = false;
             this.filterBox.Text = "Фильтры";
+            // 
+            // LocalityListHelp
+            // 
+            this.LocalityListHelp.FormattingEnabled = true;
+            this.LocalityListHelp.ItemHeight = 15;
+            this.LocalityListHelp.Location = new System.Drawing.Point(968, 207);
+            this.LocalityListHelp.Name = "LocalityListHelp";
+            this.LocalityListHelp.Size = new System.Drawing.Size(223, 139);
+            this.LocalityListHelp.TabIndex = 63;
+            this.LocalityListHelp.Visible = false;
+            this.LocalityListHelp.SelectedIndexChanged += new System.EventHandler(this.LocalityListHelp_SelectedIndexChanged);
+            // 
+            // ContractorListHelp
+            // 
+            this.ContractorListHelp.FormattingEnabled = true;
+            this.ContractorListHelp.ItemHeight = 15;
+            this.ContractorListHelp.Location = new System.Drawing.Point(658, 207);
+            this.ContractorListHelp.Name = "ContractorListHelp";
+            this.ContractorListHelp.Size = new System.Drawing.Size(223, 139);
+            this.ContractorListHelp.TabIndex = 62;
+            this.ContractorListHelp.Visible = false;
+            this.ContractorListHelp.SelectedIndexChanged += new System.EventHandler(this.ContractorListHelp_SelectedIndexChanged);
+            // 
+            // OMSUListHelp
+            // 
+            this.OMSUListHelp.FormattingEnabled = true;
+            this.OMSUListHelp.ItemHeight = 15;
+            this.OMSUListHelp.Location = new System.Drawing.Point(323, 207);
+            this.OMSUListHelp.Name = "OMSUListHelp";
+            this.OMSUListHelp.Size = new System.Drawing.Size(223, 139);
+            this.OMSUListHelp.TabIndex = 61;
+            this.OMSUListHelp.Visible = false;
+            this.OMSUListHelp.SelectedIndexChanged += new System.EventHandler(this.OMSUListHelp_SelectedIndexChanged);
             // 
             // MunicipalityListHelp
             // 
@@ -760,39 +796,6 @@ namespace RTiPPO
             this.ShowHideFilter.Text = "Скрыть";
             this.ShowHideFilter.UseVisualStyleBackColor = true;
             this.ShowHideFilter.Click += new System.EventHandler(this.ShowHideFilter_Click);
-            // 
-            // OMSUListHelp
-            // 
-            this.OMSUListHelp.FormattingEnabled = true;
-            this.OMSUListHelp.ItemHeight = 15;
-            this.OMSUListHelp.Location = new System.Drawing.Point(323, 207);
-            this.OMSUListHelp.Name = "OMSUListHelp";
-            this.OMSUListHelp.Size = new System.Drawing.Size(223, 139);
-            this.OMSUListHelp.TabIndex = 61;
-            this.OMSUListHelp.Visible = false;
-            this.OMSUListHelp.SelectedIndexChanged += new System.EventHandler(this.OMSUListHelp_SelectedIndexChanged);
-            // 
-            // ContractorListHelp
-            // 
-            this.ContractorListHelp.FormattingEnabled = true;
-            this.ContractorListHelp.ItemHeight = 15;
-            this.ContractorListHelp.Location = new System.Drawing.Point(658, 207);
-            this.ContractorListHelp.Name = "ContractorListHelp";
-            this.ContractorListHelp.Size = new System.Drawing.Size(223, 139);
-            this.ContractorListHelp.TabIndex = 62;
-            this.ContractorListHelp.Visible = false;
-            this.ContractorListHelp.SelectedIndexChanged += new System.EventHandler(this.ContractorListHelp_SelectedIndexChanged);
-            // 
-            // LocalityListHelp
-            // 
-            this.LocalityListHelp.FormattingEnabled = true;
-            this.LocalityListHelp.ItemHeight = 15;
-            this.LocalityListHelp.Location = new System.Drawing.Point(968, 207);
-            this.LocalityListHelp.Name = "LocalityListHelp";
-            this.LocalityListHelp.Size = new System.Drawing.Size(223, 139);
-            this.LocalityListHelp.TabIndex = 63;
-            this.LocalityListHelp.Visible = false;
-            this.LocalityListHelp.SelectedIndexChanged += new System.EventHandler(this.LocalityListHelp_SelectedIndexChanged);
             // 
             // List
             // 
@@ -842,7 +845,7 @@ namespace RTiPPO
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox NumberActTextBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
@@ -864,7 +867,7 @@ namespace RTiPPO
         private System.Windows.Forms.NumericUpDown CaptMaxCats;
         private System.Windows.Forms.NumericUpDown CaptMinCats;
         private System.Windows.Forms.NumericUpDown CaptMaxDogs;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox NumberMKTextBox;
         private System.Windows.Forms.CheckBox CheckDateCapt;
         private System.Windows.Forms.CheckedListBox CheckLocality;
         private System.Windows.Forms.CheckedListBox CheckMunicipality;
@@ -904,6 +907,7 @@ namespace RTiPPO
         private System.Windows.Forms.ListBox LocalityListHelp;
         private System.Windows.Forms.ListBox ContractorListHelp;
         private System.Windows.Forms.ListBox OMSUListHelp;
+        private System.Windows.Forms.SaveFileDialog SaveExcelPath;
     }
 }
 

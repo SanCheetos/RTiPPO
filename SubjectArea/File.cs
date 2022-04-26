@@ -8,8 +8,8 @@ namespace RTiPPO.SubjectArea
 {
     internal class File
     {
-        string Name { get; set; }
-        string Path { get; set; }
+        public string Name { get; set; }
+        public string Path { get; set; }
 
         public File(string name, string path)
         {
