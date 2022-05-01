@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 using RTiPPO.SubjectArea;
+using RTiPPO.Services;
 
 namespace RTiPPO.Controllers
 {
     internal class LogController
     {
-        public static void Track(User user, AccountCard accountCard, SubjectArea.Action action)
-        {
-            // Запрос в БД на логирование 
-        }
+        // Журналирование 
 
-        public static void Track(User user, int accountCardID, SubjectArea.Action action)
+        public static void Track(SubjectArea.Action action)
         {
-            // Запрос в БД на логирование 
+            string query = "INSERT INTO \"Log\" (\"ActionDate\", \"User_ID\", \"Action_ID\") " +
+            "VALUES (current_timestamp(0), " + User.ID + ", " + action.ID + ");";
+            DBService.CRUDRequest(query);
         }
     }
 }

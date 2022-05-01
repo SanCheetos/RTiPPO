@@ -28,42 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.DateMK = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.CloseForm = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.MunicipalityComboBox = new System.Windows.Forms.ComboBox();
+            this.OMSUComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.NumberMKTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.ContractorMKComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.NumberActTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.AnimalsTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.LocalityComboBox = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.DateCapt = new System.Windows.Forms.DateTimePicker();
             this.CreateButton = new System.Windows.Forms.Button();
+            this.CaptOfPurposeTextBox = new System.Windows.Forms.TextBox();
+            this.DogsCount = new System.Windows.Forms.NumericUpDown();
+            this.CatsCount = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.DogsCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CatsCount)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // DateMK
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(24, 156);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(172, 23);
-            this.dateTimePicker1.TabIndex = 1;
+            this.DateMK.Location = new System.Drawing.Point(24, 156);
+            this.DateMK.Name = "DateMK";
+            this.DateMK.Size = new System.Drawing.Size(172, 23);
+            this.DateMK.TabIndex = 1;
             // 
             // label1
             // 
@@ -106,21 +108,23 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Муниципальное образование";
             // 
-            // comboBox1
+            // MunicipalityComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(24, 211);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(367, 23);
-            this.comboBox1.TabIndex = 8;
+            this.MunicipalityComboBox.FormattingEnabled = true;
+            this.MunicipalityComboBox.Location = new System.Drawing.Point(24, 211);
+            this.MunicipalityComboBox.Name = "MunicipalityComboBox";
+            this.MunicipalityComboBox.Size = new System.Drawing.Size(367, 23);
+            this.MunicipalityComboBox.TabIndex = 8;
+            this.MunicipalityComboBox.TextUpdate += new System.EventHandler(this.MunicipalityComboBox_TextUpdate);
             // 
-            // comboBox2
+            // OMSUComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(24, 265);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(367, 23);
-            this.comboBox2.TabIndex = 10;
+            this.OMSUComboBox.FormattingEnabled = true;
+            this.OMSUComboBox.Location = new System.Drawing.Point(24, 265);
+            this.OMSUComboBox.Name = "OMSUComboBox";
+            this.OMSUComboBox.Size = new System.Drawing.Size(367, 23);
+            this.OMSUComboBox.TabIndex = 10;
+            this.OMSUComboBox.TextUpdate += new System.EventHandler(this.OMSUComboBox_TextUpdate);
             // 
             // label4
             // 
@@ -131,12 +135,14 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "ОМСУ";
             // 
-            // textBox1
+            // NumberMKTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(24, 104);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(172, 23);
-            this.textBox1.TabIndex = 11;
+            this.NumberMKTextBox.Location = new System.Drawing.Point(24, 104);
+            this.NumberMKTextBox.Name = "NumberMKTextBox";
+            this.NumberMKTextBox.PlaceholderText = "0000";
+            this.NumberMKTextBox.Size = new System.Drawing.Size(172, 23);
+            this.NumberMKTextBox.TabIndex = 11;
+            this.NumberMKTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberMKTextBox_KeyPress);
             // 
             // label5
             // 
@@ -147,13 +153,14 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Номер МК";
             // 
-            // comboBox3
+            // ContractorMKComboBox
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(24, 317);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(367, 23);
-            this.comboBox3.TabIndex = 14;
+            this.ContractorMKComboBox.FormattingEnabled = true;
+            this.ContractorMKComboBox.Location = new System.Drawing.Point(24, 317);
+            this.ContractorMKComboBox.Name = "ContractorMKComboBox";
+            this.ContractorMKComboBox.Size = new System.Drawing.Size(367, 23);
+            this.ContractorMKComboBox.TabIndex = 14;
+            this.ContractorMKComboBox.TextUpdate += new System.EventHandler(this.ContractorMKComboBox_TextUpdate);
             // 
             // label6
             // 
@@ -173,12 +180,14 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "Номер акта отлова";
             // 
-            // textBox2
+            // NumberActTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(219, 104);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(172, 23);
-            this.textBox2.TabIndex = 15;
+            this.NumberActTextBox.Location = new System.Drawing.Point(219, 104);
+            this.NumberActTextBox.Name = "NumberActTextBox";
+            this.NumberActTextBox.PlaceholderText = "00-00-1";
+            this.NumberActTextBox.Size = new System.Drawing.Size(172, 23);
+            this.NumberActTextBox.TabIndex = 15;
+            this.NumberActTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberActTextBox_KeyPress);
             // 
             // label8
             // 
@@ -190,26 +199,15 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "Количество отловленных:";
             // 
-            // textBox3
+            // AnimalsTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(24, 401);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(84, 23);
-            this.textBox3.TabIndex = 17;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(161, 401);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(84, 23);
-            this.textBox4.TabIndex = 19;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(307, 401);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(84, 23);
-            this.textBox5.TabIndex = 20;
+            this.AnimalsTextBox.Location = new System.Drawing.Point(307, 401);
+            this.AnimalsTextBox.Name = "AnimalsTextBox";
+            this.AnimalsTextBox.ReadOnly = true;
+            this.AnimalsTextBox.Size = new System.Drawing.Size(84, 23);
+            this.AnimalsTextBox.TabIndex = 20;
+            this.AnimalsTextBox.Text = "0";
+            this.AnimalsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label9
             // 
@@ -238,13 +236,14 @@
             this.label11.TabIndex = 23;
             this.label11.Text = "Животные:";
             // 
-            // comboBox4
+            // LocalityComboBox
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(24, 455);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(367, 23);
-            this.comboBox4.TabIndex = 25;
+            this.LocalityComboBox.FormattingEnabled = true;
+            this.LocalityComboBox.Location = new System.Drawing.Point(24, 455);
+            this.LocalityComboBox.Name = "LocalityComboBox";
+            this.LocalityComboBox.Size = new System.Drawing.Size(367, 23);
+            this.LocalityComboBox.TabIndex = 25;
+            this.LocalityComboBox.TextUpdate += new System.EventHandler(this.LocalityComboBox_TextUpdate);
             // 
             // label12
             // 
@@ -264,14 +263,6 @@
             this.label13.TabIndex = 27;
             this.label13.Text = "Дата отлова";
             // 
-            // comboBox5
-            // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(24, 499);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(367, 23);
-            this.comboBox5.TabIndex = 29;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -281,59 +272,98 @@
             this.label14.TabIndex = 28;
             this.label14.Text = "Цель отлова";
             // 
-            // dateTimePicker2
+            // DateCapt
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(219, 156);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(172, 23);
-            this.dateTimePicker2.TabIndex = 30;
+            this.DateCapt.Location = new System.Drawing.Point(219, 156);
+            this.DateCapt.Name = "DateCapt";
+            this.DateCapt.Size = new System.Drawing.Size(172, 23);
+            this.DateCapt.TabIndex = 30;
             // 
             // CreateButton
             // 
-            this.CreateButton.Location = new System.Drawing.Point(170, 551);
+            this.CreateButton.Location = new System.Drawing.Point(327, 551);
             this.CreateButton.Name = "CreateButton";
             this.CreateButton.Size = new System.Drawing.Size(75, 23);
             this.CreateButton.TabIndex = 31;
             this.CreateButton.Text = "Создать";
             this.CreateButton.UseVisualStyleBackColor = true;
+            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
+            // 
+            // CaptOfPurposeTextBox
+            // 
+            this.CaptOfPurposeTextBox.Location = new System.Drawing.Point(24, 499);
+            this.CaptOfPurposeTextBox.Name = "CaptOfPurposeTextBox";
+            this.CaptOfPurposeTextBox.Size = new System.Drawing.Size(367, 23);
+            this.CaptOfPurposeTextBox.TabIndex = 32;
+            // 
+            // DogsCount
+            // 
+            this.DogsCount.Location = new System.Drawing.Point(24, 402);
+            this.DogsCount.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.DogsCount.Name = "DogsCount";
+            this.DogsCount.Size = new System.Drawing.Size(84, 23);
+            this.DogsCount.TabIndex = 33;
+            this.DogsCount.ValueChanged += new System.EventHandler(this.DogsCount_ValueChanged);
+            this.DogsCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DogsCount_KeyPress);
+            // 
+            // CatsCount
+            // 
+            this.CatsCount.Location = new System.Drawing.Point(161, 402);
+            this.CatsCount.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.CatsCount.Name = "CatsCount";
+            this.CatsCount.Size = new System.Drawing.Size(84, 23);
+            this.CatsCount.TabIndex = 34;
+            this.CatsCount.ValueChanged += new System.EventHandler(this.CatsCount_ValueChanged);
+            this.CatsCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CatsCount_KeyPress);
             // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(414, 586);
+            this.Controls.Add(this.CatsCount);
+            this.Controls.Add(this.DogsCount);
+            this.Controls.Add(this.CaptOfPurposeTextBox);
             this.Controls.Add(this.CreateButton);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.comboBox5);
+            this.Controls.Add(this.DateCapt);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.LocalityComboBox);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.AnimalsTextBox);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.NumberActTextBox);
+            this.Controls.Add(this.ContractorMKComboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.NumberMKTextBox);
+            this.Controls.Add(this.OMSUComboBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.MunicipalityComboBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.CloseForm);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.DateMK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление записи";
+            this.Load += new System.EventHandler(this.AddForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.DogsCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CatsCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,33 +371,33 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker DateMK;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button CloseForm;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox MunicipalityComboBox;
+        private System.Windows.Forms.ComboBox OMSUComboBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox NumberMKTextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox ContractorMKComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox NumberActTextBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox AnimalsTextBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox LocalityComboBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker DateCapt;
         private System.Windows.Forms.Button CreateButton;
+        private System.Windows.Forms.TextBox CaptOfPurposeTextBox;
+        private System.Windows.Forms.NumericUpDown DogsCount;
+        private System.Windows.Forms.NumericUpDown CatsCount;
     }
 }

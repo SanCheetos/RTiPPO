@@ -28,11 +28,21 @@ namespace RTiPPO
 
         private void List_Load(object sender, EventArgs e)
         {
-            startRegister = ListController.GetActs(new User());
+            //startRegister = ListController.GetActs(new User());
+            startRegister = ListController.GetActs();
             //Вывод полученных записей
 
             DataGrid_LoadValue(startRegister);
             ShowHideFilter_Click(null, null);
+
+            if (User.Role.Function.Name.ToString().Trim() == "ведение")
+            {
+                DeleteCard.Visible = true;
+            }
+            if (User.Role.Name.ToString().Trim() == "Оператор по отлову")
+            {
+                AddCard.Visible = true;
+            }
         }
 
         private void DataGrid_LoadValue(Register register)
@@ -40,6 +50,7 @@ namespace RTiPPO
             dataGridView1.Rows.Clear();
             foreach (AccountCard card in register.AccountCards)
                 dataGridView1.Rows.Add(
+                    card.ID,
                     card.NumberMK,
                     card.DateOfConclusionMK,
                     card.Municipality,
@@ -81,14 +92,14 @@ namespace RTiPPO
 
         private void Add_Click(object sender, EventArgs e)
         {
-            Form Add = new AddForm();
-            Add.Show();
+
         }
 
         private void OpenCard_Click(object sender, EventArgs e)
         {
-            var numMK = dataGridView1.SelectedRows[0].Cells["NumMK"].Value.ToString();
-            AccountCard changeCard = ListController.GetEntity(new User(), numMK);
+            int idMK = int.Parse(dataGridView1.SelectedRows[0].Cells["ID"].Value.ToString());
+            //AccountCard changeCard = ListController.GetEntity(new User(), numMK);
+            AccountCard changeCard = ListController.GetEntity(idMK);
             card c = new card();
             c.ChangeCard = changeCard;
             c.Owner = this;
@@ -151,8 +162,9 @@ namespace RTiPPO
             }
             
             if (filterData.Count > 0)
-            { 
-                Register register = ListController.Filter(new User(), filterData);
+            {
+                //Register register = ListController.Filter(new User(), filterData);
+                Register register = ListController.Filter(filterData);
                 //Вывод полученных записей
                 DataGrid_LoadValue(register);
             }
@@ -195,17 +207,28 @@ namespace RTiPPO
             return new File(name, path);
         }
 
+        // Действия по кнопке Добавить / Удалить
+
         private void DeleteCard_Click(object sender, EventArgs e)
         {
-
+            int idMK = int.Parse(dataGridView1.SelectedRows[0].Cells["ID"].Value.ToString());
+            DialogResult confirmDelete = MessageBox.Show("Вы точно хотите удалить данную запись?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmDelete == DialogResult.Yes)
+            {
+                ListController.DeleteAct(idMK);
+                MessageBox.Show("Удаление прошло успешно.", "Статус", MessageBoxButtons.OK);
+                DataGrid_LoadValue(ListController.GetActs());
+            }
         }
 
         private void AddCard_Click(object sender, EventArgs e)
         {
-
+            Form Add = new AddForm();
+            Add.Show();
+            Hide();
         }
 
-        //Показать/скрыть фильтр
+        // Показать / скрыть фильтр - Третьяк
         private void ShowHideFilter_Click(object sender, EventArgs e)
         {
             if (ShowHideFilter.Text == "Показать")
@@ -307,7 +330,7 @@ namespace RTiPPO
             DeleteListItem_Click(LocalityList);
         }
 
-        //Поиск совпадений в фильтре --Третьяк--
+        // Поиск совпадений в фильтре - Третьяк
         private void ListSearch<TSearch>(TextBox textBox, ListBox listBox, List<TSearch> search)
         {
             string searchString = textBox.Text;
@@ -379,7 +402,15 @@ namespace RTiPPO
             LocalityListHelp.Items.Clear();
             LocalityListHelp.Visible = false;
             LocalityList.Items.Clear();
-            DataGrid_LoadValue(ListController.GetActs(new User()));
+            //DataGrid_LoadValue(ListController.GetActs(new User(-1, null, null, null, null, null)));
+            DataGrid_LoadValue(ListController.GetActs());
+        }
+
+        // Закрытие приложения по кнопке Х
+
+        private void CloseApp_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

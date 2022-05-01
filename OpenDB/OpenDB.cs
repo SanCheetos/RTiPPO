@@ -12,8 +12,9 @@ namespace RTiPPO.OpenDB
         public static string GetQuery()
         {
             string login = "postgres";
-            string password = "3520";
-            return "server=localhost;port=5434;database=CaptActIn;user id =" + login + "; password=" + password;
+            string password = "";
+            string port = "";
+            return "server=localhost;port=" + port + ";database=CaptActIn;user id =" + login + "; password=" + password;
         }
     }
 }

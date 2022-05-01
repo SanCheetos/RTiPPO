@@ -14,15 +14,18 @@ namespace RTiPPO.Controllers
     {
         //------------ Третьяк Александр -------------------
 
-        public static AccountCard GetEntity(User user, string numMK)
+        //public static AccountCard GetEntity(User user, string numMK)
+        public static AccountCard GetEntity(int idMK)
         {
-            Register register = GetActs(user, "WHERE \"CaptAct\".\"NumberMK\" = '" + numMK + "'");
+            //Register register = GetActs(user, "WHERE \"CaptAct\".\"NumberMK\" = '" + numMK + "'");
+            Register register = GetActs("WHERE \"CaptAct\".\"ID_CaptAct\" = '" + idMK + "'");
             return register.AccountCards[0];
         }
 
-        public static Register GetActs(User user, string filter = "")
+        //public static Register GetActs(User user, string filter = "")
+        public static Register GetActs(string filter = "")
         {
-            string query = "SELECT \"NumberMK\", \"DateMK\", \"NumberAct\", \"CaptCats\", \"CaptDogs\", " +
+            string query = "SELECT \"ID_CaptAct\", \"NumberMK\", \"DateMK\", \"NumberAct\", \"CaptCats\", \"CaptDogs\", " +
             "\"CaptAnimals\", \"CaptDate\", \"CaptPurpose\", \"OMSU\".\"Municipality_ID\", " +
             "\"OMSU\".\"Name\" AS \"OMSU.Name\", \"Municipality\".\"Name\" AS \"Municipality.Name\", \"CaptOrg\".\"Name\" AS \"CaptOrg.Name\", \"Locality\".\"Name\" AS \"Locality.Name\" " +
 
@@ -34,7 +37,7 @@ namespace RTiPPO.Controllers
             "JOIN \"CaptOrg\" ON \"CaptAct\".\"CaptOrg_ID\"=\"CaptOrg\".\"ID_CaptOrg\" " +
 
             "JOIN \"Locality\" ON \"CaptAct\".\"Locality_ID\"=\"Locality\".\"ID_Locality\"" + filter;
-            DataTable dt = ListService.GetActs(query);
+            DataTable dt = DBService.GetActs(query);
             List<AccountCard> accCard = new List<AccountCard>();
             foreach (DataRow row in dt.Rows)
             {
@@ -46,7 +49,7 @@ namespace RTiPPO.Controllers
                 DateTime date2 = new DateTime(int.Parse(dateString2[2]), int.Parse(dateString2[1]), int.Parse(dateString2[0]));
                 Municipality municipality = new Municipality(row["Municipality.Name"].ToString());
                 accCard.Add(new AccountCard(
-                    -1,
+                    int.Parse(row["ID_CaptAct"].ToString()),
                     row["NumberMK"].ToString(),
                     date1,
                     municipality,
@@ -64,7 +67,8 @@ namespace RTiPPO.Controllers
             return new Register(accCard);
         }
 
-        public static Register Filter(User user, Dictionary<string, string> filterData)
+        //public static Register Filter(User user, Dictionary<string, string> filterData)
+        public static Register Filter(Dictionary<string, string> filterData)
         {
             string filterQuery = "WHERE";
             if (filterData.ContainsKey("NumberMK"))
@@ -95,7 +99,8 @@ namespace RTiPPO.Controllers
                     filterQuery += EntitiesQuery("\"CaptAct\".\"Locality_ID\"", filterData["Locality"]);
                 filterQuery = filterQuery.Substring(0, filterQuery.Length - 3);
             }
-            return GetActs(user, filterQuery);
+            //return GetActs(user, filterQuery);
+            return GetActs(filterQuery);
         }
 
         private static string CaptCountQuery(string key, string value)
@@ -160,28 +165,34 @@ namespace RTiPPO.Controllers
             //ex.Visible = true;
         }
 
-        //------------ Самусенко Владислав ------------------
+        // Добавление записи 
 
         public static void AddAct(AccountCard accountCard)
         {
-            // Запрос в БД на добавление записи
-            User user = new User();     
-            SubjectArea.Action action = new SubjectArea.Action() { name = "Добавление" };
-            LogController.Track(user, accountCard, action);
+            string query = "INSERT INTO \"CaptAct\" (\"NumberMK\", \"DateMK\", \"NumberAct\", \"CaptCats\", \"CaptDogs\", " +
+            "\"CaptAnimals\", \"CaptDate\", \"CaptPurpose\", \"OMSU_ID\", \"CaptOrg_ID\", \"Locality_ID\", \"File_ID\")" +
+            "VALUES" +
+            "('" + accountCard.NumberMK + "', DATE('" + accountCard.DateOfConclusionMK.ToString("yyyy-MM-dd") + "'), '" + accountCard.NumberActCatching + "', " + accountCard.CaugthCats +
+            ", " + accountCard.CaugthDogs + ", " + accountCard.CaugthAnimals + ", DATE('" + accountCard.DateCatch.ToString("yyyy-MM-dd") + "'), '" + accountCard.PurposeOfCatch +
+            "', " + accountCard.OMSU.ID + ", " + accountCard.ContractorMK.ID + ", " + accountCard.Locality.ID + ", null);";
+            DBService.CRUDRequest(query);
+            LogController.Track(new SubjectArea.Action("добавление", 1));
         }
+
+        // Удаление записи 
 
         public static void DeleteAct(int accountCardID)
         {
-            // Запрос в БД на добавление записи
-            User user = new User();
-            SubjectArea.Action action = new SubjectArea.Action() { name = "Удаление" };
-            LogController.Track(user, accountCardID, action);
+            AccountCard accountCard = GetEntity(accountCardID);
+            string query = $"DELETE FROM \"CaptAct\" WHERE \"CaptAct\".\"ID_CaptAct\" = '{accountCard.ID}';";
+            DBService.CRUDRequest(query);
+            LogController.Track(new SubjectArea.Action("удаление", 3));
         }
 
         //------------ Реализация ------------------
         public static List<Municipality> GetMunicipality(string desc = "")
         {
-            DataTable dt = ListService.GetMunicipality();
+            DataTable dt = DBService.GetMunicipality();
             List<Municipality> municipalities = new List<Municipality>();
             foreach (DataRow row in dt.Rows)
                 municipalities.Add(new Municipality(row["Name"].ToString(), int.Parse(row["ID_Municipality"].ToString())));
@@ -190,7 +201,7 @@ namespace RTiPPO.Controllers
 
         public static List<OMSU> GetOMSU(string desc = "")
         {
-            DataTable dt = ListService.GetOMSU();
+            DataTable dt = DBService.GetOMSU();
             List<OMSU> omsus = new List<OMSU>();
             foreach (DataRow row in dt.Rows)
                 omsus.Add(new OMSU(row["Name"].ToString(), int.Parse(row["ID_OMSU"].ToString())));
@@ -199,7 +210,7 @@ namespace RTiPPO.Controllers
 
         public static List<Contractor> GetContractor(string desc = "")
         {
-            DataTable dt = ListService.GetContractor();
+            DataTable dt = DBService.GetContractor();
             List<Contractor> contractors = new List<Contractor>();
             foreach (DataRow row in dt.Rows)
                 contractors.Add(new Contractor(row["Name"].ToString(), int.Parse(row["ID_CaptOrg"].ToString())));
@@ -208,7 +219,7 @@ namespace RTiPPO.Controllers
 
         public static List<Locality> GetLocality(string desc = "")
         {
-            DataTable dt = ListService.GetLocality();
+            DataTable dt = DBService.GetLocality();
             List<Locality> localities = new List<Locality>();
             foreach (DataRow row in dt.Rows)
                 localities.Add(new Locality(row["Name"].ToString(), int.Parse(row["ID_Locality"].ToString())));

@@ -10,7 +10,7 @@ using RTiPPO.OpenDB;
 
 namespace RTiPPO.Services
 {
-    internal class ListService
+    internal class DBService
     {
         public static DataTable GetActs(string tableQuery)
         {
@@ -37,19 +37,43 @@ namespace RTiPPO.Services
             return SQL(tableQuery);
         }
 
+        public static DataTable GetUsers(string tableQuery = "SELECT * FROM \"User\"")
+        {
+            return SQL(tableQuery);
+        }
+
+        public static void CRUDRequest(string tableQuery)
+        {
+            SQLCRUD(tableQuery);
+        }
+
         private static DataTable SQL(string tableQuery)
         {
             string query = DB.GetQuery();
-            NpgsqlConnection zapros = new NpgsqlConnection(query);
-            NpgsqlCommand cmd = zapros.CreateCommand();
+            NpgsqlConnection connection = new NpgsqlConnection(query);
+            NpgsqlCommand cmd = connection.CreateCommand();
             DataTable dt = new DataTable();
-            zapros.Open();
             cmd.CommandText = tableQuery;
+            connection.Open();
             cmd.ExecuteNonQuery();
-            zapros.Close();
+            connection.Close();
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(cmd);
             dataAdapter.Fill(dt);
             return dt;
+        }
+
+        // Запросы к БД, который ничего не возвращает
+
+        private static void SQLCRUD(string tableQuery)
+        {
+            string query = DB.GetQuery();
+            NpgsqlConnection connection = new NpgsqlConnection(query);
+            NpgsqlCommand cmd = connection.CreateCommand();
+            DataTable dt = new DataTable();
+            cmd.CommandText = tableQuery;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }
