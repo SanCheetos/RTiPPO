@@ -31,7 +31,10 @@ namespace RTiPPO
             startRegister = ListController.GetActs(new User());
             //Вывод полученных записей
 
-            DataGrid_LoadValue(startRegister);
+            if (startRegister.AccountCards.Count == 0)
+                MessageBox.Show("Вы не имеете доступ ни к одной из записей", "Ошибка");
+            else
+                DataGrid_LoadValue(startRegister);
             ShowHideFilter_Click(null, null);
         }
 
