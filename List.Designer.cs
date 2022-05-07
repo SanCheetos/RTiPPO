@@ -30,6 +30,7 @@ namespace RTiPPO
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Municipality = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,6 +102,7 @@ namespace RTiPPO
             this.MunicipalityListHelp = new System.Windows.Forms.ListBox();
             this.ShowHideFilter = new System.Windows.Forms.Button();
             this.SaveExcelPath = new System.Windows.Forms.SaveFileDialog();
+            this.CloseApp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinDogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxSum)).BeginInit();
@@ -117,6 +119,7 @@ namespace RTiPPO
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
             this.NumMK,
             this.DateMK,
             this.Municipality,
@@ -135,9 +138,17 @@ namespace RTiPPO
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1197, 472);
+            this.dataGridView1.Size = new System.Drawing.Size(1190, 472);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // ID
+            // 
+            this.ID.Frozen = true;
+            this.ID.HeaderText = "ID МК";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
             // 
             // NumMK
             // 
@@ -559,22 +570,24 @@ namespace RTiPPO
             // 
             // AddCard
             // 
-            this.AddCard.Location = new System.Drawing.Point(1035, 884);
+            this.AddCard.Location = new System.Drawing.Point(954, 884);
             this.AddCard.Name = "AddCard";
             this.AddCard.Size = new System.Drawing.Size(75, 23);
             this.AddCard.TabIndex = 45;
             this.AddCard.Text = "Добавить";
             this.AddCard.UseVisualStyleBackColor = true;
+            this.AddCard.Visible = false;
             this.AddCard.Click += new System.EventHandler(this.AddCard_Click);
             // 
             // DeleteCard
             // 
-            this.DeleteCard.Location = new System.Drawing.Point(954, 884);
+            this.DeleteCard.Location = new System.Drawing.Point(1035, 884);
             this.DeleteCard.Name = "DeleteCard";
             this.DeleteCard.Size = new System.Drawing.Size(75, 23);
             this.DeleteCard.TabIndex = 46;
             this.DeleteCard.Text = "Удалить";
             this.DeleteCard.UseVisualStyleBackColor = true;
+            this.DeleteCard.Visible = false;
             this.DeleteCard.Click += new System.EventHandler(this.DeleteCard_Click);
             // 
             // ContractorTextBox
@@ -797,11 +810,24 @@ namespace RTiPPO
             this.ShowHideFilter.UseVisualStyleBackColor = true;
             this.ShowHideFilter.Click += new System.EventHandler(this.ShowHideFilter_Click);
             // 
+            // CloseApp
+            // 
+            this.CloseApp.BackColor = System.Drawing.Color.IndianRed;
+            this.CloseApp.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.CloseApp.Location = new System.Drawing.Point(1165, 6);
+            this.CloseApp.Name = "CloseApp";
+            this.CloseApp.Size = new System.Drawing.Size(26, 27);
+            this.CloseApp.TabIndex = 62;
+            this.CloseApp.Text = "x";
+            this.CloseApp.UseVisualStyleBackColor = false;
+            this.CloseApp.Click += new System.EventHandler(this.CloseApp_Click);
+            // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1198, 910);
+            this.ClientSize = new System.Drawing.Size(1196, 910);
+            this.Controls.Add(this.CloseApp);
             this.Controls.Add(this.ShowHideFilter);
             this.Controls.Add(this.filterBox);
             this.Controls.Add(this.DeleteCard);
@@ -812,6 +838,7 @@ namespace RTiPPO
             this.Controls.Add(this.OpenCard);
             this.Controls.Add(this.ExportExcel);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "List";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Реестр";
@@ -889,6 +916,15 @@ namespace RTiPPO
         private System.Windows.Forms.Button DeleteContractor;
         private System.Windows.Forms.Button DeleteLocality;
         private System.Windows.Forms.Button DeleteOMSU;
+        private System.Windows.Forms.GroupBox filterBox;
+        private System.Windows.Forms.Button ShowHideFilter;
+        private System.Windows.Forms.ListBox MunicipalityListHelp;
+        private System.Windows.Forms.ListBox LocalityListHelp;
+        private System.Windows.Forms.ListBox ContractorListHelp;
+        private System.Windows.Forms.ListBox OMSUListHelp;
+        private System.Windows.Forms.SaveFileDialog SaveExcelPath;
+        private System.Windows.Forms.Button CloseApp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumMK;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateMK;
         private System.Windows.Forms.DataGridViewTextBoxColumn Municipality;
@@ -901,13 +937,6 @@ namespace RTiPPO
         private System.Windows.Forms.DataGridViewTextBoxColumn Locality;
         private System.Windows.Forms.DataGridViewTextBoxColumn CaptDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Purpose;
-        private System.Windows.Forms.GroupBox filterBox;
-        private System.Windows.Forms.Button ShowHideFilter;
-        private System.Windows.Forms.ListBox MunicipalityListHelp;
-        private System.Windows.Forms.ListBox LocalityListHelp;
-        private System.Windows.Forms.ListBox ContractorListHelp;
-        private System.Windows.Forms.ListBox OMSUListHelp;
-        private System.Windows.Forms.SaveFileDialog SaveExcelPath;
     }
 }
 

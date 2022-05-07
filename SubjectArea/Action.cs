@@ -8,6 +8,13 @@ namespace RTiPPO.SubjectArea
 {
     internal class Action
     {
-        public string name;
+        public int ID { get; set; }
+        public string Name { get; set; }
+
+        public Action(string name, int id = -1)
+        {
+            Name = name;
+            ID = id;
+        }
     }
 }

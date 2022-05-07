@@ -37,7 +37,7 @@
             // 
             // LoginText
             // 
-            this.LoginText.Location = new System.Drawing.Point(69, 84);
+            this.LoginText.Location = new System.Drawing.Point(70, 90);
             this.LoginText.Name = "LoginText";
             this.LoginText.PlaceholderText = "Логин";
             this.LoginText.Size = new System.Drawing.Size(124, 23);
@@ -45,16 +45,16 @@
             // 
             // PasswordText
             // 
-            this.PasswordText.Location = new System.Drawing.Point(69, 113);
+            this.PasswordText.Location = new System.Drawing.Point(70, 122);
             this.PasswordText.Name = "PasswordText";
-            this.PasswordText.PasswordChar = '*';
+            this.PasswordText.PasswordChar = '●';
             this.PasswordText.PlaceholderText = "Пароль";
             this.PasswordText.Size = new System.Drawing.Size(124, 23);
             this.PasswordText.TabIndex = 1;
             // 
             // LogIn
             // 
-            this.LogIn.Location = new System.Drawing.Point(91, 152);
+            this.LogIn.Location = new System.Drawing.Point(93, 158);
             this.LogIn.Name = "LogIn";
             this.LogIn.Size = new System.Drawing.Size(75, 23);
             this.LogIn.TabIndex = 2;
@@ -66,7 +66,7 @@
             // 
             this.CloseApp.BackColor = System.Drawing.Color.IndianRed;
             this.CloseApp.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.CloseApp.Location = new System.Drawing.Point(229, 12);
+            this.CloseApp.Location = new System.Drawing.Point(231, 12);
             this.CloseApp.Name = "CloseApp";
             this.CloseApp.Size = new System.Drawing.Size(26, 27);
             this.CloseApp.TabIndex = 3;
@@ -79,7 +79,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Black", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(81, 39);
+            this.label2.Location = new System.Drawing.Point(83, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 42);
             this.label2.TabIndex = 6;
@@ -89,7 +89,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(267, 211);
+            this.ClientSize = new System.Drawing.Size(269, 244);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.CloseApp);
             this.Controls.Add(this.LogIn);
