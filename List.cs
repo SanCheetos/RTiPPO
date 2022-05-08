@@ -212,10 +212,11 @@ namespace RTiPPO
         private void DeleteCard_Click(object sender, EventArgs e)
         {
             int idMK = int.Parse(dataGridView1.SelectedRows[0].Cells["ID"].Value.ToString());
+            var deleteCard = ListController.GetEntity(idMK);
             DialogResult confirmDelete = MessageBox.Show("Вы точно хотите удалить данную запись?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirmDelete == DialogResult.Yes)
             {
-                ListController.DeleteAct(idMK);
+                ListController.DeleteAct(deleteCard);
                 MessageBox.Show("Удаление прошло успешно.", "Статус", MessageBoxButtons.OK);
                 DataGrid_LoadValue(ListController.GetActs());
             }

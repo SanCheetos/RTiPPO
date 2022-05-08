@@ -176,17 +176,16 @@ namespace RTiPPO.Controllers
             ", " + accountCard.CaugthDogs + ", " + accountCard.CaugthAnimals + ", DATE('" + accountCard.DateCatch.ToString("yyyy-MM-dd") + "'), '" + accountCard.PurposeOfCatch +
             "', " + accountCard.OMSU.ID + ", " + accountCard.ContractorMK.ID + ", " + accountCard.Locality.ID + ", null);";
             DBService.CRUDRequest(query);
-            LogController.Track(new SubjectArea.Action("добавление", 1));
+            LogController.Track(accountCard, new SubjectArea.Action("добавление", 1));
         }
 
         // Удаление записи 
 
-        public static void DeleteAct(int accountCardID)
+        public static void DeleteAct(AccountCard accountCard)
         {
-            AccountCard accountCard = GetEntity(accountCardID);
             string query = $"DELETE FROM \"CaptAct\" WHERE \"CaptAct\".\"ID_CaptAct\" = '{accountCard.ID}';";
             DBService.CRUDRequest(query);
-            LogController.Track(new SubjectArea.Action("удаление", 3));
+            LogController.Track(accountCard, new SubjectArea.Action("удаление", 3));
         }
 
         //------------ Реализация ------------------
