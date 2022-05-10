@@ -37,6 +37,9 @@ namespace RTiPPO.Controllers
             "JOIN \"CaptOrg\" ON \"CaptAct\".\"CaptOrg_ID\"=\"CaptOrg\".\"ID_CaptOrg\" " +
 
             "JOIN \"Locality\" ON \"CaptAct\".\"Locality_ID\"=\"Locality\".\"ID_Locality\"" + filter;
+
+            //Подстановка Where
+
             DataTable dt = DBService.GetActs(query);
             List<AccountCard> accCard = new List<AccountCard>();
             foreach (DataRow row in dt.Rows)
@@ -114,55 +117,6 @@ namespace RTiPPO.Controllers
         private static string EntitiesQuery(string key, string value)
         {
             return " " + key + " IN (" + value + ") AND";
-        }
-
-        public static string SaveExcel(File file, DataTable dt)
-        {
-            //Объявляем приложение
-            Excel.Application ex = new Excel.Application();
-            Excel.Workbook workBook = ex.Workbooks.Add(Type.Missing);
-            Excel.Worksheet sheet = (Excel.Worksheet)ex.Worksheets.get_Item(1);
-            sheet.Name = "Реестр актов отлова";
-            int j = 1;
-            foreach (DataColumn column in dt.Columns)
-            {
-                sheet.Cells[1, j].Value = column.ColumnName;
-                j++;
-            }
-            int i = 2;
-            j = 1;
-            foreach (DataRow row in dt.Rows)
-            {
-                foreach (var value in row.ItemArray)
-                {
-                    sheet.Cells[i, j].Value = value;
-                    j++;
-                }
-                j = 1;
-                i++;
-            }
-            Excel.Range left = sheet.Cells[1, 1];
-            Excel.Range right = sheet.Cells[i - 1, dt.Columns.Count];
-            Excel.Range range = sheet.get_Range(left, right);
-            range.EntireColumn.AutoFit();
-            range.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
-            left = sheet.Cells[1, 7];
-            right = sheet.Cells[i - 1, 9];
-            range = sheet.get_Range(left, right);
-            range.ColumnWidth = 13;
-            range.WrapText = true;
-            try
-            {
-                ex.Application.ActiveWorkbook.SaveAs(file.Path + file.Name);
-                ex.Application.ActiveWorkbook.Close();
-                return "Сохранение прошло успешно";
-            }
-            catch (Exception exep)
-            {
-                return "Ошибка: " + exep.Message;
-            }
-            
-            //ex.Visible = true;
         }
 
         // Добавление записи 

@@ -1,6 +1,7 @@
 ﻿using RTiPPO.Controllers;
 using RTiPPO.SubjectArea;
 using System;
+using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,7 +29,6 @@ namespace RTiPPO
 
         private void List_Load(object sender, EventArgs e)
         {
-            //startRegister = ListController.GetActs(new User());
             startRegister = ListController.GetActs();
             //Вывод полученных записей
 
@@ -174,9 +174,13 @@ namespace RTiPPO
 
             //Если фильтр пустой, возвращаем старые значения
             else
+            {
                 DataGrid_LoadValue(startRegister);
+                MessageBox.Show("По задааному фильтру нет ни одной записи", "Ошибка");
+            }
         }
 
+        //Экспорт в Excel
         private void ExportExcel_Click(object sender, EventArgs e)
         {
             File file = GetExcelPath();
@@ -190,7 +194,7 @@ namespace RTiPPO
                     dataRow[column.HeaderText] = row.Cells[column.Name].Value;
                 dt.Rows.Add(dataRow);
             }
-            string output = ListController.SaveExcel(file, dt);
+            string output = SaveExcel(file, dt);
             string[] isFail = output.Split(": ");
             if (isFail.Length > 1)
                 MessageBox.Show(isFail[1], "Ошибка");
@@ -208,6 +212,55 @@ namespace RTiPPO
             string name = fullName.Substring(index + 1);
             name = name.Replace(".xlsx", "");
             return new File(name, path);
+        }
+
+        private static string SaveExcel(File file, DataTable dt)
+        {
+            //Объявляем приложение
+            Excel.Application ex = new Excel.Application();
+            Excel.Workbook workBook = ex.Workbooks.Add(Type.Missing);
+            Excel.Worksheet sheet = (Excel.Worksheet)ex.Worksheets.get_Item(1);
+            sheet.Name = "Реестр актов отлова";
+            int j = 1;
+            foreach (DataColumn column in dt.Columns)
+            {
+                sheet.Cells[1, j].Value = column.ColumnName;
+                j++;
+            }
+            int i = 2;
+            j = 1;
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (var value in row.ItemArray)
+                {
+                    sheet.Cells[i, j].Value = value;
+                    j++;
+                }
+                j = 1;
+                i++;
+            }
+            Excel.Range left = sheet.Cells[1, 1];
+            Excel.Range right = sheet.Cells[i - 1, dt.Columns.Count];
+            Excel.Range range = sheet.get_Range(left, right);
+            range.EntireColumn.AutoFit();
+            range.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            left = sheet.Cells[1, 7];
+            right = sheet.Cells[i - 1, 9];
+            range = sheet.get_Range(left, right);
+            range.ColumnWidth = 13;
+            range.WrapText = true;
+            try
+            {
+                ex.Application.ActiveWorkbook.SaveAs(file.Path + file.Name);
+                ex.Application.ActiveWorkbook.Close();
+                return "Сохранение прошло успешно";
+            }
+            catch (Exception exep)
+            {
+                return "Ошибка: " + exep.Message;
+            }
+
+            //ex.Visible = true;
         }
 
         // Действия по кнопке Добавить / Удалить
