@@ -31,7 +31,6 @@
             this.title = new System.Windows.Forms.Label();
             this.CreateButton = new System.Windows.Forms.Button();
             this.DateCapt = new System.Windows.Forms.DateTimePicker();
-            this.CaptOfPurposeComboBox = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.LocalityComboBox = new System.Windows.Forms.ComboBox();
@@ -40,9 +39,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.AnimalsTextBox = new System.Windows.Forms.TextBox();
-            this.CatsTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.DogsTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.NumberActTextBox = new System.Windows.Forms.TextBox();
             this.ContractorMK = new System.Windows.Forms.ComboBox();
@@ -56,7 +53,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DateMK = new System.Windows.Forms.DateTimePicker();
             this.CloseForm = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ExportWord = new System.Windows.Forms.Button();
+            this.CaptOfPurpose = new System.Windows.Forms.TextBox();
+            this.DogsCount = new System.Windows.Forms.NumericUpDown();
+            this.CatsCount = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.DogsCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CatsCount)).BeginInit();
             this.SuspendLayout();
             // 
             // title
@@ -78,6 +80,7 @@
             this.CreateButton.TabIndex = 57;
             this.CreateButton.Text = "Сохранить";
             this.CreateButton.UseVisualStyleBackColor = true;
+            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // DateCapt
             // 
@@ -85,14 +88,6 @@
             this.DateCapt.Name = "DateCapt";
             this.DateCapt.Size = new System.Drawing.Size(172, 23);
             this.DateCapt.TabIndex = 56;
-            // 
-            // CaptOfPurposeComboBox
-            // 
-            this.CaptOfPurposeComboBox.FormattingEnabled = true;
-            this.CaptOfPurposeComboBox.Location = new System.Drawing.Point(44, 488);
-            this.CaptOfPurposeComboBox.Name = "CaptOfPurposeComboBox";
-            this.CaptOfPurposeComboBox.Size = new System.Drawing.Size(367, 23);
-            this.CaptOfPurposeComboBox.TabIndex = 55;
             // 
             // label14
             // 
@@ -141,7 +136,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(181, 372);
+            this.label10.Location = new System.Drawing.Point(192, 372);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(48, 15);
             this.label10.TabIndex = 49;
@@ -160,15 +155,11 @@
             // 
             this.AnimalsTextBox.Location = new System.Drawing.Point(327, 390);
             this.AnimalsTextBox.Name = "AnimalsTextBox";
+            this.AnimalsTextBox.ReadOnly = true;
             this.AnimalsTextBox.Size = new System.Drawing.Size(84, 23);
             this.AnimalsTextBox.TabIndex = 47;
-            // 
-            // CatsTextBox
-            // 
-            this.CatsTextBox.Location = new System.Drawing.Point(181, 390);
-            this.CatsTextBox.Name = "CatsTextBox";
-            this.CatsTextBox.Size = new System.Drawing.Size(84, 23);
-            this.CatsTextBox.TabIndex = 46;
+            this.AnimalsTextBox.Text = "0";
+            this.AnimalsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
             // 
@@ -179,13 +170,6 @@
             this.label8.Size = new System.Drawing.Size(154, 15);
             this.label8.TabIndex = 45;
             this.label8.Text = "Количество отловленных:";
-            // 
-            // DogsTextBox
-            // 
-            this.DogsTextBox.Location = new System.Drawing.Point(44, 390);
-            this.DogsTextBox.Name = "DogsTextBox";
-            this.DogsTextBox.Size = new System.Drawing.Size(84, 23);
-            this.DogsTextBox.TabIndex = 44;
             // 
             // label7
             // 
@@ -202,6 +186,7 @@
             this.NumberActTextBox.Name = "NumberActTextBox";
             this.NumberActTextBox.Size = new System.Drawing.Size(172, 23);
             this.NumberActTextBox.TabIndex = 42;
+            this.NumberActTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberActTextBox_KeyPress);
             // 
             // ContractorMK
             // 
@@ -235,6 +220,7 @@
             this.NumberMKTextBox.Name = "NumberMKTextBox";
             this.NumberMKTextBox.Size = new System.Drawing.Size(172, 23);
             this.NumberMKTextBox.TabIndex = 38;
+            this.NumberMKTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberMKTextBox_KeyPress);
             // 
             // OMSUComboBox
             // 
@@ -298,25 +284,53 @@
             this.CloseForm.UseVisualStyleBackColor = false;
             this.CloseForm.Click += new System.EventHandler(this.CloseForm_Click_1);
             // 
-            // button1
+            // ExportWord
             // 
-            this.button1.Location = new System.Drawing.Point(239, 540);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 23);
-            this.button1.TabIndex = 59;
-            this.button1.Text = "Экспорт в Word";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ExportWord.Location = new System.Drawing.Point(239, 540);
+            this.ExportWord.Name = "ExportWord";
+            this.ExportWord.Size = new System.Drawing.Size(125, 23);
+            this.ExportWord.TabIndex = 59;
+            this.ExportWord.Text = "Экспорт в Word";
+            this.ExportWord.UseVisualStyleBackColor = true;
+            this.ExportWord.Click += new System.EventHandler(this.ExportWord_Click);
+            // 
+            // CaptOfPurpose
+            // 
+            this.CaptOfPurpose.Location = new System.Drawing.Point(44, 488);
+            this.CaptOfPurpose.Name = "CaptOfPurpose";
+            this.CaptOfPurpose.Size = new System.Drawing.Size(367, 23);
+            this.CaptOfPurpose.TabIndex = 60;
+            // 
+            // DogsCount
+            // 
+            this.DogsCount.Location = new System.Drawing.Point(44, 390);
+            this.DogsCount.Name = "DogsCount";
+            this.DogsCount.Size = new System.Drawing.Size(84, 23);
+            this.DogsCount.TabIndex = 61;
+            this.DogsCount.ValueChanged += new System.EventHandler(this.DogsCount_ValueChanged);
+            this.DogsCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DogsCount_KeyPress);
+            // 
+            // CatsCount
+            // 
+            this.CatsCount.Location = new System.Drawing.Point(192, 390);
+            this.CatsCount.Name = "CatsCount";
+            this.CatsCount.Size = new System.Drawing.Size(84, 23);
+            this.CatsCount.TabIndex = 62;
+            this.CatsCount.ValueChanged += new System.EventHandler(this.CatsCount_ValueChanged);
+            this.CatsCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CatsCount_KeyPress);
             // 
             // card
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 586);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CatsCount);
+            this.Controls.Add(this.DogsCount);
+            this.Controls.Add(this.CaptOfPurpose);
+            this.Controls.Add(this.ExportWord);
             this.Controls.Add(this.CloseForm);
             this.Controls.Add(this.CreateButton);
             this.Controls.Add(this.DateCapt);
-            this.Controls.Add(this.CaptOfPurposeComboBox);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.LocalityComboBox);
@@ -325,9 +339,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.AnimalsTextBox);
-            this.Controls.Add(this.CatsTextBox);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.DogsTextBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.NumberActTextBox);
             this.Controls.Add(this.ContractorMK);
@@ -346,6 +358,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.card_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.DogsCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CatsCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,7 +370,6 @@
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Button CreateButton;
         private System.Windows.Forms.DateTimePicker DateCapt;
-        private System.Windows.Forms.ComboBox CaptOfPurposeComboBox;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox LocalityComboBox;
@@ -365,9 +378,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox AnimalsTextBox;
-        private System.Windows.Forms.TextBox CatsTextBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox DogsTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox NumberActTextBox;
         private System.Windows.Forms.ComboBox ContractorMK;
@@ -381,6 +392,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker DateMK;
         private System.Windows.Forms.Button CloseForm;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ExportWord;
+        private System.Windows.Forms.TextBox CaptOfPurpose;
+        private System.Windows.Forms.NumericUpDown DogsCount;
+        private System.Windows.Forms.NumericUpDown CatsCount;
     }
 }

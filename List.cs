@@ -104,6 +104,7 @@ namespace RTiPPO
             c.ChangeCard = changeCard;
             c.Owner = this;
             c.ShowDialog();
+            Hide();
         }
 
         private void DoFilter_Click(object sender, EventArgs e)
