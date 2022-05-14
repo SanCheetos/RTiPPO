@@ -23,7 +23,7 @@ namespace RTiPPO.Controllers
         }
 
         //public static Register GetActs(User user, string filter = "")
-        public static Register GetActs(string filter = "")
+        public static Register GetActs(string filter = "", int limit = 1, int offset = 0)
         {
             string query = "SELECT \"ID_CaptAct\", \"NumberMK\", \"DateMK\", \"NumberAct\", \"CaptCats\", \"CaptDogs\", " +
             "\"CaptAnimals\", \"CaptDate\", \"CaptPurpose\", \"OMSU\".\"Municipality_ID\", " +
@@ -36,9 +36,23 @@ namespace RTiPPO.Controllers
 
             "JOIN \"CaptOrg\" ON \"CaptAct\".\"CaptOrg_ID\"=\"CaptOrg\".\"ID_CaptOrg\" " +
 
-            "JOIN \"Locality\" ON \"CaptAct\".\"Locality_ID\"=\"Locality\".\"ID_Locality\"" + filter;
+            "JOIN \"Locality\" ON \"CaptAct\".\"Locality_ID\"=\"Locality\".\"ID_Locality\" ";
 
             //Подстановка Where
+            string access;
+            if (filter == "")
+                access = "WHERE ";
+            else
+                access = "AND ";
+            if (User.Role.Access.Trim() == "муниципальное образование")
+                access += "\"OMSU\".\"Municipality_ID\"=" + User.OMSU.Municipality.ID + " ";
+            else if (User.Role.Access.Trim() == "организация по отлову")
+                access += "\"CaptAct\".\"CaptOrg_ID\"=" + User.CaptOrg.ID + " ";
+            else access = "";
+            query += filter + access + /*пагинация*/ " LIMIT " + limit + " OFFSET " + offset;
+
+
+
 
             DataTable dt = DBService.GetActs(query);
             List<AccountCard> accCard = new List<AccountCard>();
@@ -71,7 +85,7 @@ namespace RTiPPO.Controllers
         }
 
         //public static Register Filter(User user, Dictionary<string, string> filterData)
-        public static Register Filter(Dictionary<string, string> filterData)
+        public static Register Filter(Dictionary<string, string> filterData, int limit = 2, int offset = 0)
         {
             string filterQuery = "WHERE";
             if (filterData.ContainsKey("NumberMK"))
@@ -92,11 +106,11 @@ namespace RTiPPO.Controllers
                 if (filterData.ContainsKey("CaptSum"))
                     filterQuery += CaptCountQuery("CaptAnimals", filterData["CaptSum"]);
 
-                if (filterData.ContainsKey("Municipality"))
+                if (filterData.ContainsKey("Municipality") && User.Role.Access != "муниципальное образование")
                     filterQuery += EntitiesQuery("\"OMSU\".\"Municipality_ID\"", filterData["Municipality"]);
                 if (filterData.ContainsKey("OMSU"))
                     filterQuery += EntitiesQuery("\"CaptAct\".\"OMSU_ID\"", filterData["OMSU"]);
-                if (filterData.ContainsKey("Contractor"))
+                if (filterData.ContainsKey("Contractor") && User.Role.Access != "организация по отлову")
                     filterQuery += EntitiesQuery("\"CaptAct\".\"CaptOrg_ID\"", filterData["Contractor"]);
                 if (filterData.ContainsKey("Locality"))
                     filterQuery += EntitiesQuery("\"CaptAct\".\"Locality_ID\"", filterData["Locality"]);

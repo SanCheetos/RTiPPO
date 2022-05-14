@@ -46,8 +46,8 @@ namespace RTiPPO.Controllers
                     User.Login = row["Login"].ToString();
                     User.Password = row["Password"].ToString();
                     User.Role = new Role(int.Parse(row["Role.ID"].ToString()), row["Role.Name"].ToString(), new Function(row["Function.Name"].ToString()), row["Role.Access"].ToString());
-                    User.OMSU = new OMSU(row["OMSU.Name"].ToString(), -1, new Municipality(row["Municipality.Name"].ToString()));
-                    User.CaptOrg = new Contractor(row["CaptOrg.Name"].ToString());
+                    User.OMSU = new OMSU(row["OMSU.Name"].ToString(), int.Parse(row["ID_OMSU"].ToString()), new Municipality(row["Municipality.Name"].ToString()));
+                    User.CaptOrg = new Contractor(row["CaptOrg.Name"].ToString(), int.Parse(row["ID_CaptOrg"].ToString()));
                 } 
                 return "OK";
             }

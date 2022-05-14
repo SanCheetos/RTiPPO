@@ -56,7 +56,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DateMK = new System.Windows.Forms.DateTimePicker();
             this.CloseForm = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ExportWordButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // title
@@ -78,9 +78,11 @@
             this.CreateButton.TabIndex = 57;
             this.CreateButton.Text = "Сохранить";
             this.CreateButton.UseVisualStyleBackColor = true;
+            this.CreateButton.Visible = false;
             // 
             // DateCapt
             // 
+            this.DateCapt.Enabled = false;
             this.DateCapt.Location = new System.Drawing.Point(239, 145);
             this.DateCapt.Name = "DateCapt";
             this.DateCapt.Size = new System.Drawing.Size(172, 23);
@@ -88,6 +90,7 @@
             // 
             // CaptOfPurposeComboBox
             // 
+            this.CaptOfPurposeComboBox.Enabled = false;
             this.CaptOfPurposeComboBox.FormattingEnabled = true;
             this.CaptOfPurposeComboBox.Location = new System.Drawing.Point(44, 488);
             this.CaptOfPurposeComboBox.Name = "CaptOfPurposeComboBox";
@@ -114,6 +117,7 @@
             // 
             // LocalityComboBox
             // 
+            this.LocalityComboBox.Enabled = false;
             this.LocalityComboBox.FormattingEnabled = true;
             this.LocalityComboBox.Location = new System.Drawing.Point(44, 444);
             this.LocalityComboBox.Name = "LocalityComboBox";
@@ -160,6 +164,7 @@
             // 
             this.AnimalsTextBox.Location = new System.Drawing.Point(327, 390);
             this.AnimalsTextBox.Name = "AnimalsTextBox";
+            this.AnimalsTextBox.ReadOnly = true;
             this.AnimalsTextBox.Size = new System.Drawing.Size(84, 23);
             this.AnimalsTextBox.TabIndex = 47;
             // 
@@ -167,6 +172,7 @@
             // 
             this.CatsTextBox.Location = new System.Drawing.Point(181, 390);
             this.CatsTextBox.Name = "CatsTextBox";
+            this.CatsTextBox.ReadOnly = true;
             this.CatsTextBox.Size = new System.Drawing.Size(84, 23);
             this.CatsTextBox.TabIndex = 46;
             // 
@@ -184,6 +190,7 @@
             // 
             this.DogsTextBox.Location = new System.Drawing.Point(44, 390);
             this.DogsTextBox.Name = "DogsTextBox";
+            this.DogsTextBox.ReadOnly = true;
             this.DogsTextBox.Size = new System.Drawing.Size(84, 23);
             this.DogsTextBox.TabIndex = 44;
             // 
@@ -200,11 +207,13 @@
             // 
             this.NumberActTextBox.Location = new System.Drawing.Point(239, 93);
             this.NumberActTextBox.Name = "NumberActTextBox";
+            this.NumberActTextBox.ReadOnly = true;
             this.NumberActTextBox.Size = new System.Drawing.Size(172, 23);
             this.NumberActTextBox.TabIndex = 42;
             // 
             // ContractorMK
             // 
+            this.ContractorMK.Enabled = false;
             this.ContractorMK.FormattingEnabled = true;
             this.ContractorMK.Location = new System.Drawing.Point(44, 306);
             this.ContractorMK.Name = "ContractorMK";
@@ -233,11 +242,13 @@
             // 
             this.NumberMKTextBox.Location = new System.Drawing.Point(44, 93);
             this.NumberMKTextBox.Name = "NumberMKTextBox";
+            this.NumberMKTextBox.ReadOnly = true;
             this.NumberMKTextBox.Size = new System.Drawing.Size(172, 23);
             this.NumberMKTextBox.TabIndex = 38;
             // 
             // OMSUComboBox
             // 
+            this.OMSUComboBox.Enabled = false;
             this.OMSUComboBox.FormattingEnabled = true;
             this.OMSUComboBox.Location = new System.Drawing.Point(44, 254);
             this.OMSUComboBox.Name = "OMSUComboBox";
@@ -255,6 +266,7 @@
             // 
             // MunicipalityComboBox
             // 
+            this.MunicipalityComboBox.Enabled = false;
             this.MunicipalityComboBox.FormattingEnabled = true;
             this.MunicipalityComboBox.Location = new System.Drawing.Point(44, 200);
             this.MunicipalityComboBox.Name = "MunicipalityComboBox";
@@ -281,6 +293,7 @@
             // 
             // DateMK
             // 
+            this.DateMK.Enabled = false;
             this.DateMK.Location = new System.Drawing.Point(44, 145);
             this.DateMK.Name = "DateMK";
             this.DateMK.Size = new System.Drawing.Size(172, 23);
@@ -298,21 +311,21 @@
             this.CloseForm.UseVisualStyleBackColor = false;
             this.CloseForm.Click += new System.EventHandler(this.CloseForm_Click_1);
             // 
-            // button1
+            // ExportWordButton
             // 
-            this.button1.Location = new System.Drawing.Point(239, 540);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 23);
-            this.button1.TabIndex = 59;
-            this.button1.Text = "Экспорт в Word";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ExportWordButton.Location = new System.Drawing.Point(158, 540);
+            this.ExportWordButton.Name = "ExportWordButton";
+            this.ExportWordButton.Size = new System.Drawing.Size(125, 23);
+            this.ExportWordButton.TabIndex = 59;
+            this.ExportWordButton.Text = "Экспорт в Word";
+            this.ExportWordButton.UseVisualStyleBackColor = true;
             // 
             // card
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 586);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ExportWordButton);
             this.Controls.Add(this.CloseForm);
             this.Controls.Add(this.CreateButton);
             this.Controls.Add(this.DateCapt);
@@ -381,6 +394,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker DateMK;
         private System.Windows.Forms.Button CloseForm;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ExportWordButton;
     }
 }

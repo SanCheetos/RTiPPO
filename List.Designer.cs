@@ -30,19 +30,6 @@ namespace RTiPPO
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Municipality = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OMSU = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Executor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ActNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaptDogs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaptCats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaptSum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Locality = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaptDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Purpose = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExportExcel = new System.Windows.Forms.Button();
             this.OpenCard = new System.Windows.Forms.Button();
             this.FilterLabel = new System.Windows.Forms.Label();
@@ -103,6 +90,23 @@ namespace RTiPPO
             this.ShowHideFilter = new System.Windows.Forms.Button();
             this.SaveExcelPath = new System.Windows.Forms.SaveFileDialog();
             this.CloseApp = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.LimitPagination = new System.Windows.Forms.NumericUpDown();
+            this.NextPagination = new System.Windows.Forms.Button();
+            this.PreviosPagination = new System.Windows.Forms.Button();
+            this.NumMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Municipality = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OMSU = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Executor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaptDogs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaptCats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaptSum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Locality = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaptDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Purpose = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinDogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxSum)).BeginInit();
@@ -111,6 +115,7 @@ namespace RTiPPO
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinCats)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxDogs)).BeginInit();
             this.filterBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LimitPagination)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -119,7 +124,6 @@ namespace RTiPPO
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
             this.NumMK,
             this.DateMK,
             this.Municipality,
@@ -142,105 +146,9 @@ namespace RTiPPO
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // ID
-            // 
-            this.ID.Frozen = true;
-            this.ID.HeaderText = "ID МК";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // NumMK
-            // 
-            this.NumMK.Frozen = true;
-            this.NumMK.HeaderText = "Номер МК";
-            this.NumMK.Name = "NumMK";
-            this.NumMK.ReadOnly = true;
-            // 
-            // DateMK
-            // 
-            this.DateMK.Frozen = true;
-            this.DateMK.HeaderText = "Дата заключения МК";
-            this.DateMK.Name = "DateMK";
-            this.DateMK.ReadOnly = true;
-            this.DateMK.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DateMK.Width = 77;
-            // 
-            // Municipality
-            // 
-            this.Municipality.Frozen = true;
-            this.Municipality.HeaderText = "Муниципальное образование";
-            this.Municipality.Name = "Municipality";
-            this.Municipality.ReadOnly = true;
-            // 
-            // OMSU
-            // 
-            this.OMSU.Frozen = true;
-            this.OMSU.HeaderText = "ОМСУ";
-            this.OMSU.Name = "OMSU";
-            this.OMSU.ReadOnly = true;
-            // 
-            // Executor
-            // 
-            this.Executor.Frozen = true;
-            this.Executor.HeaderText = "Исполнитель МК";
-            this.Executor.Name = "Executor";
-            this.Executor.ReadOnly = true;
-            // 
-            // ActNum
-            // 
-            this.ActNum.Frozen = true;
-            this.ActNum.HeaderText = "Номер акта отлова";
-            this.ActNum.Name = "ActNum";
-            this.ActNum.ReadOnly = true;
-            // 
-            // CaptDogs
-            // 
-            this.CaptDogs.Frozen = true;
-            this.CaptDogs.HeaderText = "Количество отловленных собак";
-            this.CaptDogs.Name = "CaptDogs";
-            this.CaptDogs.ReadOnly = true;
-            // 
-            // CaptCats
-            // 
-            this.CaptCats.Frozen = true;
-            this.CaptCats.HeaderText = "Количество отловленных кошек";
-            this.CaptCats.Name = "CaptCats";
-            this.CaptCats.ReadOnly = true;
-            // 
-            // CaptSum
-            // 
-            this.CaptSum.Frozen = true;
-            this.CaptSum.HeaderText = "Количество отловленных животных";
-            this.CaptSum.Name = "CaptSum";
-            this.CaptSum.ReadOnly = true;
-            // 
-            // Locality
-            // 
-            this.Locality.Frozen = true;
-            this.Locality.HeaderText = "Населённый пункт";
-            this.Locality.Name = "Locality";
-            this.Locality.ReadOnly = true;
-            // 
-            // CaptDate
-            // 
-            this.CaptDate.Frozen = true;
-            this.CaptDate.HeaderText = "Дата отлова";
-            this.CaptDate.Name = "CaptDate";
-            this.CaptDate.ReadOnly = true;
-            this.CaptDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CaptDate.Width = 77;
-            // 
-            // Purpose
-            // 
-            this.Purpose.Frozen = true;
-            this.Purpose.HeaderText = "Цель отлова";
-            this.Purpose.Name = "Purpose";
-            this.Purpose.ReadOnly = true;
-            // 
             // ExportExcel
             // 
-            this.ExportExcel.Location = new System.Drawing.Point(6, 884);
+            this.ExportExcel.Location = new System.Drawing.Point(6, 928);
             this.ExportExcel.Name = "ExportExcel";
             this.ExportExcel.Size = new System.Drawing.Size(143, 23);
             this.ExportExcel.TabIndex = 1;
@@ -250,7 +158,7 @@ namespace RTiPPO
             // 
             // OpenCard
             // 
-            this.OpenCard.Location = new System.Drawing.Point(1116, 884);
+            this.OpenCard.Location = new System.Drawing.Point(1116, 928);
             this.OpenCard.Name = "OpenCard";
             this.OpenCard.Size = new System.Drawing.Size(75, 23);
             this.OpenCard.TabIndex = 2;
@@ -570,7 +478,7 @@ namespace RTiPPO
             // 
             // AddCard
             // 
-            this.AddCard.Location = new System.Drawing.Point(954, 884);
+            this.AddCard.Location = new System.Drawing.Point(954, 928);
             this.AddCard.Name = "AddCard";
             this.AddCard.Size = new System.Drawing.Size(75, 23);
             this.AddCard.TabIndex = 45;
@@ -581,7 +489,7 @@ namespace RTiPPO
             // 
             // DeleteCard
             // 
-            this.DeleteCard.Location = new System.Drawing.Point(1035, 884);
+            this.DeleteCard.Location = new System.Drawing.Point(1035, 928);
             this.DeleteCard.Name = "DeleteCard";
             this.DeleteCard.Size = new System.Drawing.Size(75, 23);
             this.DeleteCard.TabIndex = 46;
@@ -822,11 +730,154 @@ namespace RTiPPO
             this.CloseApp.UseVisualStyleBackColor = false;
             this.CloseApp.Click += new System.EventHandler(this.CloseApp_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(366, 888);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(122, 15);
+            this.label1.TabIndex = 63;
+            this.label1.Text = "Показывать записей:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(513, 887);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(21, 15);
+            this.label11.TabIndex = 65;
+            this.label11.Text = "по";
+            // 
+            // LimitPagination
+            // 
+            this.LimitPagination.Location = new System.Drawing.Point(540, 884);
+            this.LimitPagination.Name = "LimitPagination";
+            this.LimitPagination.Size = new System.Drawing.Size(70, 23);
+            this.LimitPagination.TabIndex = 66;
+            this.LimitPagination.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // NextPagination
+            // 
+            this.NextPagination.Location = new System.Drawing.Point(750, 884);
+            this.NextPagination.Name = "NextPagination";
+            this.NextPagination.Size = new System.Drawing.Size(75, 23);
+            this.NextPagination.TabIndex = 67;
+            this.NextPagination.Text = "Вперед";
+            this.NextPagination.UseVisualStyleBackColor = true;
+            this.NextPagination.Click += new System.EventHandler(this.NextPagination_Click);
+            // 
+            // PreviosPagination
+            // 
+            this.PreviosPagination.Location = new System.Drawing.Point(645, 884);
+            this.PreviosPagination.Name = "PreviosPagination";
+            this.PreviosPagination.Size = new System.Drawing.Size(75, 23);
+            this.PreviosPagination.TabIndex = 68;
+            this.PreviosPagination.Text = "Назад";
+            this.PreviosPagination.UseVisualStyleBackColor = true;
+            this.PreviosPagination.Click += new System.EventHandler(this.PreviosPagination_Click);
+            // 
+            // NumMK
+            // 
+            this.NumMK.Frozen = true;
+            this.NumMK.HeaderText = "Номер МК";
+            this.NumMK.Name = "NumMK";
+            this.NumMK.ReadOnly = true;
+            // 
+            // DateMK
+            // 
+            this.DateMK.Frozen = true;
+            this.DateMK.HeaderText = "Дата заключения МК";
+            this.DateMK.Name = "DateMK";
+            this.DateMK.ReadOnly = true;
+            this.DateMK.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DateMK.Width = 77;
+            // 
+            // Municipality
+            // 
+            this.Municipality.Frozen = true;
+            this.Municipality.HeaderText = "Муниципальное образование";
+            this.Municipality.Name = "Municipality";
+            this.Municipality.ReadOnly = true;
+            // 
+            // OMSU
+            // 
+            this.OMSU.Frozen = true;
+            this.OMSU.HeaderText = "ОМСУ";
+            this.OMSU.Name = "OMSU";
+            this.OMSU.ReadOnly = true;
+            // 
+            // Executor
+            // 
+            this.Executor.Frozen = true;
+            this.Executor.HeaderText = "Исполнитель МК";
+            this.Executor.Name = "Executor";
+            this.Executor.ReadOnly = true;
+            // 
+            // ActNum
+            // 
+            this.ActNum.Frozen = true;
+            this.ActNum.HeaderText = "Номер акта отлова";
+            this.ActNum.Name = "ActNum";
+            this.ActNum.ReadOnly = true;
+            // 
+            // CaptDogs
+            // 
+            this.CaptDogs.Frozen = true;
+            this.CaptDogs.HeaderText = "Количество отловленных собак";
+            this.CaptDogs.Name = "CaptDogs";
+            this.CaptDogs.ReadOnly = true;
+            // 
+            // CaptCats
+            // 
+            this.CaptCats.Frozen = true;
+            this.CaptCats.HeaderText = "Количество отловленных кошек";
+            this.CaptCats.Name = "CaptCats";
+            this.CaptCats.ReadOnly = true;
+            // 
+            // CaptSum
+            // 
+            this.CaptSum.Frozen = true;
+            this.CaptSum.HeaderText = "Количество отловленных животных";
+            this.CaptSum.Name = "CaptSum";
+            this.CaptSum.ReadOnly = true;
+            // 
+            // Locality
+            // 
+            this.Locality.Frozen = true;
+            this.Locality.HeaderText = "Населённый пункт";
+            this.Locality.Name = "Locality";
+            this.Locality.ReadOnly = true;
+            // 
+            // CaptDate
+            // 
+            this.CaptDate.Frozen = true;
+            this.CaptDate.HeaderText = "Дата отлова";
+            this.CaptDate.Name = "CaptDate";
+            this.CaptDate.ReadOnly = true;
+            this.CaptDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CaptDate.Width = 77;
+            // 
+            // Purpose
+            // 
+            this.Purpose.Frozen = true;
+            this.Purpose.HeaderText = "Цель отлова";
+            this.Purpose.Name = "Purpose";
+            this.Purpose.ReadOnly = true;
+            // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1196, 910);
+            this.ClientSize = new System.Drawing.Size(1196, 963);
+            this.Controls.Add(this.PreviosPagination);
+            this.Controls.Add(this.NextPagination);
+            this.Controls.Add(this.LimitPagination);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.CloseApp);
             this.Controls.Add(this.ShowHideFilter);
             this.Controls.Add(this.filterBox);
@@ -852,6 +903,7 @@ namespace RTiPPO
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxDogs)).EndInit();
             this.filterBox.ResumeLayout(false);
             this.filterBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LimitPagination)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -896,10 +948,6 @@ namespace RTiPPO
         private System.Windows.Forms.NumericUpDown CaptMaxDogs;
         private System.Windows.Forms.TextBox NumberMKTextBox;
         private System.Windows.Forms.CheckBox CheckDateCapt;
-        private System.Windows.Forms.CheckedListBox CheckLocality;
-        private System.Windows.Forms.CheckedListBox CheckMunicipality;
-        private System.Windows.Forms.CheckedListBox CheckExecutor;
-        private System.Windows.Forms.CheckedListBox CheckOMSU;
         private System.Windows.Forms.Button DoFilter;
         private System.Windows.Forms.Button ThrowOffFilter;
         private System.Windows.Forms.Button AddCard;
@@ -924,7 +972,11 @@ namespace RTiPPO
         private System.Windows.Forms.ListBox OMSUListHelp;
         private System.Windows.Forms.SaveFileDialog SaveExcelPath;
         private System.Windows.Forms.Button CloseApp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown LimitPagination;
+        private System.Windows.Forms.Button NextPagination;
+        private System.Windows.Forms.Button PreviosPagination;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumMK;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateMK;
         private System.Windows.Forms.DataGridViewTextBoxColumn Municipality;

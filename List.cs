@@ -25,18 +25,37 @@ namespace RTiPPO
         List<Contractor> contractorSearch = null;
         List<Locality> localitySearch = null;
         Register startRegister = null;
-        
+        Dictionary<string, string> filterData = new Dictionary<string, string>();
+
+        int limit;
+        int offset = 0;
+        bool end = false;
 
         private void List_Load(object sender, EventArgs e)
         {
-            startRegister = ListController.GetActs();
+            limit = int.Parse(LimitPagination.Value.ToString());
+            startRegister = ListController.GetActs("", limit, offset);
             //Вывод полученных записей
 
             if (startRegister.AccountCards.Count == 0)
-                MessageBox.Show("Вы не имеете доступ ни к одной из записей", "Ошибка");
+                MessageBox.Show("По вашей роли не найдено ни одной записи", "Ошибка");
             else
                 DataGrid_LoadValue(startRegister);
             ShowHideFilter_Click(null, null);
+            //В зависимости от роли отключить возможность фильтрации по полям
+            if (User.Role.Access.Trim() == "муниципальное образование")
+            {
+                MunicipalityTextBox.Enabled = false;
+                MunicipalityList.Enabled = false;
+                DeleteMunicipality.Enabled = false;
+            }
+            else if (User.Role.Access.Trim() == "организация по отлову")
+            {
+                ContractorTextBox.Enabled = false;
+                ContractorList.Enabled = false;
+                DeleteContractor.Enabled = false;
+            }
+
 
             if (User.Role.Function.Name.ToString().Trim() == "ведение")
             {
@@ -53,7 +72,6 @@ namespace RTiPPO
             dataGridView1.Rows.Clear();
             foreach (AccountCard card in register.AccountCards)
                 dataGridView1.Rows.Add(
-                    card.ID,
                     card.NumberMK,
                     card.DateOfConclusionMK,
                     card.Municipality,
@@ -111,7 +129,7 @@ namespace RTiPPO
 
         private void DoFilter_Click(object sender, EventArgs e)
         {
-            Dictionary<string, string> filterData = new Dictionary<string, string>();
+            filterData = new Dictionary<string, string>();
             //Сбор данных фильтра
             if (NumberMKTextBox.Text != "")
             {
@@ -169,14 +187,20 @@ namespace RTiPPO
                 //Register register = ListController.Filter(new User(), filterData);
                 Register register = ListController.Filter(filterData);
                 //Вывод полученных записей
-                DataGrid_LoadValue(register);
+                if (register.AccountCards.Count != 0)
+                    DataGrid_LoadValue(register);
+                else
+                {
+                    MessageBox.Show("По данному фильтре нет ни одной записи", "Ошибка");
+                    DataGrid_LoadValue(startRegister);
+                }
             }
 
             //Если фильтр пустой, возвращаем старые значения
             else
             {
                 DataGrid_LoadValue(startRegister);
-                MessageBox.Show("По задааному фильтру нет ни одной записи", "Ошибка");
+                filterData = new Dictionary<string, string>();
             }
         }
 
@@ -257,9 +281,9 @@ namespace RTiPPO
             }
             catch (Exception exep)
             {
+                ex.Application.ActiveWorkbook.Close();
                 return "Ошибка: " + exep.Message;
             }
-
             //ex.Visible = true;
         }
 
@@ -299,6 +323,11 @@ namespace RTiPPO
                 DeleteCard.Location = new Point(DeleteCard.Location.X, DeleteCard.Location.Y + 365);
                 OpenCard.Location = new Point(OpenCard.Location.X, OpenCard.Location.Y + 365);
                 ExportExcel.Location = new Point(ExportExcel.Location.X, ExportExcel.Location.Y + 365);
+                label1.Location = new Point(label1.Location.X, label1.Location.Y + 365);
+                label11.Location = new Point(label11.Location.X, label11.Location.Y + 365);
+                LimitPagination.Location = new Point(LimitPagination.Location.X, LimitPagination.Location.Y + 365);
+                NextPagination.Location = new Point(NextPagination.Location.X, NextPagination.Location.Y + 365);
+                PreviosPagination.Location = new Point(PreviosPagination.Location.X, PreviosPagination.Location.Y + 365);
                 this.Height += 365;
                 ShowHideFilter.Text = "Скрыть";
             }
@@ -313,6 +342,11 @@ namespace RTiPPO
                 DeleteCard.Location = new Point(DeleteCard.Location.X, DeleteCard.Location.Y - 365);
                 OpenCard.Location = new Point(OpenCard.Location.X, OpenCard.Location.Y - 365);
                 ExportExcel.Location = new Point(ExportExcel.Location.X, ExportExcel.Location.Y - 365);
+                label1.Location = new Point(label1.Location.X, label1.Location.Y - 365);
+                label11.Location = new Point(label11.Location.X, label11.Location.Y - 365);
+                LimitPagination.Location = new Point(LimitPagination.Location.X, LimitPagination.Location.Y - 365);
+                NextPagination.Location = new Point(NextPagination.Location.X, NextPagination.Location.Y - 365);
+                PreviosPagination.Location = new Point(PreviosPagination.Location.X, PreviosPagination.Location.Y - 365);
                 this.Height -= 365;
                 ShowHideFilter.Text = "Показать";
             }
@@ -468,6 +502,76 @@ namespace RTiPPO
         private void CloseApp_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        //Пагинация вперед
+        private void NextPagination_Click(object sender, EventArgs e)
+        {
+            if (end && limit == int.Parse(LimitPagination.Value.ToString()))
+            {
+                MessageBox.Show("Перед вами последние записи", "Внимание!");
+                return;
+            }
+            Register register;
+            if (limit != int.Parse(LimitPagination.Value.ToString()))
+            {
+                limit = int.Parse(LimitPagination.Value.ToString());
+                offset = 0;
+                register = PaginationGetActs(limit, offset);
+            }
+            else
+                register = PaginationGetActs(limit, offset + limit);
+            offset += limit;
+            if (register.AccountCards.Count < limit)
+            {
+                end = true;
+                if (register.AccountCards.Count == 0)
+                {
+                    MessageBox.Show("Перед вами последние записи", "Внимание!");
+                    DataGrid_LoadValue(startRegister);
+                    offset -= limit;
+                    return;
+                }
+            }
+            else
+                end = false;
+            startRegister = register;
+            DataGrid_LoadValue(startRegister);
+        }
+        
+        //Пагинация назад
+        private void PreviosPagination_Click(object sender, EventArgs e)
+        {
+            if (offset == 0 && limit == int.Parse(LimitPagination.Value.ToString()))
+            {
+                MessageBox.Show("Перед вами первые записи", "Внимание!");
+                return;
+            }
+            Register register;
+            if (limit != int.Parse(LimitPagination.Value.ToString()))
+            {
+                limit = int.Parse(LimitPagination.Value.ToString());
+                offset = 0;
+                register = PaginationGetActs(limit, offset);
+            }
+            else
+                register = PaginationGetActs(limit, offset - limit);
+            offset -= limit;
+            if (register.AccountCards.Count < limit)
+                end = true;
+            else
+                end = false;
+            startRegister = register;
+            DataGrid_LoadValue(startRegister);
+        }
+
+        //Сделать либо фильтр либо просто запрос
+        private Register PaginationGetActs(int limit, int offset)
+        {
+            if (filterData.Count == 0)
+                return ListController.GetActs("", limit, offset);
+            else
+                return ListController.Filter(filterData, limit, offset);
         }
     }
 }
