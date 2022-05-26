@@ -40,12 +40,27 @@ namespace RTiPPO
             CaptOfPurpose.Text = ChangeCard.PurposeOfCatch.ToString();
         }
 
+        public void CanChange()
+        {
+            if (User.Role.Function.Name.Trim() == "ведение")
+            {
+                DateMK.Enabled = true;
+                DateCapt.Enabled = true;
+                MunicipalityComboBox.Enabled = true;
+                OMSUComboBox.Enabled = true;
+                ContractorMK.Enabled = true;
+                DogsCount.ReadOnly = false;
+                CatsCount.ReadOnly = false;
+                LocalityComboBox.Enabled = true;
+                CaptOfPurpose.ReadOnly = false;
+
+                CreateButton.Visible = true;
+            }
+        }
 
         private void CloseForm_Click_1(object sender, EventArgs e)
         {
-            Form List = new List();
-            List.Show();
-            Hide();
+            this.Close();
         }
 
         // Динамическое изменение кол-ва животных

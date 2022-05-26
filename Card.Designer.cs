@@ -80,6 +80,7 @@
             this.CreateButton.TabIndex = 57;
             this.CreateButton.Text = "Сохранить";
             this.CreateButton.UseVisualStyleBackColor = true;
+            this.CreateButton.Visible = false;
             this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // DateCapt
@@ -172,14 +173,6 @@
             this.label8.Size = new System.Drawing.Size(154, 15);
             this.label8.TabIndex = 45;
             this.label8.Text = "Количество отловленных:";
-            // 
-            // DogsTextBox
-            // 
-            this.DogsTextBox.Location = new System.Drawing.Point(44, 390);
-            this.DogsTextBox.Name = "DogsTextBox";
-            this.DogsTextBox.ReadOnly = true;
-            this.DogsTextBox.Size = new System.Drawing.Size(84, 23);
-            this.DogsTextBox.TabIndex = 44;
             // 
             // label7
             // 
@@ -314,6 +307,7 @@
             // 
             this.CaptOfPurpose.Location = new System.Drawing.Point(44, 488);
             this.CaptOfPurpose.Name = "CaptOfPurpose";
+            this.CaptOfPurpose.ReadOnly = true;
             this.CaptOfPurpose.Size = new System.Drawing.Size(367, 23);
             this.CaptOfPurpose.TabIndex = 60;
             // 
@@ -321,6 +315,7 @@
             // 
             this.DogsCount.Location = new System.Drawing.Point(44, 390);
             this.DogsCount.Name = "DogsCount";
+            this.DogsCount.ReadOnly = true;
             this.DogsCount.Size = new System.Drawing.Size(84, 23);
             this.DogsCount.TabIndex = 61;
             this.DogsCount.ValueChanged += new System.EventHandler(this.DogsCount_ValueChanged);
@@ -330,6 +325,7 @@
             // 
             this.CatsCount.Location = new System.Drawing.Point(192, 390);
             this.CatsCount.Name = "CatsCount";
+            this.CatsCount.ReadOnly = true;
             this.CatsCount.Size = new System.Drawing.Size(84, 23);
             this.CatsCount.TabIndex = 62;
             this.CatsCount.ValueChanged += new System.EventHandler(this.CatsCount_ValueChanged);

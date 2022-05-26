@@ -29,7 +29,21 @@ namespace RTiPPO
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Municipality = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OMSU = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Executor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaptDogs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaptCats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaptSum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Locality = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaptDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Purpose = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExportExcel = new System.Windows.Forms.Button();
             this.OpenCard = new System.Windows.Forms.Button();
             this.FilterLabel = new System.Windows.Forms.Label();
@@ -89,24 +103,24 @@ namespace RTiPPO
             this.MunicipalityListHelp = new System.Windows.Forms.ListBox();
             this.ShowHideFilter = new System.Windows.Forms.Button();
             this.SaveExcelPath = new System.Windows.Forms.SaveFileDialog();
-            this.CloseApp = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.LimitPagination = new System.Windows.Forms.NumericUpDown();
             this.NextPagination = new System.Windows.Forms.Button();
             this.PreviosPagination = new System.Windows.Forms.Button();
-            this.NumMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Municipality = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OMSU = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Executor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ActNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaptDogs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaptCats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaptSum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Locality = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaptDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Purpose = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumberMKSortLabel = new System.Windows.Forms.Label();
+            this.CaptDogsSortLabel = new System.Windows.Forms.Label();
+            this.CaptCatsSortLabel = new System.Windows.Forms.Label();
+            this.CaptAnimalsSortLabel = new System.Windows.Forms.Label();
+            this.CaptDateSortLabel = new System.Windows.Forms.Label();
+            this.LocalitySortLabel = new System.Windows.Forms.Label();
+            this.NumberActSortLabel = new System.Windows.Forms.Label();
+            this.CaptOrgSortLabel = new System.Windows.Forms.Label();
+            this.OMSUSortLabel = new System.Windows.Forms.Label();
+            this.MunicipalutySortLabel = new System.Windows.Forms.Label();
+            this.DateMKSortLabel = new System.Windows.Forms.Label();
+            this.CaptPurposeSortLabel = new System.Windows.Forms.Label();
+            this.ThrowOfSorting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinDogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMaxSum)).BeginInit();
@@ -122,8 +136,12 @@ namespace RTiPPO
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
             this.NumMK,
             this.DateMK,
             this.Municipality,
@@ -136,15 +154,127 @@ namespace RTiPPO
             this.Locality,
             this.CaptDate,
             this.Purpose});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Location = new System.Drawing.Point(0, 406);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1190, 472);
+            this.dataGridView1.Size = new System.Drawing.Size(1310, 472);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
+            // 
+            // ID
+            // 
+            this.ID.Frozen = true;
+            this.ID.HeaderText = "ID MK";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 64;
+            // 
+            // NumMK
+            // 
+            this.NumMK.HeaderText = "Номер МК";
+            this.NumMK.Name = "NumMK";
+            this.NumMK.ReadOnly = true;
+            this.NumMK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.NumMK.Width = 91;
+            // 
+            // DateMK
+            // 
+            this.DateMK.HeaderText = "Дата заключения МК";
+            this.DateMK.Name = "DateMK";
+            this.DateMK.ReadOnly = true;
+            this.DateMK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // Municipality
+            // 
+            this.Municipality.HeaderText = "Муниципальное образование";
+            this.Municipality.Name = "Municipality";
+            this.Municipality.ReadOnly = true;
+            this.Municipality.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.Municipality.Width = 130;
+            // 
+            // OMSU
+            // 
+            this.OMSU.HeaderText = "ОМСУ";
+            this.OMSU.Name = "OMSU";
+            this.OMSU.ReadOnly = true;
+            this.OMSU.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.OMSU.Width = 67;
+            // 
+            // Executor
+            // 
+            this.Executor.HeaderText = "Исполнитель МК";
+            this.Executor.Name = "Executor";
+            this.Executor.ReadOnly = true;
+            this.Executor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.Executor.Width = 116;
+            // 
+            // ActNum
+            // 
+            this.ActNum.HeaderText = "Номер акта отлова";
+            this.ActNum.Name = "ActNum";
+            this.ActNum.ReadOnly = true;
+            this.ActNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ActNum.Width = 125;
+            // 
+            // CaptDogs
+            // 
+            this.CaptDogs.HeaderText = "Количество отловленных собак";
+            this.CaptDogs.Name = "CaptDogs";
+            this.CaptDogs.ReadOnly = true;
+            this.CaptDogs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.CaptDogs.Width = 110;
+            // 
+            // CaptCats
+            // 
+            this.CaptCats.HeaderText = "Количество отловленных кошек";
+            this.CaptCats.Name = "CaptCats";
+            this.CaptCats.ReadOnly = true;
+            this.CaptCats.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.CaptCats.Width = 110;
+            // 
+            // CaptSum
+            // 
+            this.CaptSum.HeaderText = "Количество отловленных животных";
+            this.CaptSum.Name = "CaptSum";
+            this.CaptSum.ReadOnly = true;
+            this.CaptSum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.CaptSum.Width = 110;
+            // 
+            // Locality
+            // 
+            this.Locality.HeaderText = "Населённый пункт";
+            this.Locality.Name = "Locality";
+            this.Locality.ReadOnly = true;
+            this.Locality.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.Locality.Width = 124;
+            // 
+            // CaptDate
+            // 
+            this.CaptDate.HeaderText = "Дата отлова";
+            this.CaptDate.Name = "CaptDate";
+            this.CaptDate.ReadOnly = true;
+            this.CaptDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.CaptDate.Width = 90;
+            // 
+            // Purpose
+            // 
+            this.Purpose.HeaderText = "Цель отлова";
+            this.Purpose.Name = "Purpose";
+            this.Purpose.ReadOnly = true;
+            this.Purpose.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.Purpose.Width = 93;
             // 
             // ExportExcel
             // 
@@ -158,7 +288,7 @@ namespace RTiPPO
             // 
             // OpenCard
             // 
-            this.OpenCard.Location = new System.Drawing.Point(1116, 928);
+            this.OpenCard.Location = new System.Drawing.Point(1229, 928);
             this.OpenCard.Name = "OpenCard";
             this.OpenCard.Size = new System.Drawing.Size(75, 23);
             this.OpenCard.TabIndex = 2;
@@ -189,7 +319,7 @@ namespace RTiPPO
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 159);
+            this.label4.Location = new System.Drawing.Point(46, 159);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(172, 15);
             this.label4.TabIndex = 6;
@@ -198,7 +328,7 @@ namespace RTiPPO
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(412, 159);
+            this.label5.Location = new System.Drawing.Point(481, 159);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 15);
             this.label5.TabIndex = 7;
@@ -207,7 +337,7 @@ namespace RTiPPO
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(720, 159);
+            this.label6.Location = new System.Drawing.Point(824, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(105, 15);
             this.label6.TabIndex = 8;
@@ -225,7 +355,7 @@ namespace RTiPPO
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(593, 29);
+            this.label8.Location = new System.Drawing.Point(639, 28);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(184, 15);
             this.label8.TabIndex = 10;
@@ -234,7 +364,7 @@ namespace RTiPPO
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(788, 29);
+            this.label9.Location = new System.Drawing.Point(861, 28);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(188, 15);
             this.label9.TabIndex = 11;
@@ -243,7 +373,7 @@ namespace RTiPPO
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1026, 159);
+            this.label10.Location = new System.Drawing.Point(1129, 159);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(111, 15);
             this.label10.TabIndex = 12;
@@ -252,7 +382,7 @@ namespace RTiPPO
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(982, 29);
+            this.label12.Location = new System.Drawing.Point(1086, 28);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(208, 15);
             this.label12.TabIndex = 14;
@@ -286,7 +416,7 @@ namespace RTiPPO
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(841, 106);
+            this.label15.Location = new System.Drawing.Point(914, 105);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(22, 15);
             this.label15.TabIndex = 19;
@@ -295,7 +425,7 @@ namespace RTiPPO
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(646, 59);
+            this.label16.Location = new System.Drawing.Point(692, 58);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(21, 15);
             this.label16.TabIndex = 18;
@@ -304,7 +434,7 @@ namespace RTiPPO
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(646, 106);
+            this.label17.Location = new System.Drawing.Point(692, 105);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(22, 15);
             this.label17.TabIndex = 21;
@@ -313,7 +443,7 @@ namespace RTiPPO
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(841, 59);
+            this.label18.Location = new System.Drawing.Point(914, 58);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(21, 15);
             this.label18.TabIndex = 20;
@@ -322,7 +452,7 @@ namespace RTiPPO
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(1035, 106);
+            this.label19.Location = new System.Drawing.Point(1139, 105);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(22, 15);
             this.label19.TabIndex = 23;
@@ -331,7 +461,7 @@ namespace RTiPPO
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(1035, 59);
+            this.label20.Location = new System.Drawing.Point(1139, 58);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(21, 15);
             this.label20.TabIndex = 22;
@@ -366,7 +496,7 @@ namespace RTiPPO
             // DateMaxCapt
             // 
             this.DateMaxCapt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateMaxCapt.Location = new System.Drawing.Point(481, 100);
+            this.DateMaxCapt.Location = new System.Drawing.Point(505, 101);
             this.DateMaxCapt.Name = "DateMaxCapt";
             this.DateMaxCapt.Size = new System.Drawing.Size(98, 23);
             this.DateMaxCapt.TabIndex = 30;
@@ -374,7 +504,7 @@ namespace RTiPPO
             // DateMinCapt
             // 
             this.DateMinCapt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateMinCapt.Location = new System.Drawing.Point(481, 53);
+            this.DateMinCapt.Location = new System.Drawing.Point(505, 54);
             this.DateMinCapt.Name = "DateMinCapt";
             this.DateMinCapt.Size = new System.Drawing.Size(98, 23);
             this.DateMinCapt.TabIndex = 29;
@@ -382,7 +512,7 @@ namespace RTiPPO
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(453, 106);
+            this.label3.Location = new System.Drawing.Point(477, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(22, 15);
             this.label3.TabIndex = 28;
@@ -391,7 +521,7 @@ namespace RTiPPO
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(454, 59);
+            this.label21.Location = new System.Drawing.Point(478, 60);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(21, 15);
             this.label21.TabIndex = 27;
@@ -399,42 +529,42 @@ namespace RTiPPO
             // 
             // CaptMinDogs
             // 
-            this.CaptMinDogs.Location = new System.Drawing.Point(673, 53);
+            this.CaptMinDogs.Location = new System.Drawing.Point(719, 52);
             this.CaptMinDogs.Name = "CaptMinDogs";
             this.CaptMinDogs.Size = new System.Drawing.Size(54, 23);
             this.CaptMinDogs.TabIndex = 31;
             // 
             // CaptMaxSum
             // 
-            this.CaptMaxSum.Location = new System.Drawing.Point(1063, 100);
+            this.CaptMaxSum.Location = new System.Drawing.Point(1167, 99);
             this.CaptMaxSum.Name = "CaptMaxSum";
             this.CaptMaxSum.Size = new System.Drawing.Size(54, 23);
             this.CaptMaxSum.TabIndex = 32;
             // 
             // CaptMinSum
             // 
-            this.CaptMinSum.Location = new System.Drawing.Point(1062, 53);
+            this.CaptMinSum.Location = new System.Drawing.Point(1166, 52);
             this.CaptMinSum.Name = "CaptMinSum";
             this.CaptMinSum.Size = new System.Drawing.Size(54, 23);
             this.CaptMinSum.TabIndex = 33;
             // 
             // CaptMaxCats
             // 
-            this.CaptMaxCats.Location = new System.Drawing.Point(869, 100);
+            this.CaptMaxCats.Location = new System.Drawing.Point(942, 99);
             this.CaptMaxCats.Name = "CaptMaxCats";
             this.CaptMaxCats.Size = new System.Drawing.Size(54, 23);
             this.CaptMaxCats.TabIndex = 34;
             // 
             // CaptMinCats
             // 
-            this.CaptMinCats.Location = new System.Drawing.Point(868, 53);
+            this.CaptMinCats.Location = new System.Drawing.Point(941, 52);
             this.CaptMinCats.Name = "CaptMinCats";
             this.CaptMinCats.Size = new System.Drawing.Size(54, 23);
             this.CaptMinCats.TabIndex = 35;
             // 
             // CaptMaxDogs
             // 
-            this.CaptMaxDogs.Location = new System.Drawing.Point(674, 100);
+            this.CaptMaxDogs.Location = new System.Drawing.Point(720, 99);
             this.CaptMaxDogs.Name = "CaptMaxDogs";
             this.CaptMaxDogs.Size = new System.Drawing.Size(54, 23);
             this.CaptMaxDogs.TabIndex = 36;
@@ -449,7 +579,7 @@ namespace RTiPPO
             // CheckDateCapt
             // 
             this.CheckDateCapt.AutoSize = true;
-            this.CheckDateCapt.Location = new System.Drawing.Point(481, 28);
+            this.CheckDateCapt.Location = new System.Drawing.Point(505, 29);
             this.CheckDateCapt.Name = "CheckDateCapt";
             this.CheckDateCapt.Size = new System.Drawing.Size(92, 19);
             this.CheckDateCapt.TabIndex = 38;
@@ -478,7 +608,7 @@ namespace RTiPPO
             // 
             // AddCard
             // 
-            this.AddCard.Location = new System.Drawing.Point(954, 928);
+            this.AddCard.Location = new System.Drawing.Point(1067, 928);
             this.AddCard.Name = "AddCard";
             this.AddCard.Size = new System.Drawing.Size(75, 23);
             this.AddCard.TabIndex = 45;
@@ -489,7 +619,7 @@ namespace RTiPPO
             // 
             // DeleteCard
             // 
-            this.DeleteCard.Location = new System.Drawing.Point(1035, 928);
+            this.DeleteCard.Location = new System.Drawing.Point(1148, 928);
             this.DeleteCard.Name = "DeleteCard";
             this.DeleteCard.Size = new System.Drawing.Size(75, 23);
             this.DeleteCard.TabIndex = 46;
@@ -500,7 +630,7 @@ namespace RTiPPO
             // 
             // ContractorTextBox
             // 
-            this.ContractorTextBox.Location = new System.Drawing.Point(658, 187);
+            this.ContractorTextBox.Location = new System.Drawing.Point(762, 187);
             this.ContractorTextBox.Name = "ContractorTextBox";
             this.ContractorTextBox.Size = new System.Drawing.Size(223, 23);
             this.ContractorTextBox.TabIndex = 47;
@@ -508,7 +638,7 @@ namespace RTiPPO
             // 
             // LocalityTextBox
             // 
-            this.LocalityTextBox.Location = new System.Drawing.Point(968, 187);
+            this.LocalityTextBox.Location = new System.Drawing.Point(1071, 187);
             this.LocalityTextBox.Name = "LocalityTextBox";
             this.LocalityTextBox.Size = new System.Drawing.Size(223, 23);
             this.LocalityTextBox.TabIndex = 48;
@@ -516,7 +646,7 @@ namespace RTiPPO
             // 
             // MunicipalityTextBox
             // 
-            this.MunicipalityTextBox.Location = new System.Drawing.Point(6, 187);
+            this.MunicipalityTextBox.Location = new System.Drawing.Point(24, 187);
             this.MunicipalityTextBox.Name = "MunicipalityTextBox";
             this.MunicipalityTextBox.Size = new System.Drawing.Size(223, 23);
             this.MunicipalityTextBox.TabIndex = 49;
@@ -524,7 +654,7 @@ namespace RTiPPO
             // 
             // OMSUTextBox
             // 
-            this.OMSUTextBox.Location = new System.Drawing.Point(323, 187);
+            this.OMSUTextBox.Location = new System.Drawing.Point(392, 187);
             this.OMSUTextBox.Name = "OMSUTextBox";
             this.OMSUTextBox.Size = new System.Drawing.Size(223, 23);
             this.OMSUTextBox.TabIndex = 50;
@@ -534,7 +664,7 @@ namespace RTiPPO
             // 
             this.MunicipalityList.FormattingEnabled = true;
             this.MunicipalityList.ItemHeight = 15;
-            this.MunicipalityList.Location = new System.Drawing.Point(6, 233);
+            this.MunicipalityList.Location = new System.Drawing.Point(24, 233);
             this.MunicipalityList.Name = "MunicipalityList";
             this.MunicipalityList.Size = new System.Drawing.Size(223, 94);
             this.MunicipalityList.TabIndex = 51;
@@ -543,7 +673,7 @@ namespace RTiPPO
             // 
             this.OMSUList.FormattingEnabled = true;
             this.OMSUList.ItemHeight = 15;
-            this.OMSUList.Location = new System.Drawing.Point(323, 233);
+            this.OMSUList.Location = new System.Drawing.Point(392, 233);
             this.OMSUList.Name = "OMSUList";
             this.OMSUList.Size = new System.Drawing.Size(223, 94);
             this.OMSUList.TabIndex = 52;
@@ -552,7 +682,7 @@ namespace RTiPPO
             // 
             this.ContractorList.FormattingEnabled = true;
             this.ContractorList.ItemHeight = 15;
-            this.ContractorList.Location = new System.Drawing.Point(658, 233);
+            this.ContractorList.Location = new System.Drawing.Point(762, 233);
             this.ContractorList.Name = "ContractorList";
             this.ContractorList.Size = new System.Drawing.Size(223, 94);
             this.ContractorList.TabIndex = 53;
@@ -561,14 +691,14 @@ namespace RTiPPO
             // 
             this.LocalityList.FormattingEnabled = true;
             this.LocalityList.ItemHeight = 15;
-            this.LocalityList.Location = new System.Drawing.Point(968, 233);
+            this.LocalityList.Location = new System.Drawing.Point(1071, 233);
             this.LocalityList.Name = "LocalityList";
             this.LocalityList.Size = new System.Drawing.Size(223, 94);
             this.LocalityList.TabIndex = 54;
             // 
             // DeleteMunicipality
             // 
-            this.DeleteMunicipality.Location = new System.Drawing.Point(154, 333);
+            this.DeleteMunicipality.Location = new System.Drawing.Point(172, 333);
             this.DeleteMunicipality.Name = "DeleteMunicipality";
             this.DeleteMunicipality.Size = new System.Drawing.Size(75, 23);
             this.DeleteMunicipality.TabIndex = 56;
@@ -578,7 +708,7 @@ namespace RTiPPO
             // 
             // DeleteContractor
             // 
-            this.DeleteContractor.Location = new System.Drawing.Point(806, 333);
+            this.DeleteContractor.Location = new System.Drawing.Point(910, 333);
             this.DeleteContractor.Name = "DeleteContractor";
             this.DeleteContractor.Size = new System.Drawing.Size(75, 23);
             this.DeleteContractor.TabIndex = 57;
@@ -588,7 +718,7 @@ namespace RTiPPO
             // 
             // DeleteLocality
             // 
-            this.DeleteLocality.Location = new System.Drawing.Point(1116, 333);
+            this.DeleteLocality.Location = new System.Drawing.Point(1219, 333);
             this.DeleteLocality.Name = "DeleteLocality";
             this.DeleteLocality.Size = new System.Drawing.Size(75, 23);
             this.DeleteLocality.TabIndex = 58;
@@ -598,7 +728,7 @@ namespace RTiPPO
             // 
             // DeleteOMSU
             // 
-            this.DeleteOMSU.Location = new System.Drawing.Point(471, 333);
+            this.DeleteOMSU.Location = new System.Drawing.Point(540, 333);
             this.DeleteOMSU.Name = "DeleteOMSU";
             this.DeleteOMSU.Size = new System.Drawing.Size(75, 23);
             this.DeleteOMSU.TabIndex = 59;
@@ -659,7 +789,7 @@ namespace RTiPPO
             this.filterBox.Controls.Add(this.label8);
             this.filterBox.Location = new System.Drawing.Point(0, 35);
             this.filterBox.Name = "filterBox";
-            this.filterBox.Size = new System.Drawing.Size(1197, 365);
+            this.filterBox.Size = new System.Drawing.Size(1310, 365);
             this.filterBox.TabIndex = 60;
             this.filterBox.TabStop = false;
             this.filterBox.Text = "Фильтры";
@@ -668,7 +798,7 @@ namespace RTiPPO
             // 
             this.LocalityListHelp.FormattingEnabled = true;
             this.LocalityListHelp.ItemHeight = 15;
-            this.LocalityListHelp.Location = new System.Drawing.Point(968, 207);
+            this.LocalityListHelp.Location = new System.Drawing.Point(1071, 207);
             this.LocalityListHelp.Name = "LocalityListHelp";
             this.LocalityListHelp.Size = new System.Drawing.Size(223, 139);
             this.LocalityListHelp.TabIndex = 63;
@@ -679,7 +809,7 @@ namespace RTiPPO
             // 
             this.ContractorListHelp.FormattingEnabled = true;
             this.ContractorListHelp.ItemHeight = 15;
-            this.ContractorListHelp.Location = new System.Drawing.Point(658, 207);
+            this.ContractorListHelp.Location = new System.Drawing.Point(762, 207);
             this.ContractorListHelp.Name = "ContractorListHelp";
             this.ContractorListHelp.Size = new System.Drawing.Size(223, 139);
             this.ContractorListHelp.TabIndex = 62;
@@ -690,7 +820,7 @@ namespace RTiPPO
             // 
             this.OMSUListHelp.FormattingEnabled = true;
             this.OMSUListHelp.ItemHeight = 15;
-            this.OMSUListHelp.Location = new System.Drawing.Point(323, 207);
+            this.OMSUListHelp.Location = new System.Drawing.Point(392, 207);
             this.OMSUListHelp.Name = "OMSUListHelp";
             this.OMSUListHelp.Size = new System.Drawing.Size(223, 139);
             this.OMSUListHelp.TabIndex = 61;
@@ -701,7 +831,7 @@ namespace RTiPPO
             // 
             this.MunicipalityListHelp.FormattingEnabled = true;
             this.MunicipalityListHelp.ItemHeight = 15;
-            this.MunicipalityListHelp.Location = new System.Drawing.Point(6, 207);
+            this.MunicipalityListHelp.Location = new System.Drawing.Point(24, 207);
             this.MunicipalityListHelp.Name = "MunicipalityListHelp";
             this.MunicipalityListHelp.Size = new System.Drawing.Size(223, 139);
             this.MunicipalityListHelp.TabIndex = 60;
@@ -718,22 +848,10 @@ namespace RTiPPO
             this.ShowHideFilter.UseVisualStyleBackColor = true;
             this.ShowHideFilter.Click += new System.EventHandler(this.ShowHideFilter_Click);
             // 
-            // CloseApp
-            // 
-            this.CloseApp.BackColor = System.Drawing.Color.IndianRed;
-            this.CloseApp.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.CloseApp.Location = new System.Drawing.Point(1165, 6);
-            this.CloseApp.Name = "CloseApp";
-            this.CloseApp.Size = new System.Drawing.Size(26, 27);
-            this.CloseApp.TabIndex = 62;
-            this.CloseApp.Text = "x";
-            this.CloseApp.UseVisualStyleBackColor = false;
-            this.CloseApp.Click += new System.EventHandler(this.CloseApp_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(366, 888);
+            this.label1.Location = new System.Drawing.Point(415, 888);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 15);
             this.label1.TabIndex = 63;
@@ -742,7 +860,7 @@ namespace RTiPPO
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(513, 887);
+            this.label11.Location = new System.Drawing.Point(562, 887);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(21, 15);
             this.label11.TabIndex = 65;
@@ -750,7 +868,7 @@ namespace RTiPPO
             // 
             // LimitPagination
             // 
-            this.LimitPagination.Location = new System.Drawing.Point(540, 884);
+            this.LimitPagination.Location = new System.Drawing.Point(589, 884);
             this.LimitPagination.Name = "LimitPagination";
             this.LimitPagination.Size = new System.Drawing.Size(70, 23);
             this.LimitPagination.TabIndex = 66;
@@ -762,7 +880,7 @@ namespace RTiPPO
             // 
             // NextPagination
             // 
-            this.NextPagination.Location = new System.Drawing.Point(750, 884);
+            this.NextPagination.Location = new System.Drawing.Point(799, 884);
             this.NextPagination.Name = "NextPagination";
             this.NextPagination.Size = new System.Drawing.Size(75, 23);
             this.NextPagination.TabIndex = 67;
@@ -772,7 +890,7 @@ namespace RTiPPO
             // 
             // PreviosPagination
             // 
-            this.PreviosPagination.Location = new System.Drawing.Point(645, 884);
+            this.PreviosPagination.Location = new System.Drawing.Point(694, 884);
             this.PreviosPagination.Name = "PreviosPagination";
             this.PreviosPagination.Size = new System.Drawing.Size(75, 23);
             this.PreviosPagination.TabIndex = 68;
@@ -780,105 +898,184 @@ namespace RTiPPO
             this.PreviosPagination.UseVisualStyleBackColor = true;
             this.PreviosPagination.Click += new System.EventHandler(this.PreviosPagination_Click);
             // 
-            // NumMK
+            // NumberMKSortLabel
             // 
-            this.NumMK.Frozen = true;
-            this.NumMK.HeaderText = "Номер МК";
-            this.NumMK.Name = "NumMK";
-            this.NumMK.ReadOnly = true;
+            this.NumberMKSortLabel.AutoSize = true;
+            this.NumberMKSortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.NumberMKSortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.NumberMKSortLabel.Location = new System.Drawing.Point(112, 410);
+            this.NumberMKSortLabel.Name = "NumberMKSortLabel";
+            this.NumberMKSortLabel.Size = new System.Drawing.Size(19, 15);
+            this.NumberMKSortLabel.TabIndex = 64;
+            this.NumberMKSortLabel.Text = "12";
+            this.NumberMKSortLabel.Visible = false;
             // 
-            // DateMK
+            // CaptDogsSortLabel
             // 
-            this.DateMK.Frozen = true;
-            this.DateMK.HeaderText = "Дата заключения МК";
-            this.DateMK.Name = "DateMK";
-            this.DateMK.ReadOnly = true;
-            this.DateMK.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DateMK.Width = 77;
+            this.CaptDogsSortLabel.AutoSize = true;
+            this.CaptDogsSortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.CaptDogsSortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.CaptDogsSortLabel.Location = new System.Drawing.Point(760, 410);
+            this.CaptDogsSortLabel.Name = "CaptDogsSortLabel";
+            this.CaptDogsSortLabel.Size = new System.Drawing.Size(19, 15);
+            this.CaptDogsSortLabel.TabIndex = 69;
+            this.CaptDogsSortLabel.Text = "12";
+            this.CaptDogsSortLabel.Visible = false;
             // 
-            // Municipality
+            // CaptCatsSortLabel
             // 
-            this.Municipality.Frozen = true;
-            this.Municipality.HeaderText = "Муниципальное образование";
-            this.Municipality.Name = "Municipality";
-            this.Municipality.ReadOnly = true;
+            this.CaptCatsSortLabel.AutoSize = true;
+            this.CaptCatsSortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.CaptCatsSortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.CaptCatsSortLabel.Location = new System.Drawing.Point(870, 410);
+            this.CaptCatsSortLabel.Name = "CaptCatsSortLabel";
+            this.CaptCatsSortLabel.Size = new System.Drawing.Size(19, 15);
+            this.CaptCatsSortLabel.TabIndex = 70;
+            this.CaptCatsSortLabel.Text = "12";
+            this.CaptCatsSortLabel.Visible = false;
             // 
-            // OMSU
+            // CaptAnimalsSortLabel
             // 
-            this.OMSU.Frozen = true;
-            this.OMSU.HeaderText = "ОМСУ";
-            this.OMSU.Name = "OMSU";
-            this.OMSU.ReadOnly = true;
+            this.CaptAnimalsSortLabel.AutoSize = true;
+            this.CaptAnimalsSortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.CaptAnimalsSortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.CaptAnimalsSortLabel.Location = new System.Drawing.Point(977, 410);
+            this.CaptAnimalsSortLabel.Name = "CaptAnimalsSortLabel";
+            this.CaptAnimalsSortLabel.Size = new System.Drawing.Size(19, 15);
+            this.CaptAnimalsSortLabel.TabIndex = 71;
+            this.CaptAnimalsSortLabel.Text = "12";
+            this.CaptAnimalsSortLabel.Visible = false;
             // 
-            // Executor
+            // CaptDateSortLabel
             // 
-            this.Executor.Frozen = true;
-            this.Executor.HeaderText = "Исполнитель МК";
-            this.Executor.Name = "Executor";
-            this.Executor.ReadOnly = true;
+            this.CaptDateSortLabel.AutoSize = true;
+            this.CaptDateSortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.CaptDateSortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.CaptDateSortLabel.Location = new System.Drawing.Point(1192, 410);
+            this.CaptDateSortLabel.Name = "CaptDateSortLabel";
+            this.CaptDateSortLabel.Size = new System.Drawing.Size(19, 15);
+            this.CaptDateSortLabel.TabIndex = 72;
+            this.CaptDateSortLabel.Text = "12";
+            this.CaptDateSortLabel.Visible = false;
             // 
-            // ActNum
+            // LocalitySortLabel
             // 
-            this.ActNum.Frozen = true;
-            this.ActNum.HeaderText = "Номер акта отлова";
-            this.ActNum.Name = "ActNum";
-            this.ActNum.ReadOnly = true;
+            this.LocalitySortLabel.AutoSize = true;
+            this.LocalitySortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.LocalitySortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.LocalitySortLabel.Location = new System.Drawing.Point(1103, 410);
+            this.LocalitySortLabel.Name = "LocalitySortLabel";
+            this.LocalitySortLabel.Size = new System.Drawing.Size(19, 15);
+            this.LocalitySortLabel.TabIndex = 73;
+            this.LocalitySortLabel.Text = "12";
+            this.LocalitySortLabel.Visible = false;
             // 
-            // CaptDogs
+            // NumberActSortLabel
             // 
-            this.CaptDogs.Frozen = true;
-            this.CaptDogs.HeaderText = "Количество отловленных собак";
-            this.CaptDogs.Name = "CaptDogs";
-            this.CaptDogs.ReadOnly = true;
+            this.NumberActSortLabel.AutoSize = true;
+            this.NumberActSortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.NumberActSortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.NumberActSortLabel.Location = new System.Drawing.Point(649, 410);
+            this.NumberActSortLabel.Name = "NumberActSortLabel";
+            this.NumberActSortLabel.Size = new System.Drawing.Size(19, 15);
+            this.NumberActSortLabel.TabIndex = 76;
+            this.NumberActSortLabel.Text = "12";
+            this.NumberActSortLabel.Visible = false;
             // 
-            // CaptCats
+            // CaptOrgSortLabel
             // 
-            this.CaptCats.Frozen = true;
-            this.CaptCats.HeaderText = "Количество отловленных кошек";
-            this.CaptCats.Name = "CaptCats";
-            this.CaptCats.ReadOnly = true;
+            this.CaptOrgSortLabel.AutoSize = true;
+            this.CaptOrgSortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.CaptOrgSortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.CaptOrgSortLabel.Location = new System.Drawing.Point(523, 410);
+            this.CaptOrgSortLabel.Name = "CaptOrgSortLabel";
+            this.CaptOrgSortLabel.Size = new System.Drawing.Size(19, 15);
+            this.CaptOrgSortLabel.TabIndex = 77;
+            this.CaptOrgSortLabel.Text = "12";
+            this.CaptOrgSortLabel.Visible = false;
             // 
-            // CaptSum
+            // OMSUSortLabel
             // 
-            this.CaptSum.Frozen = true;
-            this.CaptSum.HeaderText = "Количество отловленных животных";
-            this.CaptSum.Name = "CaptSum";
-            this.CaptSum.ReadOnly = true;
+            this.OMSUSortLabel.AutoSize = true;
+            this.OMSUSortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.OMSUSortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.OMSUSortLabel.Location = new System.Drawing.Point(409, 410);
+            this.OMSUSortLabel.Name = "OMSUSortLabel";
+            this.OMSUSortLabel.Size = new System.Drawing.Size(19, 15);
+            this.OMSUSortLabel.TabIndex = 78;
+            this.OMSUSortLabel.Text = "12";
+            this.OMSUSortLabel.Visible = false;
             // 
-            // Locality
+            // MunicipalutySortLabel
             // 
-            this.Locality.Frozen = true;
-            this.Locality.HeaderText = "Населённый пункт";
-            this.Locality.Name = "Locality";
-            this.Locality.ReadOnly = true;
+            this.MunicipalutySortLabel.AutoSize = true;
+            this.MunicipalutySortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.MunicipalutySortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.MunicipalutySortLabel.Location = new System.Drawing.Point(342, 410);
+            this.MunicipalutySortLabel.Name = "MunicipalutySortLabel";
+            this.MunicipalutySortLabel.Size = new System.Drawing.Size(19, 15);
+            this.MunicipalutySortLabel.TabIndex = 79;
+            this.MunicipalutySortLabel.Text = "12";
+            this.MunicipalutySortLabel.Visible = false;
             // 
-            // CaptDate
+            // DateMKSortLabel
             // 
-            this.CaptDate.Frozen = true;
-            this.CaptDate.HeaderText = "Дата отлова";
-            this.CaptDate.Name = "CaptDate";
-            this.CaptDate.ReadOnly = true;
-            this.CaptDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CaptDate.Width = 77;
+            this.DateMKSortLabel.AutoSize = true;
+            this.DateMKSortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.DateMKSortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.DateMKSortLabel.Location = new System.Drawing.Point(212, 410);
+            this.DateMKSortLabel.Name = "DateMKSortLabel";
+            this.DateMKSortLabel.Size = new System.Drawing.Size(19, 15);
+            this.DateMKSortLabel.TabIndex = 80;
+            this.DateMKSortLabel.Text = "12";
+            this.DateMKSortLabel.Visible = false;
             // 
-            // Purpose
+            // CaptPurposeSortLabel
             // 
-            this.Purpose.Frozen = true;
-            this.Purpose.HeaderText = "Цель отлова";
-            this.Purpose.Name = "Purpose";
-            this.Purpose.ReadOnly = true;
+            this.CaptPurposeSortLabel.AutoSize = true;
+            this.CaptPurposeSortLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.CaptPurposeSortLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.CaptPurposeSortLabel.Location = new System.Drawing.Point(1285, 410);
+            this.CaptPurposeSortLabel.Name = "CaptPurposeSortLabel";
+            this.CaptPurposeSortLabel.Size = new System.Drawing.Size(19, 15);
+            this.CaptPurposeSortLabel.TabIndex = 81;
+            this.CaptPurposeSortLabel.Text = "12";
+            this.CaptPurposeSortLabel.Visible = false;
+            // 
+            // ThrowOfSorting
+            // 
+            this.ThrowOfSorting.Location = new System.Drawing.Point(6, 883);
+            this.ThrowOfSorting.Name = "ThrowOfSorting";
+            this.ThrowOfSorting.Size = new System.Drawing.Size(75, 23);
+            this.ThrowOfSorting.TabIndex = 82;
+            this.ThrowOfSorting.Text = "button1";
+            this.ThrowOfSorting.UseVisualStyleBackColor = true;
+            this.ThrowOfSorting.Visible = false;
+            this.ThrowOfSorting.Click += new System.EventHandler(this.ThrowOfSorting_Click);
             // 
             // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1196, 963);
+            this.ClientSize = new System.Drawing.Size(1316, 963);
+            this.Controls.Add(this.ThrowOfSorting);
+            this.Controls.Add(this.CaptPurposeSortLabel);
+            this.Controls.Add(this.DateMKSortLabel);
+            this.Controls.Add(this.MunicipalutySortLabel);
+            this.Controls.Add(this.OMSUSortLabel);
+            this.Controls.Add(this.CaptOrgSortLabel);
+            this.Controls.Add(this.NumberActSortLabel);
+            this.Controls.Add(this.LocalitySortLabel);
+            this.Controls.Add(this.CaptDateSortLabel);
+            this.Controls.Add(this.CaptAnimalsSortLabel);
+            this.Controls.Add(this.CaptCatsSortLabel);
+            this.Controls.Add(this.CaptDogsSortLabel);
+            this.Controls.Add(this.NumberMKSortLabel);
             this.Controls.Add(this.PreviosPagination);
             this.Controls.Add(this.NextPagination);
             this.Controls.Add(this.LimitPagination);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.CloseApp);
             this.Controls.Add(this.ShowHideFilter);
             this.Controls.Add(this.filterBox);
             this.Controls.Add(this.DeleteCard);
@@ -889,10 +1086,13 @@ namespace RTiPPO
             this.Controls.Add(this.OpenCard);
             this.Controls.Add(this.ExportExcel);
             this.Controls.Add(this.dataGridView1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "List";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Реестр";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.List_FormClosed);
             this.Load += new System.EventHandler(this.List_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaptMinDogs)).EndInit();
@@ -971,12 +1171,12 @@ namespace RTiPPO
         private System.Windows.Forms.ListBox ContractorListHelp;
         private System.Windows.Forms.ListBox OMSUListHelp;
         private System.Windows.Forms.SaveFileDialog SaveExcelPath;
-        private System.Windows.Forms.Button CloseApp;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown LimitPagination;
         private System.Windows.Forms.Button NextPagination;
         private System.Windows.Forms.Button PreviosPagination;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumMK;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateMK;
         private System.Windows.Forms.DataGridViewTextBoxColumn Municipality;
@@ -989,6 +1189,19 @@ namespace RTiPPO
         private System.Windows.Forms.DataGridViewTextBoxColumn Locality;
         private System.Windows.Forms.DataGridViewTextBoxColumn CaptDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Purpose;
+        private System.Windows.Forms.Label NumberMKSortLabel;
+        private System.Windows.Forms.Label CaptDogsSortLabel;
+        private System.Windows.Forms.Label CaptCatsSortLabel;
+        private System.Windows.Forms.Label CaptAnimalsSortLabel;
+        private System.Windows.Forms.Label CaptDateSortLabel;
+        private System.Windows.Forms.Label LocalitySortLabel;
+        private System.Windows.Forms.Label NumberActSortLabel;
+        private System.Windows.Forms.Label CaptOrgSortLabel;
+        private System.Windows.Forms.Label OMSUSortLabel;
+        private System.Windows.Forms.Label MunicipalutySortLabel;
+        private System.Windows.Forms.Label DateMKSortLabel;
+        private System.Windows.Forms.Label CaptPurposeSortLabel;
+        private System.Windows.Forms.Button ThrowOfSorting;
     }
 }
 

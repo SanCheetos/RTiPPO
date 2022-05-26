@@ -39,17 +39,17 @@ namespace RTiPPO.Controllers
             "JOIN \"Locality\" ON \"CaptAct\".\"Locality_ID\"=\"Locality\".\"ID_Locality\" ";
 
             //Подстановка Where
-            string access;
-            if (filter == "")
-                access = "WHERE ";
+            string access = "";
+            if (filter.IndexOf("WHERE") != -1)
+                access = "AND";
             else
-                access = "AND ";
+                access = "WHERE";
             if (User.Role.Access.Trim() == "муниципальное образование")
                 access += "\"OMSU\".\"Municipality_ID\"=" + User.OMSU.Municipality.ID + " ";
             else if (User.Role.Access.Trim() == "организация по отлову")
                 access += "\"CaptAct\".\"CaptOrg_ID\"=" + User.CaptOrg.ID + " ";
             else access = "";
-            query += filter + access + /*пагинация*/ " LIMIT " + limit + " OFFSET " + offset;
+            query += access + filter + /*пагинация*/ " LIMIT " + limit + " OFFSET " + offset;
 
 
 
@@ -85,39 +85,94 @@ namespace RTiPPO.Controllers
         }
 
         //public static Register Filter(User user, Dictionary<string, string> filterData)
-        public static Register Filter(Dictionary<string, string> filterData, int limit = 2, int offset = 0)
+        public static Register FilterSort(Dictionary<string, string> filterData, List<Sort> sortData, int limit = 2, int offset = 0)
         {
-            string filterQuery = "WHERE";
-            if (filterData.ContainsKey("NumberMK"))
-                filterQuery += " \"NumberMK\" = '" + filterData["NumberMK"] + "'";
-            else if (filterData.ContainsKey("NumberAct"))
-                filterQuery += " \"NumberAct\" = '" + filterData["NumberAct"] + "'";
-            else
+
+            string filterQuery = "";
+            //фильтр
+            if (filterData != null && filterData.Count > 0)
             {
-                if (filterData.ContainsKey("DateMK"))
-                    filterQuery += " \"DateMK\" BETWEEN " + filterData["DateMK"] + " AND";
-                if (filterData.ContainsKey("DateCapt"))
-                    filterQuery += " \"CaptDate\" BETWEEN " + filterData["DateCapt"] + " AND";
+                filterQuery += "WHERE";
+                if (filterData.ContainsKey("NumberMK"))
+                    filterQuery += " \"NumberMK\" = '" + filterData["NumberMK"] + "'";
+                else if (filterData.ContainsKey("NumberAct"))
+                    filterQuery += " \"NumberAct\" = '" + filterData["NumberAct"] + "'";
+                else
+                {
+                    if (filterData.ContainsKey("DateMK"))
+                        filterQuery += " \"DateMK\" BETWEEN " + filterData["DateMK"] + " AND";
+                    if (filterData.ContainsKey("DateCapt"))
+                        filterQuery += " \"CaptDate\" BETWEEN " + filterData["DateCapt"] + " AND";
 
-                if (filterData.ContainsKey("CaptDogs"))
-                    filterQuery += CaptCountQuery("CaptDogs", filterData["CaptDogs"]);
-                if (filterData.ContainsKey("CaptCats"))
-                    filterQuery += CaptCountQuery("CaptCats", filterData["CaptCats"]);
-                if (filterData.ContainsKey("CaptSum"))
-                    filterQuery += CaptCountQuery("CaptAnimals", filterData["CaptSum"]);
+                    if (filterData.ContainsKey("CaptDogs"))
+                        filterQuery += CaptCountQuery("CaptDogs", filterData["CaptDogs"]);
+                    if (filterData.ContainsKey("CaptCats"))
+                        filterQuery += CaptCountQuery("CaptCats", filterData["CaptCats"]);
+                    if (filterData.ContainsKey("CaptSum"))
+                        filterQuery += CaptCountQuery("CaptAnimals", filterData["CaptSum"]);
 
-                if (filterData.ContainsKey("Municipality") && User.Role.Access != "муниципальное образование")
-                    filterQuery += EntitiesQuery("\"OMSU\".\"Municipality_ID\"", filterData["Municipality"]);
-                if (filterData.ContainsKey("OMSU"))
-                    filterQuery += EntitiesQuery("\"CaptAct\".\"OMSU_ID\"", filterData["OMSU"]);
-                if (filterData.ContainsKey("Contractor") && User.Role.Access != "организация по отлову")
-                    filterQuery += EntitiesQuery("\"CaptAct\".\"CaptOrg_ID\"", filterData["Contractor"]);
-                if (filterData.ContainsKey("Locality"))
-                    filterQuery += EntitiesQuery("\"CaptAct\".\"Locality_ID\"", filterData["Locality"]);
-                filterQuery = filterQuery.Substring(0, filterQuery.Length - 3);
+                    if (filterData.ContainsKey("Municipality") && User.Role.Access != "муниципальное образование")
+                        filterQuery += EntitiesQuery("\"OMSU\".\"Municipality_ID\"", filterData["Municipality"]);
+                    if (filterData.ContainsKey("OMSU"))
+                        filterQuery += EntitiesQuery("\"CaptAct\".\"OMSU_ID\"", filterData["OMSU"]);
+                    if (filterData.ContainsKey("Contractor") && User.Role.Access != "организация по отлову")
+                        filterQuery += EntitiesQuery("\"CaptAct\".\"CaptOrg_ID\"", filterData["Contractor"]);
+                    if (filterData.ContainsKey("Locality"))
+                        filterQuery += EntitiesQuery("\"CaptAct\".\"Locality_ID\"", filterData["Locality"]);
+                    filterQuery = filterQuery.Substring(0, filterQuery.Length - 3);
+                }
+            }
+           
+            //Сортировка
+            if (sortData != null && sortData.Count != 0)
+            {
+                filterQuery += " ORDER BY";
+                foreach (var sort in sortData)
+                {
+                    switch (sort.Column)
+                    {
+                        case "NumMK":
+                            filterQuery += " \"NumberMK\" " + sort.SortType + ",";
+                            break;
+                        case "DateMK":
+                            filterQuery += " \"DateMK\" " + sort.SortType + ",";
+                            break;
+                        case "Municipality":
+                            filterQuery += " \"Municipality\".\"Name\" " + sort.SortType + ",";
+                            break;
+                        case "OMSU":
+                            filterQuery += " \"OMSU\".\"Name\" " + sort.SortType + ",";
+                            break;
+                        case "Executor":
+                            filterQuery += " \"CaptOrg\".\"Name\" " + sort.SortType + ",";
+                            break;
+                        case "ActNum":
+                            filterQuery += " \"NumberAct\" " + sort.SortType + ",";
+                            break;
+                        case "CaptDogs":
+                            filterQuery += " \"CaptDogs\" " + sort.SortType + ",";
+                            break;
+                        case "CaptCats":
+                            filterQuery += " \"CaptCats\" " + sort.SortType + ",";
+                            break;
+                        case "CaptSum":
+                            filterQuery += " \"CaptAnimals\" " + sort.SortType + ",";
+                            break;
+                        case "Locality":
+                            filterQuery += " \"Locality\".\"Name\" " + sort.SortType + ",";
+                            break;
+                        case "CaptDate":
+                            filterQuery += " \"CaptDate\" " + sort.SortType + ",";
+                            break;
+                        case "Purpose":
+                            filterQuery += " \"CaptPurpose\" " + sort.SortType + ",";
+                            break;
+                    }
+                }
+                filterQuery = filterQuery.Substring(0, filterQuery.Length - 1);
             }
             //return GetActs(user, filterQuery);
-            return GetActs(filterQuery);
+            return GetActs(filterQuery, limit, offset);
         }
 
         private static string CaptCountQuery(string key, string value)

@@ -26,13 +26,26 @@ namespace RTiPPO
         List<Locality> localitySearch = null;
         Register startRegister = null;
         Dictionary<string, string> filterData = new Dictionary<string, string>();
-
+        List<Sort> sortData = new List<Sort>();
         int limit;
         int offset = 0;
         bool end = false;
 
         private void List_Load(object sender, EventArgs e)
         {
+            SetSortLabels(NumberMKSortLabel,
+                DateMKSortLabel,
+                MunicipalutySortLabel,
+                OMSUSortLabel,
+                CaptOrgSortLabel,
+                NumberActSortLabel,
+                CaptDogsSortLabel,
+                CaptCatsSortLabel,
+                CaptAnimalsSortLabel,
+                LocalitySortLabel,
+                CaptDateSortLabel,
+                CaptPurposeSortLabel);
+
             limit = int.Parse(LimitPagination.Value.ToString());
             startRegister = ListController.GetActs("", limit, offset);
             //Вывод полученных записей
@@ -41,7 +54,6 @@ namespace RTiPPO
                 MessageBox.Show("По вашей роли не найдено ни одной записи", "Ошибка");
             else
                 DataGrid_LoadValue(startRegister);
-            ShowHideFilter_Click(null, null);
             //В зависимости от роли отключить возможность фильтрации по полям
             if (User.Role.Access.Trim() == "муниципальное образование")
             {
@@ -65,6 +77,17 @@ namespace RTiPPO
             {
                 AddCard.Visible = true;
             }
+            
+        }
+
+        private void SetSortLabels(params Label[] labels)
+        {
+            foreach (Label label in labels)
+            {
+                label.Parent = dataGridView1;
+                label.BackColor = Color.Transparent;
+                label.Location = new Point(label.Location.X, 4);
+            }
         }
 
         private void DataGrid_LoadValue(Register register)
@@ -72,8 +95,9 @@ namespace RTiPPO
             dataGridView1.Rows.Clear();
             foreach (AccountCard card in register.AccountCards)
                 dataGridView1.Rows.Add(
+                    card.ID,
                     card.NumberMK,
-                    card.DateOfConclusionMK,
+                    card.DateOfConclusionMK.ToString("dd.MM.yy"),
                     card.Municipality,
                     card.OMSU,
                     card.ContractorMK,
@@ -82,16 +106,11 @@ namespace RTiPPO
                     card.CaugthCats,
                     card.CaugthAnimals,
                     card.Locality,
-                    card.DateCatch,
+                    card.DateCatch.ToString("dd.MM.yy"),
                     card.PurposeOfCatch.Trim());
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
         }
@@ -122,10 +141,10 @@ namespace RTiPPO
             //AccountCard changeCard = ListController.GetEntity(new User(), numMK);
             AccountCard changeCard = ListController.GetEntity(idMK);
             card c = new card();
+            c.CanChange();
             c.ChangeCard = changeCard;
             c.Owner = this;
             c.ShowDialog();
-            Hide();
         }
 
         private void DoFilter_Click(object sender, EventArgs e)
@@ -185,16 +204,7 @@ namespace RTiPPO
             
             if (filterData.Count > 0)
             {
-                //Register register = ListController.Filter(new User(), filterData);
-                Register register = ListController.Filter(filterData);
-                //Вывод полученных записей
-                if (register.AccountCards.Count != 0)
-                    DataGrid_LoadValue(register);
-                else
-                {
-                    MessageBox.Show("По данному фильтре нет ни одной записи", "Ошибка");
-                    DataGrid_LoadValue(startRegister);
-                }
+                FilterSortStart();
             }
 
             //Если фильтр пустой, возвращаем старые значения
@@ -202,6 +212,130 @@ namespace RTiPPO
             {
                 DataGrid_LoadValue(startRegister);
                 filterData = new Dictionary<string, string>();
+            }
+        }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var column = dataGridView1.Columns[e.ColumnIndex];
+            if (column.HeaderCell.SortGlyphDirection == SortOrder.None)
+            {
+                column.HeaderCell.SortGlyphDirection = SortOrder.Ascending;
+                sortData.Add(new Sort(column.Name, "ASC"));
+                SortNumber(column.Name, true);
+            }
+            else if (column.HeaderCell.SortGlyphDirection == SortOrder.Ascending)
+            {
+                column.HeaderCell.SortGlyphDirection = SortOrder.Descending;
+                foreach (var sort in sortData)
+                {
+                    if (sort.Column == column.Name)
+                    {
+                        sort.SortType = "DESC";
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                column.HeaderCell.SortGlyphDirection = SortOrder.None;
+                foreach (var sort in sortData)
+                {
+                    if (sort.Column == column.Name)
+                    {
+                        sortData.Remove(sort);
+                        break;
+                    }
+                }
+                SortNumber(column.Name, false);
+            }
+            FilterSortStart();
+        }
+
+        private void SortNumber(string headerText, bool visibility)
+        {
+            Label labelChange = null;
+            switch (headerText)
+            {
+                case "NumMK":
+                    labelChange = NumberMKSortLabel;
+                    break;
+                case "DateMK":
+                    labelChange = DateMKSortLabel;
+                    break;
+                case "Municipality":
+                    labelChange = MunicipalutySortLabel;
+                    break;
+                case "OMSU":
+                    labelChange = OMSUSortLabel;
+                    break;
+                case "Executor":
+                    labelChange = CaptOrgSortLabel;
+                    break;
+                case "ActNum":
+                    labelChange = NumberActSortLabel;
+                    break;
+                case "CaptDogs":
+                    labelChange = CaptDogsSortLabel;
+                    break;
+                case "CaptCats":
+                    labelChange = CaptCatsSortLabel;
+                    break;
+                case "CaptSum":
+                    labelChange = CaptAnimalsSortLabel;
+                    break;
+                case "Locality":
+                    labelChange = LocalitySortLabel;
+                    break;
+                case "CaptDate":
+                    labelChange = CaptDateSortLabel;
+                    break;
+                case "Purpose":
+                    labelChange = CaptPurposeSortLabel;
+                    break;
+            }
+            if (visibility)
+            {
+                labelChange.Text = sortData.Count.ToString();
+                labelChange.Visible = true;
+            }
+            else
+            {
+                labelChange.Visible = false;
+                UpdateSortNumbers(labelChange.Text,
+                NumberMKSortLabel,
+                DateMKSortLabel,
+                MunicipalutySortLabel,
+                OMSUSortLabel,
+                CaptOrgSortLabel,
+                NumberActSortLabel,
+                CaptDogsSortLabel,
+                CaptCatsSortLabel,
+                CaptAnimalsSortLabel,
+                LocalitySortLabel,
+                CaptDateSortLabel,
+                CaptPurposeSortLabel);
+            }
+        }
+
+        private void UpdateSortNumbers(string minNumber, params Label[] labels)
+        {
+            foreach (Label label in labels)
+                if (label.Visible && int.Parse(label.Text) > int.Parse(minNumber))
+                    label.Text = (int.Parse(label.Text) - 1).ToString();
+
+        }
+
+        private void FilterSortStart()
+        {
+            offset = 0;
+            Register register = ListController.FilterSort(filterData, sortData, limit, offset);
+            if (register.AccountCards.Count != 0)
+                DataGrid_LoadValue(register);
+            else
+            {
+                MessageBox.Show("По данному фильтру нет ни одной записи", "Ошибка");
+                DataGrid_LoadValue(startRegister);
             }
         }
 
@@ -269,8 +403,8 @@ namespace RTiPPO
             Excel.Range range = sheet.get_Range(left, right);
             range.EntireColumn.AutoFit();
             range.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
-            left = sheet.Cells[1, 7];
-            right = sheet.Cells[i - 1, 9];
+            left = sheet.Cells[1, 8];
+            right = sheet.Cells[i - 1, 10];
             range = sheet.get_Range(left, right);
             range.ColumnWidth = 13;
             range.WrapText = true;
@@ -494,15 +628,15 @@ namespace RTiPPO
             LocalityListHelp.Items.Clear();
             LocalityListHelp.Visible = false;
             LocalityList.Items.Clear();
+            filterData = new Dictionary<string, string>();
             //DataGrid_LoadValue(ListController.GetActs(new User(-1, null, null, null, null, null)));
-            DataGrid_LoadValue(ListController.GetActs());
+            offset = 0;
+            DataGrid_LoadValue(ListController.FilterSort(filterData, sortData, limit, offset));
         }
 
-        // Закрытие приложения по кнопке Х
-
-        private void CloseApp_Click(object sender, EventArgs e)
+        private void ThrowOfSorting_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+
         }
 
         //Пагинация вперед
@@ -521,8 +655,10 @@ namespace RTiPPO
                 register = PaginationGetActs(limit, offset);
             }
             else
+            {
                 register = PaginationGetActs(limit, offset + limit);
-            offset += limit;
+                offset += limit;
+            }
             if (register.AccountCards.Count < limit)
             {
                 end = true;
@@ -556,8 +692,10 @@ namespace RTiPPO
                 register = PaginationGetActs(limit, offset);
             }
             else
+            {
                 register = PaginationGetActs(limit, offset - limit);
-            offset -= limit;
+                offset -= limit;
+            }
             if (register.AccountCards.Count < limit)
                 end = true;
             else
@@ -572,7 +710,14 @@ namespace RTiPPO
             if (filterData.Count == 0)
                 return ListController.GetActs("", limit, offset);
             else
-                return ListController.Filter(filterData, limit, offset);
+                return ListController.FilterSort(filterData, sortData, limit, offset);
         }
+
+        private void List_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        
     }
 }
